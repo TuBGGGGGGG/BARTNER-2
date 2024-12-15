@@ -412,7 +412,6 @@ class DecoderLayer(nn.Module):
             output_attentions=False,
     ):
         residual = x
-
         if layer_state is None:
             layer_state = {}
         if self.normalize_before:
@@ -431,9 +430,9 @@ class DecoderLayer(nn.Module):
         x = residual + x
         if not self.normalize_before:
             x = self.self_attn_layer_norm(x)
-
         # Cross attention
         residual = x
+        
         assert self.encoder_attn.cache_key != self.self_attn.cache_key
         if self.normalize_before:
             x = self.encoder_attn_layer_norm(x)
@@ -447,12 +446,11 @@ class DecoderLayer(nn.Module):
         x = residual + x
         if not self.normalize_before:
             x = self.encoder_attn_layer_norm(x)
-
         # Fully Connected
         residual = x
         if self.normalize_before:
             x = self.final_layer_norm(x)
-        x = self.activation_fn(self.fc1(x))
+        x = self.activation_fn(self.fc1(x))       
         x = F.dropout(x, p=self.activation_dropout, training=self.training)
         x = self.fc2(x)
         x = F.dropout(x, p=self.dropout, training=self.training)
@@ -466,7 +464,7 @@ class DecoderLayer(nn.Module):
         )  # just self_attn weights for now, following t5, layer_state = cache for decoding
 
 
-class BartDecoder(nn.Module):
+class BartDecoder_old(nn.Module):
     """
     Transformer decoder consisting of *config.decoder_layers* layers. Each layer
     is a :class:`DecoderLayer`.
@@ -554,7 +552,6 @@ class BartDecoder(nn.Module):
 
         # embed positions
         positions = self.embed_positions(input_ids, use_cache=use_cache)
-
         if use_cache:
             input_ids = input_ids[:, -1:]
             positions = positions[:, -1:]
@@ -568,6 +565,11 @@ class BartDecoder(nn.Module):
             x = self.layernorm_embedding(x)
 
         x = F.dropout(x, p=self.dropout, training=self.training)
+        
+        # pool_to_ent_level_embedding:wxl
+          
+        # pool_to_ent_level_embedding:wxl
+
 
         # Convert to Bart output format: (seq_len, BS, model_dim) -> (BS, seq_len, model_dim)
         x = x.transpose(0, 1)
@@ -620,8 +622,168 @@ class BartDecoder(nn.Module):
             last_hidden_state=x, past_key_values=next_cache, hidden_states=all_hidden_states, attentions=all_self_attns
         )
 
+class BartDecoder(nn.Module):
+    """
+    Transformer decoder consisting of *config.decoder_layers* layers. Each layer
+    is a :class:`DecoderLayer`.
+    Args:
+        config: BartConfig
+        embed_tokens (torch.nn.Embedding): output embedding
+    """
+
+    def __init__(self, config: BartConfig, embed_tokens: nn.Embedding):
+        super().__init__()
+        self.dropout = config.dropout
+        self.layerdrop = config.decoder_layerdrop
+        self.do_blenderbot_90_layernorm = config.do_blenderbot_90_layernorm  # layernorm variant
+        self.padding_idx = embed_tokens.padding_idx
+        self.max_target_positions = config.max_position_embeddings
+        self.embed_scale = math.sqrt(config.d_model) if config.scale_embedding else 1.0
+        self.embed_tokens = embed_tokens
+        if config.static_position_embeddings:
+            self.embed_positions = SinusoidalPositionalEmbedding(
+                config.max_position_embeddings, config.d_model, config.pad_token_id
+            )
+        else:
+            self.embed_positions = LearnedPositionalEmbedding(
+                config.max_position_embeddings,
+                config.d_model,
+                self.padding_idx,
+                config.extra_pos_embeddings
+            )
+        self.layers = nn.ModuleList(
+            [DecoderLayer(config) for _ in range(config.decoder_layers)]
+        )  # type: List[DecoderLayer]
+        self.layernorm_embedding = LayerNorm(config.d_model) if config.normalize_embedding else nn.Identity()
+        self.layer_norm = LayerNorm(config.d_model) if config.add_final_layer_norm else None
+        self.config = config
+
+    
+    def forward(
+            self,
+            input_ids,
+            ent_boundary,
+            encoder_hidden_states,
+            encoder_padding_mask,
+            decoder_padding_mask,
+            decoder_causal_mask,
+            past_key_values=None,
+            use_cache=False,
+            output_attentions=False,
+            output_hidden_states=False,
+            return_dict=False,
+            **unused,
+    ):
+
+        """
+        Includes several features from "Jointly Learning to Align and
+        Translate with Transformer Models" (Garg et al., EMNLP 2019).
+
+        Args:
+            input_ids (LongTensor): previous decoder outputs of shape
+                `(batch, tgt_len)`, for teacher forcing
+            encoder_hidden_states: output from the encoder, used for
+                encoder-side attention
+            encoder_padding_mask: for ignoring pad tokens
+            past_key_values (dict or None): dictionary used for storing state during generation
+
+        Returns:
+            BaseModelOutputWithPast or tuple:
+                - the decoder's features of shape `(batch, tgt_len, embed_dim)`
+                - the cache
+                - hidden states
+                - attentions
+        """
+        if "decoder_cached_states" in unused:
+            warnings.warn(
+                "The `decoder_cached_states` argument is deprecated and will be removed in a future version, use `past_key_values` instead.",
+                FutureWarning,
+            )
+            past_key_values = unused.pop("decoder_cached_states")
+        if "decoder_past_key_values" in unused:
+            warnings.warn(
+                "The `decoder_past_key_values` argument is deprecated and will be removed in a future version, use `past_key_values` instead.",
+                FutureWarning,
+            )
+            past_key_values = unused.pop("decoder_past_key_values")
+
+        # check attention mask and invert
+        if encoder_padding_mask is not None:
+            encoder_padding_mask = invert_mask(encoder_padding_mask)
+
+        # embed positions
+        positions = self.embed_positions(input_ids, use_cache=use_cache)
+        x = self.embed_tokens(input_ids) * self.embed_scale
+        if self.do_blenderbot_90_layernorm:
+            x = self.layernorm_embedding(x)
+            x += positions
+        else:
+            x += positions
+            x = self.layernorm_embedding(x)
+
+        # ent_pool
+        x = F.dropout(x, p=self.dropout, training=self.training)
+        assert x.shape[0] == ent_boundary.shape[0]
+        x=torch.cat([torch.cat([torch.mean(x[j][ent_boundary[j][i][0]:ent_boundary[j][i][1]],dim=0,keepdim=True) for i in range(ent_boundary.shape[1])]).unsqueeze(0) for j in range(ent_boundary.shape[0])])
+        assert x.shape[0] == ent_boundary.shape[0] and x.shape[1] == ent_boundary.shape[1]
+        
+        if not use_cache:
+            x = x[:, :-1] # 训练时去掉最后一个输入的eos实体
+        else:
+            x = x[:, -1:] # 推理时只输入最后一个实体（上一步预测的实体）
+
+        # Convert to Bart output format: (seq_len, BS, model_dim) -> (BS, seq_len, model_dim)
+        x = x.transpose(0, 1)
+        encoder_hidden_states = encoder_hidden_states.transpose(0, 1)
+
+        # decoder layers
+        all_hidden_states = () if output_hidden_states else None
+        all_self_attns = () if output_attentions else None
+        next_decoder_cache = []
+        for idx, decoder_layer in enumerate(self.layers):
+            # add LayerDrop (see https://arxiv.org/abs/1909.11556 for description)
+            if output_hidden_states:
+                all_hidden_states += (x,)
+            dropout_probability = random.uniform(0, 1)
+            if self.training and (dropout_probability < self.layerdrop):
+                continue
+
+            layer_state = past_key_values[idx] if past_key_values is not None else None
+            x, layer_self_attn, layer_past = decoder_layer(
+                x,
+                encoder_hidden_states,
+                encoder_attn_mask=encoder_padding_mask,
+                decoder_padding_mask=decoder_padding_mask,
+                layer_state=layer_state,
+                causal_mask=decoder_causal_mask,
+                output_attentions=output_attentions,
+            )
+
+            if use_cache:
+                next_decoder_cache.append(layer_past.copy())
+
+            if output_attentions:
+                all_self_attns += (layer_self_attn,)
+
+        if self.layer_norm:  # if config.add_final_layer_norm (mBART)
+            x = self.layer_norm(x)
+
+        # Convert to standard output format: (seq_len, BS, model_dim) -> (BS, seq_len, model_dim)
+        if output_hidden_states:
+            all_hidden_states = tuple(hidden_state.transpose(0, 1) for hidden_state in all_hidden_states)
+        x = x.transpose(0, 1)
+        encoder_hidden_states = encoder_hidden_states.transpose(0, 1)
+
+        next_cache = next_decoder_cache if use_cache else None
+        if not return_dict:
+            return tuple(v for v in [x, next_cache, all_hidden_states, all_self_attns] if v is not None)
+        return BaseModelOutputWithPast(
+            last_hidden_state=x, past_key_values=next_cache, hidden_states=all_hidden_states, attentions=all_self_attns
+        )
+
 
 def _reorder_buffer(attn_cache, new_order):
+
     for k, input_buffer_k in attn_cache.items():
         if input_buffer_k is not None:
             attn_cache[k] = input_buffer_k.index_select(0, new_order)
@@ -728,7 +890,156 @@ class Attention(nn.Module):
             reshaped = key_padding_mask.unsqueeze(1).unsqueeze(2)
             attn_weights = attn_weights.masked_fill(reshaped, float("-inf"))
             attn_weights = attn_weights.view(bsz * self.num_heads, tgt_len, src_len)
-        attn_weights = F.softmax(attn_weights, dim=-1)
+        attn_weights = F.softmax(attn_weights, dim=-1) # wxl
+        attn_probs = F.dropout(
+            attn_weights,
+            p=self.dropout,
+            training=self.training,
+        )
+
+        assert v is not None
+        attn_output = torch.bmm(attn_probs, v)
+        assert attn_output.size() == (bsz * self.num_heads, tgt_len, self.head_dim)
+        attn_output = attn_output.transpose(0, 1).contiguous().view(tgt_len, bsz, embed_dim)
+        attn_output = self.out_proj(attn_output)
+        if output_attentions:
+            attn_weights = attn_weights.view(bsz, self.num_heads, tgt_len, src_len)
+        else:
+            attn_weights = None
+        return attn_output, attn_weights
+
+    def _use_saved_state(self, k, v, saved_state, key_padding_mask, static_kv, bsz):
+        # saved states are stored with shape (bsz, num_heads, seq_len, head_dim)
+        if "prev_key" in saved_state:
+            _prev_key = saved_state["prev_key"]
+            assert _prev_key is not None
+            prev_key = _prev_key.view(bsz * self.num_heads, -1, self.head_dim)
+            if static_kv:
+                k = prev_key
+            else:
+                assert k is not None
+                k = torch.cat([prev_key, k], dim=1)
+        if "prev_value" in saved_state:
+            _prev_value = saved_state["prev_value"]
+            assert _prev_value is not None
+            prev_value = _prev_value.view(bsz * self.num_heads, -1, self.head_dim)
+            if static_kv:
+                v = prev_value
+            else:
+                assert v is not None
+                v = torch.cat([prev_value, v], dim=1)
+        assert k is not None and v is not None
+        prev_key_padding_mask: Optional[Tensor] = saved_state.get("prev_key_padding_mask", None)
+        if prev_key_padding_mask is not None:
+            if static_kv:
+                new_key_padding_mask = prev_key_padding_mask
+            else:
+                new_key_padding_mask = torch.cat([prev_key_padding_mask, key_padding_mask], dim=1)
+        else:
+            new_key_padding_mask = key_padding_mask
+        return k, v, new_key_padding_mask
+    
+class Attention_decoder(nn.Module):
+    """Multi-headed attention from 'Attention Is All You Need' paper"""
+
+    def __init__(
+            self,
+            embed_dim,
+            num_heads,
+            dropout=0.0,
+            bias=True,
+            encoder_decoder_attention=False,  # otherwise self_attention
+    ):
+        super().__init__()
+        self.embed_dim = embed_dim
+        self.num_heads = num_heads
+        self.dropout = dropout
+        self.head_dim = embed_dim // num_heads
+        assert self.head_dim * num_heads == self.embed_dim, "embed_dim must be divisible by num_heads"
+        self.scaling = self.head_dim ** -0.5
+
+        self.encoder_decoder_attention = encoder_decoder_attention
+        self.k_proj = nn.Linear(embed_dim, embed_dim, bias=bias)
+        self.v_proj = nn.Linear(embed_dim, embed_dim, bias=bias)
+        self.q_proj = nn.Linear(embed_dim, embed_dim, bias=bias)
+        self.out_proj = nn.Linear(embed_dim, embed_dim, bias=bias)
+        self.cache_key = "encoder_decoder" if self.encoder_decoder_attention else "self"
+
+    def _shape(self, tensor, seq_len, bsz):
+        return tensor.contiguous().view(seq_len, bsz * self.num_heads, self.head_dim).transpose(0, 1)
+
+    def forward(
+            self,
+            query,
+            key: Optional[Tensor],
+            key_padding_mask: Optional[Tensor] = None,
+            layer_state: Optional[Dict[str, Optional[Tensor]]] = None,
+            attn_mask: Optional[Tensor] = None,
+            output_attentions=False,
+    ) -> Tuple[Tensor, Optional[Tensor]]:
+        """Input shape: Time(SeqLen) x Batch x Channel"""
+        static_kv: bool = self.encoder_decoder_attention
+        tgt_len, bsz, embed_dim = query.size()
+        assert embed_dim == self.embed_dim
+        assert list(query.size()) == [tgt_len, bsz, embed_dim]
+        # get here for encoder decoder cause of static_kv
+        if layer_state is not None:  # reuse k,v and encoder_padding_mask
+            saved_state = layer_state.get(self.cache_key, {})
+            if "prev_key" in saved_state and static_kv:
+                # previous time steps are cached - no need to recompute key and value if they are static
+                key = None
+        else:
+            saved_state = None
+            layer_state = {}
+
+        q = self.q_proj(query) * self.scaling
+        if static_kv:
+            if key is None:
+                k = v = None
+            else:
+                k = self.k_proj(key)
+                v = self.v_proj(key)
+        else:
+            k = self.k_proj(query)
+            v = self.v_proj(query)
+
+        q = self._shape(q, tgt_len, bsz)
+        if k is not None:
+            k = self._shape(k, -1, bsz)
+        if v is not None:
+            v = self._shape(v, -1, bsz)
+        if saved_state is not None:
+            k, v, key_padding_mask = self._use_saved_state(k, v, saved_state, key_padding_mask, static_kv, bsz)
+        # Update cache
+        layer_state[self.cache_key] = {
+            "prev_key": k.view(bsz, self.num_heads, -1, self.head_dim),
+            "prev_value": v.view(bsz, self.num_heads, -1, self.head_dim),
+            "prev_key_padding_mask": key_padding_mask if not static_kv else None,
+        }
+
+        assert k is not None
+        src_len = k.size(1)
+        attn_weights = torch.bmm(q, k.transpose(1, 2))
+        assert attn_weights.size() == (bsz * self.num_heads, tgt_len, src_len)
+
+        if attn_mask is not None:
+            attn_weights = attn_weights.view(bsz, self.num_heads, tgt_len, src_len) + attn_mask
+            attn_weights = attn_weights.view(bsz * self.num_heads, tgt_len, src_len)
+
+        # This is part of a workaround to get around fork/join parallelism not supporting Optional types.
+        if key_padding_mask is not None and key_padding_mask.dim() == 0:
+            key_padding_mask = None
+        assert key_padding_mask is None or key_padding_mask.size()[:2] == (
+            bsz,
+            src_len,
+        )
+
+        if key_padding_mask is not None:  # don't attend to padding symbols
+            attn_weights = attn_weights.view(bsz, self.num_heads, tgt_len, src_len)
+            reshaped = key_padding_mask.unsqueeze(1).unsqueeze(2)
+            attn_weights = attn_weights.masked_fill(reshaped, float("-inf"))
+            attn_weights = attn_weights.view(bsz * self.num_heads, tgt_len, src_len)
+        attn_weights = F.sigmoid(attn_weights) # wxl
         attn_probs = F.dropout(
             attn_weights,
             p=self.dropout,

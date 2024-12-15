@@ -53,7 +53,15 @@ class BartNERPipe(Pipe):
                 'org': '<<organization>>',
                 'fac': '<<buildings>>',
             }  # 记录的是原始tag与转换后的tag的str的匹配关系
-
+        elif dataset_name == 're_ace05':
+            self.mapping = {
+                'org-aff': '<<org-aff>>',
+                'per-soc': '<<per-soc>>', 
+                'gen-aff': '<<gen-aff>>', 
+                'art': '<<art>>', 
+                'phys': '<<phys>>', 
+                'part-whole': '<<part-whole>>'
+            }
         cur_num_tokens = self.tokenizer.vocab_size
         self.num_token_in_orig_tokenizer = cur_num_tokens
         self.target_type = target_type
@@ -172,7 +180,7 @@ class BartNERPipe(Pipe):
             target.append(1)  # 特殊的eos
 
             word_bpes = list(chain(*word_bpes))
-            assert len(word_bpes)<500
+            assert len(word_bpes)< 500 , len(word_bpes)
 
             dict  = {'tgt_tokens': target, 'target_span': pairs, 'src_tokens': word_bpes,
                     'first': first}
@@ -422,7 +430,8 @@ class DiscontinuousNERLoader(Loader):
                     for i in range(len(span_) // 2):
                         span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])
                     span__.sort(key=lambda x: x[0])
-                    if span__[-1][1] - span__[0][0] > max_span_len:
+                    if span__[-1][1] - span__[0][0] > max_span_len or span__[0][1] - span__[-1][0] > max_span_len:
+                        # wxl: or ... 是因为头实体不一定在尾实体前面
                         continue
                     str_span__ = []
                     for start, end in span__:
@@ -472,7 +481,7 @@ class NestedLoader(Loader):
         with open(path, 'r', encoding='utf-8') as f:
             lines = f.readlines()
             for line in tqdm(lines, total=len(lines), leave=False):
-                data = json.loads(line.strip())
+                data = eval(line.strip()) # wxl
 
                 all_entities = data['ners']
                 all_sentences = data['sentences']

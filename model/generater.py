@@ -47,7 +47,7 @@ class SequenceGeneratorModel(nn.Module):
                                            pad_token_id=pad_token_id,
                                            restricter=restricter)
 
-    def forward(self, src_tokens, tgt_tokens, src_seq_len=None, tgt_seq_len=None, first=None):
+    def forward(self, src_tokens, tgt_tokens, src_seq_len=None, tgt_seq_len=None, first=None, update_tree=False):
         """
         透传调用seq2seq_model的forward
 
@@ -57,7 +57,19 @@ class SequenceGeneratorModel(nn.Module):
         :param torch.LongTensor tgt_seq_len: bsz
         :return:
         """
-        return self.seq2seq_model(src_tokens, tgt_tokens, src_seq_len, tgt_seq_len, first)
+        return self.seq2seq_model(src_tokens, tgt_tokens, src_seq_len, tgt_seq_len, first, update_tree)
+
+    def predict_old(self, src_tokens, src_seq_len=None, first=None):
+        """
+        给定source的内容，输出generate的内容
+
+        :param torch.LongTensor src_tokens: bsz x max_len
+        :param torch.LongTensor src_seq_len: bsz
+        :return:
+        """
+        state = self.seq2seq_model.prepare_state(src_tokens, src_seq_len, first)
+        result = self.generator.generate(state)
+        return {'pred': result}
 
     def predict(self, src_tokens, src_seq_len=None, first=None):
         """
@@ -190,8 +202,152 @@ def greedy_generate(decoder, tokens=None, state=None, max_length=20, max_len_a=0
 
     return token_ids
 
+def get_next_ent_tokens(scores, src_start_index, eos_p=0.5, word_p = 0.5):
+    # scores.shape: batchsize x vocabsize
+    eos = scores[:, 1] > eos_p # batchsize 
+    tag = scores[:, 2:src_start_index].argmax(dim=-1) + 2 #  batchsize，+2是因为argmax从0开始，对应scores中的2
+    word_mask = scores[:, src_start_index:] > word_p
+    rows, cols = torch.where(word_mask)
+    ent = []
+    max_ent_len = 1
+    eos_element = torch.tensor([1], device=scores.device)
+    is_eos = torch.zeros(scores.shape[0], device=scores.device, dtype=torch.bool)
+    for id,r in enumerate(range(scores.size(0))):
+        if eos[r]:
+            ent.append(eos_element)
+            is_eos[id]=1
+        else:
+            add_v = torch.cat((cols[rows == r]+src_start_index, tag[r:r+1]))
+            if len(add_v) == 1:
+                ent.append(eos_element) # 虽然有实体类型，并且不是eos，但是实体内容为空，则按照eos处理
+                is_eos[id]=1
+            else:
+                ent.append(add_v)
+            max_ent_len = max(max_ent_len, len(add_v))
+    # ent = torch.cat([F.pad(i, (0, max_ent_len-len(i)), mode='constant', value=-1).unsqueeze(0) for i in ent])
+    # ent: list batchsize 
+    return ent, is_eos
+
+def concat_next_tokens(token_ids, next_ents, dones, max_lengths):
+    assert token_ids.shape[0] == len(next_ents)
+    remove_pad_token_ids = [row[row != -1] for row in token_ids] # 去掉pad的部分
+    max_len = 0
+    for x, y in zip(remove_pad_token_ids, next_ents):
+        max_len = max(max_len, len(x)+len(y))
+    
+    next_tokens = [torch.cat([i,j], dim=-1) for i,j in zip(remove_pad_token_ids, next_ents)]
+    # if dones!=None:
+    #     for id,(i,j) in enumerate(zip(next_tokens,max_lengths)):
+    #         if len(i) >= j:
+    #             dones[id]=True
+    next_tokens = torch.cat([F.pad(i, (0, max_len-len(i)), mode='constant', value=-1).unsqueeze(0) for i in next_tokens])
+    return next_tokens, dones
+
 
 def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_length=20, max_len_a=0.0, bos_token_id=None,
+                             eos_token_id=None,
+                             repetition_penalty=1.0, length_penalty=1.0, pad_token_id=0,
+                             restricter=None):
+    device = _get_model_device(decoder)
+    if tokens is None:
+        if bos_token_id is None:
+            raise RuntimeError("You have to specify either `tokens` or `bos_token_id`.")
+        batch_size = state.num_samples
+        if batch_size is None:
+            raise RuntimeError("Cannot infer the number of samples from `state`.")
+        tokens = torch.full([batch_size, 1], fill_value=bos_token_id, dtype=torch.long).to(device)
+    batch_size = tokens.size(0)
+    if state.num_samples:
+        assert state.num_samples == batch_size, "The number of samples in `tokens` and `state` should match."
+
+    if eos_token_id is None:
+        _eos_token_id = -1
+    else:
+        _eos_token_id = eos_token_id
+
+    scores = decoder.decode(tokens=tokens, state=state)  # 主要是为了update state
+    # 这里需要考虑如果在第一个位置就结束的情况
+    # if _eos_token_id!=-1:
+    #     scores[:, _eos_token_id] = -1e12
+
+    if restricter is not None:
+        _, next_tokens = restricter(state, tokens, scores, num_beams=1)
+    else:
+        # next_tokens = scores.argmax(dim=-1, keepdim=True)
+        next_ents, is_eos = get_next_ent_tokens(scores, decoder.src_start_index, eos_p=0.9, word_p = 0.6)
+    # token_ids = torch.cat([tokens, next_ents], dim=1)
+    token_ids, dones = concat_next_tokens(tokens, next_ents, None, None)
+    cur_len = 1
+    dones = token_ids.new_zeros(batch_size).eq(1).__or__(is_eos)
+    # tokens = tokens[:, -1:]
+
+    if max_len_a!=0:
+        # (bsz x num_beams, )
+        if state.encoder_mask is not None:
+            max_lengths = (state.encoder_mask.sum(dim=1).float()*max_len_a).long() + max_length
+        else:
+            max_lengths = tokens.new_full((tokens.size(0), ), fill_value=max_length, dtype=torch.long)
+        real_max_length = max_lengths.max().item()
+    else:
+        real_max_length = max_length
+        if state.encoder_mask is not None:
+            max_lengths = state.encoder_mask.new_ones(state.encoder_mask.size(0)).long()*max_length
+        else:
+            max_lengths = tokens.new_full((tokens.size(0),), fill_value=max_length, dtype=torch.long)
+
+    # 这里的cur_len表示的是ent个数了 
+    while cur_len < 28:
+        scores = decoder.decode(tokens=token_ids, state=state)  # batch_size x vocab_size
+
+        if repetition_penalty != 1.0:
+            token_scores = scores.gather(dim=1, index=token_ids)
+            lt_zero_mask = token_scores.lt(0).float()
+            ge_zero_mask = lt_zero_mask.eq(0).float()
+            token_scores = lt_zero_mask * repetition_penalty * token_scores + ge_zero_mask / repetition_penalty * token_scores
+            scores.scatter_(dim=1, index=token_ids, src=token_scores)
+
+        if eos_token_id is not None and length_penalty != 1.0:
+            token_scores = scores / cur_len ** length_penalty  # batch_size x vocab_size
+            eos_mask = scores.new_ones(scores.size(1))
+            eos_mask[eos_token_id] = 0
+            eos_mask = eos_mask.unsqueeze(0).eq(1)
+            scores = scores.masked_scatter(eos_mask, token_scores)  # 也即除了eos，其他词的分数经过了放大/缩小
+
+        if restricter is not None:
+            _, next_tokens = restricter(state, token_ids, scores, 1)
+        else:
+            # next_tokens = scores.argmax(dim=-1, keepdim=True)
+            next_ents, is_eos = get_next_ent_tokens(scores, decoder.src_start_index, eos_p=0.9, word_p = 0.6)
+        # next_tokens = next_tokens.squeeze(-1)
+
+        # 如果已经达到对应的sequence长度了，就直接填为eos了
+        # if _eos_token_id!=-1:
+        #     # 这是为了某个sample的长度到max限制了，但是还没预测出eos，这个if后面紧跟的代码就没办法检测出eos后把dones置为True,所以得手动置True\
+        #     # 但是如果限制为30个实体最多，这一步是不是可以不做？TODO
+        #     next_tokens = next_tokens.masked_fill(max_lengths.eq(cur_len+1), _eos_token_id)
+        # next_tokens = next_tokens.masked_fill(dones, pad_token_id)  # 对已经搜索完成的sample做padding
+        next_ents = [i if not done_flag else torch.ones(1, device=i.device, dtype=i.dtype) for i,done_flag in zip(next_ents,dones)]# 对已经搜索完成的sample做padding
+        # print(f"第{cur_len+1}步的预测实体： ",next_ents)
+        # if cur_len+1==5:
+        #     print("&&&&&&&&&&&&&&&&&&&&&&")
+        #     print(scores)
+        #     print("&&&&&&&&&&&&&&&&&&&&&&")
+        token_ids, dones = concat_next_tokens(token_ids, next_ents, dones, max_lengths)
+        # print(f"第{cur_len+1}步之后： ",token_ids.shape,"max: ",max_lengths)
+        
+        dones = dones.__or__(is_eos)
+        cur_len += 1
+        if dones.min() == 1:
+            break
+
+    # if eos_token_id is not None:
+    #     tokens.scatter(index=max_lengths[:, None], dim=1, value=eos_token_id)  # 将最大长度位置设置为eos
+    # if cur_len == max_length:
+    #     token_ids[:, -1].masked_fill_(~dones, eos_token_id)  # 若到最长长度仍未到EOS，则强制将最后一个词替换成eos
+   
+    return token_ids
+
+def _no_beam_search_generate_old(decoder: Seq2SeqDecoder, state, tokens=None, max_length=20, max_len_a=0.0, bos_token_id=None,
                              eos_token_id=None,
                              repetition_penalty=1.0, length_penalty=1.0, pad_token_id=0,
                              restricter=None):

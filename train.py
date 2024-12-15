@@ -3,15 +3,20 @@ sys.path.append('../')
 import os
 if 'p' in os.environ:
     os.environ['CUDA_VISIBLE_DEVICES'] = os.environ['p']
-    # os.environ['CUDA_VISIBLE_DEVICES'] = '7'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 
 import warnings
 warnings.filterwarnings('ignore')
 from data.pipe import BartNERPipe
 from model.bart import BartSeq2SeqModel
 import fitlog
+import random
+import numpy as np
 
-from fastNLP import Trainer
+import torch
+from model.utils import update_tree, current_tree_init, get_final_dataset, get_double_ds
+from fastNLP import Trainer,DataSet
+from copy import deepcopy 
 from model.metrics import Seq2SeqSpanMetric
 from model.losses import Seq2SeqLoss
 from torch import optim
@@ -30,14 +35,25 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset_name', default='conll2003', type=str)
 
+def set_seed(seed=1996):
+    print("[SET SEED]: ",seed)
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+
 args= parser.parse_args()
 dataset_name = args.dataset_name
 args.length_penalty = 1
-args.save_model = 0
+args.save_model = 1
 
 # word: 生成word的start; bpe: 生成所有的bpe; span: 每一段按照start end生成; span_bpe: 每一段都是start的所有bpe，end的所有bpe
 args.target_type = 'word'
-args.bart_name = 'facebook/bart-large'
+args.bart_name = '/disk1/wxl/Desktop/DeepKE/example/ner/huggingface/bart-large'
 args.schedule = 'linear'
 args.decoder_type = 'avg_feature'
 args.n_epochs = 30
@@ -46,7 +62,7 @@ args.batch_size = 16
 args.use_encoder_mlp = 1
 args.lr = 1e-5
 args.warmup_ratio = 0.01
-eval_start_epoch = 15
+eval_start_epoch = 1
 
 # the following hyper-parameters are for target_type=word
 if dataset_name == 'conll2003':  # three runs get 93.18/93.18/93.36 F1
@@ -59,6 +75,14 @@ elif dataset_name == 'CADEC':
     args.lr = 2e-5
     args.n_epochs = 30
     eval_start_epoch=10
+elif dataset_name == 're_ace05':
+    max_len, max_len_a = 10, 1.6
+    args.num_beams = 4
+    args.lr = 2e-5
+    args.batch_size = 80
+    args.n_epochs = 100
+    seed = 3257
+    eval_start_epoch=1
 elif dataset_name == 'Share_2013':
     max_len, max_len_a = 10, 0.6
     args.use_encoder_mlp = 0
@@ -77,7 +101,10 @@ elif dataset_name == 'genia':  # three runs: 79.29/79.13/78.75
     args.warmup_ratio = 0.01
 elif dataset_name == 'en_ace04':  # four runs: 86.84/86.33/87/87.17
     max_len, max_len_a = 50, 1.1
+    args.n_epochs = 55
+    args.batch_size = 48
     args.lr = 4e-5
+    seed = 569
 elif dataset_name == 'en_ace05':  # three runs: 85.39/84.54/84.75
     max_len, max_len_a = 50, 0.7
     args.lr = 3e-5
@@ -85,6 +112,14 @@ elif dataset_name == 'en_ace05':  # three runs: 85.39/84.54/84.75
     args.num_beams = 4
     args.warmup_ratio = 0.1
 
+set_seed(seed)
+# with open("/disk1/wxl/Desktop/DeepKE/example/baseline/BARTNER/loss_log/D.json","r") as f:
+#     b=f.readlines()
+# with open("/disk1/wxl/Desktop/DeepKE/example/baseline/BARTNER/loss_log/E.json","r") as f:
+#     c=f.readlines()
+# for x,y in zip(b,c):
+#     assert x==y,print(x,y)
+# exit()
 
 save_model = args.save_model
 del args.save_model
@@ -117,18 +152,19 @@ else:
 def get_data():
     pipe = BartNERPipe(tokenizer=bart_name, dataset_name=dataset_name, target_type=target_type)
     if dataset_name == 'conll2003':
-        paths = {'test': "../data/conll2003/test.txt",
-                 'train': "../data/conll2003/train.txt",
-                 'dev': "../data/conll2003/dev.txt"}
+        paths = {'test': "./data/conll2003/test.txt",
+                 'train': "./data/conll2003/train.txt",
+                 'dev': "./data/conll2003/dev.txt"}
         data_bundle = pipe.process_from_file(paths, demo=demo)
     elif dataset_name == 'en-ontonotes':
-        paths = '../data/en-ontonotes/english'
+        paths = './data/en-ontonotes/english'
         data_bundle = pipe.process_from_file(paths)
     else:
-        data_bundle = pipe.process_from_file(f'../data/{dataset_name}', demo=demo)
-    return data_bundle, pipe.tokenizer, pipe.mapping2id
+        print(f'./data/{dataset_name}')
+        data_bundle = pipe.process_from_file(f'./data/{dataset_name}', demo=demo)
+    return pipe, data_bundle, pipe.tokenizer, pipe.mapping2id
 
-data_bundle, tokenizer, mapping2id = get_data()
+pipe, data_bundle, tokenizer, mapping2id = get_data()
 
 print(f'max_len_a:{max_len_a}, max_len:{max_len}')
 
@@ -148,8 +184,6 @@ model = SequenceGeneratorModel(model, bos_token_id=bos_token_id,
                                max_length=max_len, max_len_a=max_len_a,num_beams=num_beams, do_sample=False,
                                repetition_penalty=1, length_penalty=length_penalty, pad_token_id=eos_token_id,
                                restricter=None)
-
-import torch
 if torch.cuda.is_available():
     device = 'cuda'
 else:
@@ -173,7 +207,6 @@ for name, param in model.named_parameters():
     if ('bart_encoder' in name or 'bart_decoder' in name) and ('layernorm' in name or 'layer_norm' in name):
         params['params'].append(param)
 parameters.append(params)
-
 optimizer = optim.AdamW(parameters)
 
 callbacks = []
@@ -181,8 +214,9 @@ callbacks.append(GradientClipCallback(clip_value=5, clip_type='value'))
 callbacks.append(WarmupCallback(warmup=args.warmup_ratio, schedule=schedule))
 
 if dataset_name not in ('conll2003', 'genia'):
-    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=0.04,
-                                        eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
+    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=-1,
+                                        eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
+    print(eval_start_epoch)
     eval_dataset = data_bundle.get_dataset('dev')
 elif dataset_name == 'genia':
     dev_indices = []
@@ -195,10 +229,10 @@ elif dataset_name == 'genia':
     eval_dataset = data_bundle.get_dataset('train')[dev_indices]
     data_bundle.set_dataset(data_bundle.get_dataset('train')[tr_indices], name='train')
     print(data_bundle)
-    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=0.04, eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
+    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=-1, eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
     fitlog.add_other(name='demo', value='split dev')
 else:
-    callbacks.append(FitlogCallback(raise_threshold=0.04, eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
+    callbacks.append(FitlogCallback(raise_threshold=-1, eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
     eval_dataset = data_bundle.get_dataset('test')
 
 sampler = None
@@ -221,18 +255,47 @@ if dataset_name == 'conll2003':
     ds.concat(data_bundle.get_dataset('dev'))
     data_bundle.delete_dataset('dev')
 if save_model == 1:
-    save_path = 'save_models/'
+    import time 
+    save_path = f'save_models/{dataset_name}_{seed}_{time.time()}'
 else:
     save_path = None
 validate_every = 100000
-trainer = Trainer(train_data=ds, model=model, optimizer=optimizer,
-                  loss=Seq2SeqLoss(),
+
+ds_, current_tree, is_ordered_key = current_tree_init(ds,pipe) # wxl
+
+orderlearing_num = 0
+max_type_id = len(pipe.mapping2targetid) + 2
+print(max_type_id)
+
+# while len(is_ordered_key) < len(current_tree):
+#     orderlearing_num += 1
+#     trainer = Trainer(train_data=ds_, model=model, optimizer=optimizer,
+#                   loss=Seq2SeqLoss(max_type_id=max_type_id),
+#                   batch_size=batch_size, sampler=sampler, drop_last=False, update_every=1,
+#                   num_workers=4, n_epochs=1, print_every=1 if 'SEARCH_OUTPUT_FP' not in os.environ else 100,
+#                   dev_data=eval_dataset, metrics=metric, metric_key='f',
+#                   validate_every=validate_every, save_path=None, use_tqdm='SEARCH_OUTPUT_FP' not in os.environ, device=device,
+#                   callbacks=callbacks, check_code_level=0, test_use_tqdm='SEARCH_OUTPUT_FP' not in os.environ,
+#                   test_sampler=SortedSampler('src_seq_len'), dev_batch_size=batch_size)
+#     trainer.train(load_best_model=False)
+
+#     x = len(is_ordered_key)
+
+#     model.eval()
+#     current_tree, is_ordered_key, ds_ = update_tree(ds_, model, current_tree, is_ordered_key, pipe, "loss", max_type_id)
+#     model.train()
+#     print(f"第{orderlearing_num}轮order训练，{x} -> {len(is_ordered_key)} max: {len(current_tree)}")
+ds_final = get_double_ds(ds, pipe)
+# ds_final.save("/disk1/wxl/Desktop/DeepKE/example/baseline/BARTNER/caches/ds_final2.pt")
+# print("开始正式训练！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
+trainer = Trainer(train_data=ds_final, model=model, optimizer=optimizer,
+                  loss=Seq2SeqLoss(max_type_id=max_type_id),
                   batch_size=batch_size, sampler=sampler, drop_last=False, update_every=1,
                   num_workers=4, n_epochs=n_epochs, print_every=1 if 'SEARCH_OUTPUT_FP' not in os.environ else 100,
                   dev_data=eval_dataset, metrics=metric, metric_key='f',
                   validate_every=validate_every, save_path=save_path, use_tqdm='SEARCH_OUTPUT_FP' not in os.environ, device=device,
                   callbacks=callbacks, check_code_level=0, test_use_tqdm='SEARCH_OUTPUT_FP' not in os.environ,
-                  test_sampler=SortedSampler('src_seq_len'), dev_batch_size=batch_size*2)
+                  test_sampler=SortedSampler('src_seq_len'), dev_batch_size=batch_size)
 
 trainer.train(load_best_model=False)
 
