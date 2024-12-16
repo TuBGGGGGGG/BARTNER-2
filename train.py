@@ -81,7 +81,7 @@ elif dataset_name == 're_ace05':
     args.lr = 2e-5
     args.batch_size = 80
     args.n_epochs = 100
-    seed = 3257
+    seed = 1571
     eval_start_epoch=1
 elif dataset_name == 'Share_2013':
     max_len, max_len_a = 10, 0.6
@@ -104,7 +104,7 @@ elif dataset_name == 'en_ace04':  # four runs: 86.84/86.33/87/87.17
     args.n_epochs = 55
     args.batch_size = 48
     args.lr = 4e-5
-    seed = 569
+    seed = 3257
 elif dataset_name == 'en_ace05':  # three runs: 85.39/84.54/84.75
     max_len, max_len_a = 50, 0.7
     args.lr = 3e-5
@@ -261,7 +261,7 @@ else:
     save_path = None
 validate_every = 100000
 
-ds_, current_tree, is_ordered_key = current_tree_init(ds,pipe) # wxl
+# ds_, current_tree, is_ordered_key = current_tree_init(ds,pipe) # wxl
 
 orderlearing_num = 0
 max_type_id = len(pipe.mapping2targetid) + 2

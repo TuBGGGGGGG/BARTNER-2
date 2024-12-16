@@ -114,7 +114,8 @@ class BartNERPipe(Pipe):
 
         def prepare_target(ins):
             raw_words = ins['raw_words']
-            word_bpes = [[self.tokenizer.bos_token_id]]
+            word_bpes = [[self.tokenizer.bos_token_id]] # 加上bos和eos, tokenizer之后的结果
+            # word_bpes：[[0], [13699, 15363], [491], [3131], [2156], [7137], [2156], [830], [1105, 620], [2156], [30], [4439], [344, 906, 1657], [28279], [2]]
             first = []  # 用来取每个word第一个bpe
             cur_bpe_len = 1
             for word in raw_words:
@@ -127,8 +128,8 @@ class BartNERPipe(Pipe):
             word_bpes.append([self.tokenizer.eos_token_id])
             assert len(first) == len(raw_words) == len(word_bpes) - 2
 
-            lens = list(map(len, word_bpes))
-            cum_lens = np.cumsum(lens).tolist()
+            lens = list(map(len, word_bpes)) # 每个词的tokenize之后的长度
+            cum_lens = np.cumsum(lens).tolist() # 每个word的最后一个token的位置（从1开始）
 
             entity_spans = ins['entity_spans']  # [(s1, e1, s2, e2), ()]
             entity_tags = ins['entity_tags']  # [tag1, tag2...]
@@ -139,7 +140,8 @@ class BartNERPipe(Pipe):
             first = list(range(cum_lens[-1]))
 
             assert len(entity_spans) == len(entity_tags)
-            _word_bpes = list(chain(*word_bpes))
+            _word_bpes = list(chain(*word_bpes)) # 把word_bpes第二维的括号去掉
+            # _word_bpes: [0, 13699, 15363, 491, 3131, 2156, 7137, 2156, 830, 1105, 620, 2156, 30, 4439, 344, 906, 1657, 28279, 2]
             for idx, (entity, tag) in enumerate(zip(entity_spans, entity_tags)):
                 cur_pair = []
                 num_ent = len(entity) // 2
@@ -162,17 +164,20 @@ class BartNERPipe(Pipe):
                     else:
                         raise RuntimeError("Not support other tagging")
                     cur_pair.extend([p + target_shift for p in cur_pair_])
-                for _, (j, word_idx) in enumerate(zip((cur_pair[0], cur_pair[-1]), (0, -1))):
+           
+                for _, (j, word_idx) in enumerate(zip(  (cur_pair[0], cur_pair[-1]), (0, -1)  )):
                     j = j - target_shift
                     if 'word' == self.target_type or word_idx != -1:
                         assert _word_bpes[j] == \
                                self.tokenizer.convert_tokens_to_ids(
-                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[:1])[0]
+                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[:1])[0] 
+                                    # 找到头word经过tokenize之后的第一个token
                     else:
                         assert _word_bpes[j] == \
                                self.tokenizer.convert_tokens_to_ids(
                                    self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[-1:])[0]
-                assert all([cur_pair[i] < cum_lens[-1] + target_shift for i in range(len(cur_pair))])
+                                    # 找到尾word经过tokenize之后的最后一个token
+                assert all([cur_pair[i] < cum_lens[-1] + target_shift for i in range(len(cur_pair))]) # cum_lens[-1]
 
                 cur_pair.append(self.mapping2targetid[tag] + 2)  # 加2是由于有shift
                 pairs.append([p for p in cur_pair])
@@ -428,8 +433,8 @@ class DiscontinuousNERLoader(Loader):
                     span_ = span_.split(',')
                     span__ = []
                     for i in range(len(span_) // 2):
-                        span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])
-                    span__.sort(key=lambda x: x[0])
+                        span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])   # 这边的所有2，都是因为处理的数据的时候是根据每个se片段处理的，每次处理一个span碎片的s和e。
+                    # span__.sort(key=lambda x: x[0]) # wxl: or ... 是因为头实体不一定在尾实体前面
                     if span__[-1][1] - span__[0][0] > max_span_len or span__[0][1] - span__[-1][0] > max_span_len:
                         # wxl: or ... 是因为头实体不一定在尾实体前面
                         continue
@@ -440,9 +445,8 @@ class DiscontinuousNERLoader(Loader):
                     type_list.append(type_.lower())  # 内部是str
                     entity_list.append(str_span__)
                     entity_index_list.append(list(chain(*span__)))  # 内部是数字
-                    all_spans.append([type_.lower(), str_span__, list(chain(*span__))])
-
-                all_spans = sorted(all_spans, key=cmp_to_key(cmp))
+                    all_spans.append([type_.lower(), str_span__, list(chain(*span__))]) 
+                all_spans = sorted(all_spans, key=cmp_to_key(cmp)) # 按照span的首尾大小排序，可以改 TODO
 
                 new_type_list = [span[0] for span in all_spans]
                 new_entity_list = [span[1] for span in all_spans]
