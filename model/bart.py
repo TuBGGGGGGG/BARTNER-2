@@ -128,7 +128,7 @@ class FBartDecoder(Seq2SeqDecoder):
         return self(tokens, state)[:, -1]
 
 
-class XCaGFBartDecoder(FBartDecoder):
+class CaGFBartDecoder(FBartDecoder):
     def __init__(self, decoder, pad_token_id, label_ids, avg_feature=True, use_encoder_mlp=False):
         super().__init__(decoder, pad_token_id, label_ids, use_encoder_mlp=use_encoder_mlp)
         self.avg_feature = avg_feature  # 如果是avg_feature就是先把token embed和对应的encoder output平均，
@@ -233,6 +233,7 @@ class XCaGFBartDecoder(FBartDecoder):
         return logits
 
 class YCaGFBartDecoder(FBartDecoder):
+    # 带MultiHeadBiaffine的
     def __init__(self, decoder, pad_token_id, label_ids, avg_feature=True, use_encoder_mlp=False):
         super().__init__(decoder, pad_token_id, label_ids, use_encoder_mlp=use_encoder_mlp)
         self.avg_feature = avg_feature  # 如果是avg_feature就是先把token embed和对应的encoder output平均，
@@ -345,7 +346,7 @@ class YCaGFBartDecoder(FBartDecoder):
         logits = sigmoid(logits)
         return logits
     
-class CaGFBartDecoder(FBartDecoder):
+class CaGFBartDecoder_new(FBartDecoder):
     def __init__(self, decoder, pad_token_id, label_ids, avg_feature=True, use_encoder_mlp=False):
         super().__init__(decoder, pad_token_id, label_ids, use_encoder_mlp=use_encoder_mlp)
         self.avg_feature = avg_feature  # 如果是avg_feature就是先把token embed和对应的encoder output平均，

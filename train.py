@@ -17,7 +17,7 @@ import torch
 from model.utils import update_tree, current_tree_init, get_final_dataset, get_double_ds
 from fastNLP import Trainer,DataSet
 from copy import deepcopy 
-from model.metrics import Seq2SeqSpanMetric
+from model.metrics import Seq2SeqREMetric, Seq2SeqSpanMetric
 from model.losses import Seq2SeqLoss
 from torch import optim
 from fastNLP import BucketSampler, GradientClipCallback, cache_results
@@ -75,14 +75,15 @@ elif dataset_name == 'CADEC':
     args.lr = 2e-5
     args.n_epochs = 30
     eval_start_epoch=10
-elif dataset_name == 're_ace05':
+elif dataset_name == 're_ace05' or dataset_name == 're_ace05_no_ent_type':
     max_len, max_len_a = 10, 1.6
     args.num_beams = 4
     args.lr = 2e-5
     args.batch_size = 80
     args.n_epochs = 100
-    seed = 1571
+    seed = 1688
     eval_start_epoch=1
+    rel_type_start = 9
 elif dataset_name == 'Share_2013':
     max_len, max_len_a = 10, 0.6
     args.use_encoder_mlp = 0
@@ -150,7 +151,10 @@ else:
 
 @cache_results(cache_fn, _refresh=False)
 def get_data():
-    pipe = BartNERPipe(tokenizer=bart_name, dataset_name=dataset_name, target_type=target_type)
+    if 'no_ent_type' in dataset_name:
+        pipe = BartNERPipe(tokenizer=bart_name, dataset_name=dataset_name, target_type=target_type, no_ent_type=True)
+    else:
+        pipe = BartNERPipe(tokenizer=bart_name, dataset_name=dataset_name, target_type=target_type, no_ent_type=False)
     if dataset_name == 'conll2003':
         paths = {'test': "./data/conll2003/test.txt",
                  'train': "./data/conll2003/train.txt",
@@ -214,8 +218,8 @@ callbacks.append(GradientClipCallback(clip_value=5, clip_type='value'))
 callbacks.append(WarmupCallback(warmup=args.warmup_ratio, schedule=schedule))
 
 if dataset_name not in ('conll2003', 'genia'):
-    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=-1,
-                                        eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
+    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=0.04,
+                                        eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
     print(eval_start_epoch)
     eval_dataset = data_bundle.get_dataset('dev')
 elif dataset_name == 'genia':
@@ -229,10 +233,10 @@ elif dataset_name == 'genia':
     eval_dataset = data_bundle.get_dataset('train')[dev_indices]
     data_bundle.set_dataset(data_bundle.get_dataset('train')[tr_indices], name='train')
     print(data_bundle)
-    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=-1, eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
+    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=0.04, eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
     fitlog.add_other(name='demo', value='split dev')
 else:
-    callbacks.append(FitlogCallback(raise_threshold=-1, eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
+    callbacks.append(FitlogCallback(raise_threshold=0.04, eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
     eval_dataset = data_bundle.get_dataset('test')
 
 sampler = None
@@ -248,8 +252,10 @@ elif ('large' in bart_name and dataset_name in ('en-ontonotes', 'genia')):
 else:
     sampler = BucketSampler(seq_len_field_name='src_seq_len')
 
-metric = Seq2SeqSpanMetric(eos_token_id, num_labels=len(label_ids), target_type=target_type)
-
+if 're' in dataset_name and 'no_ent_type' not in dataset_name:
+    metric = Seq2SeqREMetric(eos_token_id, num_labels=len(label_ids), rel_type_start=rel_type_start, target_type=target_type)
+else:
+    metric = Seq2SeqSpanMetric(eos_token_id, num_labels=len(label_ids), target_type=target_type)
 ds = data_bundle.get_dataset('train')
 if dataset_name == 'conll2003':
     ds.concat(data_bundle.get_dataset('dev'))
@@ -287,7 +293,7 @@ print(max_type_id)
 #     print(f"第{orderlearing_num}轮order训练，{x} -> {len(is_ordered_key)} max: {len(current_tree)}")
 ds_final = get_double_ds(ds, pipe)
 # ds_final.save("/disk1/wxl/Desktop/DeepKE/example/baseline/BARTNER/caches/ds_final2.pt")
-# print("开始正式训练！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
+print("=======================开始正式训练=======================\n")
 trainer = Trainer(train_data=ds_final, model=model, optimizer=optimizer,
                   loss=Seq2SeqLoss(max_type_id=max_type_id),
                   batch_size=batch_size, sampler=sampler, drop_last=False, update_every=1,

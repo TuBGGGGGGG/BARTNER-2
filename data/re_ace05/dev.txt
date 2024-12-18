@@ -29,13 +29,13 @@ Peterson , of course , is a candidate for the Lt. Governor nomination .
 
 
 Graham 's article has the interesting hook of quoting one of Peterson 's rivals , former Congresswoman and State Sen .
-19,19,18,18 ORG-AFF
+19,19 per|18,18 gpe| org-aff
 
 Leslie Byrne , as approving of the measure because it 's " something that I 've been talking about for some time now . "
 
 
 The Virginia Economic Developers Association has not taken a stance on the bill , but the organization 's leadership is expected to meet tomorrow to discuss it .
-18,18,16,16 ORG-AFF
+18,18 per|16,16 org| org-aff
 
 Demanding accountability from economic development is a rare phenomenon .
 
@@ -107,7 +107,7 @@ Delegate Chap Petersen bill is nothing more than salt and pepper electioneering 
 
 
 Residents throughout the commonwealth of Virginia and the rest of the nation are economically vulnerable due to free trade agreements and the global economy .
-0,0,3,3 GEN-AFF|0,0,8,8 GEN-AFF
+0,0 per|3,3 gpe| gen-aff|0,0 per|8,8 gpe| gen-aff
 
 But both parties are responsible and have voted in favor of those agreements .
 
@@ -116,7 +116,7 @@ Lt. Governor candidate 's Chap Peterson and Leslie Byrne are both good politicia
 
 
 Will , I agree with your analysis , the VA business community along with a majority of GA members will probably deep-six this 5-year mandatory requirement for compensation due to relocation .
-18,18,17,17 ORG-AFF
+18,18 per|17,17 org| org-aff
 
 If not bordering on the political ridorkulous ( ridiculously dorky ) , it 's just plain ludicrous to believe business owners would agree to a capital investment with strings attached to the businesses health and longevity .
 
@@ -128,7 +128,7 @@ The Commonwealth needs legislation that requires a mandatory Employee Stock Owne
 
 
 The ESOP is itself a corporate finance vehicle that provides monetary incentives with lending institutes , state and federal tax benefits , new capital investment , and most of all , the stock ownership plan increases VA employee capital wealth .
-37,37,36,36 PHYS
+37,37 per|36,36 gpe| phys
 
 More capital wealth will drive our consumer - base economy through the flipping roof .
 
@@ -140,7 +140,7 @@ And let s say the business has no other choice but to remove to the third world 
 
 
 When Virginia 's employees are fully vested in company stock , they will also reap from the profits of lower wages in the global marketplace just like the corporate big boys .
-3,3,1,1 PHYS
+3,3 per|1,1 gpe| phys
 
 It 's Win-Win -- sort of .
 
@@ -176,7 +176,7 @@ Frankly , I do n't consider tax and spend liberals as good politicians .
 
 
 Unfortunately , the Republican Party is also loaded with its share of irresponsible big spenders , but hopefully some of them will be held accountable during the 2005 primary elections .
-14,14,9,9 ORG-AFF
+14,14 per|9,9 org| org-aff
 
 On the other hand , I have yet to see any Democrats challenge incumbents for being fiscally irresponsible .
 
@@ -218,19 +218,19 @@ NEWS STORY
 
 
 i 'm allan chernoff at the new york stock exchange .
-2,3,6,9 PHYS
+2,3 per|6,9 fac| phys
 
 american airlines , a second major union at american is planning a new vote on the company 's cost cutting agreement .
-6,6,8,8 PART-WHOLE
+6,6 org|8,8 org| part-whole
 
 the unions are outraged that a bonus plan for top executives that had not been fully disclosed before the union voted to take pay cuts .
 
 
 the transport brokers union made the revote last night moments before the ceo publicly apologized to his employees .
-2,2,3,3 ORG-AFF|16,16,17,17 PER-SOC
+2,2 per|3,3 org| org-aff|16,16 per|17,17 per| per-soc
 
 carty said he thought the employees would like the plan that meant to keep the executives that company .
-15,15,17,17 ORG-AFF|5,5,17,17 ORG-AFF
+15,15 per|17,17 org| org-aff|5,5 per|17,17 org| org-aff
 
 but he concealed the details fearing the story would cause problems when they were asking employees for big concessions .
 
@@ -260,13 +260,13 @@ NEWS STORY
 
 
 the wizards may not want jordan , but the head of the expansion team says jordan could run operations there , if he wants to .
-9,9,13,13 ORG-AFF|5,5,19,19 ORG-AFF
+9,9 per|13,13 org| org-aff|5,5 per|19,19 org| org-aff
 
 it 's his home state after all .
-2,2,4,4 GEN-AFF
+2,2 per|4,4 gpe| gen-aff
 
 on wednesday , washington wizards ' owner ended the three-year association with jordan .
-6,6,3,4 ORG-AFF|6,6,12,12 PER-SOC
+6,6 per|3,4 org| org-aff|6,6 per|12,12 per| per-soc
 
 according to " the washington post , " the meeting degenerated into name-calling after jordan was offered $ 10 million in gratitude over the next five years .
 
@@ -275,16 +275,16 @@ jordan reportedly responded he was n't in it for the money .
 
 
 cnn 's josie karp has the story .
-2,3,0,0 ORG-AFF
+2,3 per|0,0 org| org-aff
 
 reporter : for the first time since being cut from the team in high school , michael jordan was left in the awkward position of being unwanted by the game he has come to define .
-11,11,14,14 PART-WHOLE
+11,11 org|14,14 org| part-whole
 
 after playing the last two seasons with the washington wizards , jordan said he expected to return to the front office .
-11,11,8,9 ORG-AFF
+11,11 per|8,9 org| org-aff
 
 instead , during a meeting that lasted only minutes , team owner told jordan his services were no longer necessary .
-11,11,10,10 ORG-AFF
+11,11 per|10,10 org| org-aff
 
 jordan issued a statement expressing his shock over
 
@@ -311,7 +311,7 @@ Barnie Day
 
 
 The Senate Finance Committee today gutted the House of Delegates proposed billion dollar transportation package in a move one observer described as a ' bitch slapping . '
-2,3,1,1 PART-WHOLE
+2,3 org|1,1 org| part-whole
 
 Will Vehrs
 
@@ -368,7 +368,7 @@ T09 :42:00
 
 
 Tis a sad day for Dave Albo 's law firm , which was counting on him to push the abuser fees bill and bring them more clients .
-5,6,9,9 ORG-AFF
+5,6 per|9,9 org| org-aff
 
 Can we have a moment of silence ?
 
@@ -416,70 +416,70 @@ BLITZER
 
 
 Attacking on the ground and calling in air strikes , Kurdish fighters and U.S . troops have dislodged stubborn Iraqi soldiers at a key bridge in northern Iraq .
-10,10,11,11 GEN-AFF|15,15,13,13 ORG-AFF|20,20,19,19 ORG-AFF|24,24,27,27 PART-WHOLE|20,20,24,24 PHYS
+10,10 per|11,11 per| gen-aff|15,15 per|13,13 gpe| org-aff|20,20 per|19,19 gpe| org-aff|24,24 fac|27,27 loc| part-whole|20,20 per|24,24 fac| phys
 
 Iraqis pulled back on the road to Mosul as CNN 's Jane Arraf reports from the battlefield .
-11,12,9,9 ORG-AFF
+11,12 per|9,9 org| org-aff
 
 ( BEGIN VIDEOTAPE )
 
 
 JANE ARRAF , CNN CORRESPONDENT ( voice-over )
-4,4,3,3 ORG-AFF
+4,4 per|3,3 org| org-aff
 
 A few miles further to Mosul , Kurdish militia and their flags speeding to a town abandoned by Iraqi forces .
-7,7,8,8 ORG-AFF|19,19,18,18 ORG-AFF|19,19,15,15 PHYS
+7,7 per|8,8 per| org-aff|19,19 per|18,18 gpe| org-aff|19,19 per|15,15 gpe| phys
 
 After a day of fighting , the Iraqis were driven back five kilometers , about three miles down the main road west towards Mosul from the Kurdish city of Erbil .
-26,26,27,27 GEN-AFF|7,7,20,20 PHYS
+26,26 per|27,27 gpe| gen-aff|7,7 per|20,20 fac| phys
 
 Soldiers were Kurdish , but the special forces calling in air strikes on Iraqi positions were American .
-7,7,16,16 ORG-AFF
+7,7 per|16,16 gpe| org-aff
 
 As U.S . warplanes dropped bombs near the town , Kurdish fighters moved forward .
-1,1,3,3 ART|10,10,11,11 GEN-AFF
+1,1 gpe|3,3 veh| art|10,10 per|11,11 per| gen-aff
 
 ( on camera ) : There 's a slow-and-steady battle going on here for control of the key bridge .
 
 
 It 's a bridge over the river on the main road to Mosul .
-6,6,10,10 PART-WHOLE|3,3,6,6 PHYS
+6,6 loc|10,10 fac| part-whole|3,3 fac|6,6 loc| phys
 
 The Iraqis are firing artillery like that in response to the Americans are calling in air strikes .
-1,1,4,4 ART
+1,1 per|4,4 wea| art
 
 The Peshmerga are just down the road , and the Iraqis have retreated , but they 're still holding on to the bridge .
 
 
 ( voice-over ) : That blast turned out to be a rocket - propelled grenade , but there 's plenty of artillery and mortar fire to come .
-11,11,14,14 PART-WHOLE
+11,11 wea|14,14 wea| part-whole
 
 UNIDENTIFIED MALE
 
 
 Are you coming here ?
-1,1,3,3 PHYS
+1,1 per|3,3 loc| phys
 
 ARRAF
 
 
 Less than 20 minutes later , with Iraqi defenses pounded by the bombing , they no longer held the bridge over the Khoser River .
-19,19,22,23 PHYS|8,8,7,7 ORG-AFF
+19,19 fac|22,23 loc| phys|8,8 per|7,7 gpe| org-aff
 
 In this vehicle , the only Iraqi casualties we saw .
-7,7,2,2 ART|7,7,6,6 ORG-AFF
+7,7 per|2,2 veh| art|7,7 per|6,6 gpe| org-aff
 
 Their military radio and guns indicating they were combatants .
-0,0,4,4 ART
+0,0 per|4,4 wea| art
 
 ( on camera ) : It 's still smoldering , this truck with three Iraqi soldiers .
-15,15,11,11 ART|15,15,14,14 ORG-AFF
+15,15 per|11,11 veh| art|15,15 per|14,14 gpe| org-aff
 
 It was either shelled or bombed .
 
 
 Now , it 's a small part of this battle for the bridge just behind us .
-15,15,12,12 PHYS
+15,15 per|12,12 fac| phys
 
 These were lying on the ground next to the truck .
 
@@ -506,13 +506,13 @@ Notebooks with verses from the Koran .
 
 
 Kurdish fighters planted their flag and left it waving in the smoke of the bombed-out Iraqi truck .
-0,0,1,1 GEN-AFF|15,15,16,16 ART
+0,0 per|1,1 per| gen-aff|15,15 gpe|16,16 veh| art
 
 The village of Manguba ( ph ) , just 32 kilometers , about 23 miles from Mosul is now in Kurdish hands .
-1,1,16,16 PHYS
+1,1 gpe|16,16 gpe| phys
 
 One Kurdish soldier did the honors of tearing up a poster of Saddam Hussein .
-2,2,1,1 GEN-AFF
+2,2 per|1,1 per| gen-aff
 
 Not just the poster , but the frame and cardboard backing as well .
 
@@ -521,7 +521,7 @@ They 've been waiting a long time .
 
 
 Jane Arraf , CNN , on the bridge over the Khoser River in northern Iraq .
-0,1,3,3 ORG-AFF|7,7,10,11 PHYS|0,1,7,7 PHYS|10,11,14,14 PART-WHOLE
+0,1 per|3,3 org| org-aff|7,7 fac|10,11 loc| phys|0,1 per|7,7 fac| phys|10,11 loc|14,14 loc| part-whole
 
 ( END VIDEO CLIP )
 
@@ -533,13 +533,13 @@ Thanks very much .
 
 
 Judy , dangerous assignment for all of our reporters , our embedded journalists .
-8,8,7,7 ORG-AFF|12,12,10,10 ORG-AFF
+8,8 per|7,7 org| org-aff|12,12 per|10,10 org| org-aff
 
 And one of them , not from our CNN , but from a very close friend of all of ours , Michael Kelly , paid that price .
-15,15,17,17 PER-SOC
+15,15 per|17,17 per| per-soc
 
 The first American embedded journalist to have gotten killed in covering this war .
-4,4,2,2 GEN-AFF
+4,4 per|2,2 gpe| gen-aff
 
 We 'll have more on him at 5:00 on our special edition of " WOLF BLITZER REPORTS . "
 
@@ -557,10 +557,10 @@ And we 'll be watching .
 
 
 Michael Kelly , of course , with " Atlantic Monthly , " and a columnist for the " Washington Post . "
-0,1,8,9 ORG-AFF|14,14,18,19 ORG-AFF
+0,1 per|8,9 org| org-aff|14,14 per|18,19 org| org-aff
 
 Well , at least three U.S . service members were killed today in an apparent suicide bomb attack at a checkpoint near the Haditah Dam northwest of Baghdad .
-7,7,5,5 PART-WHOLE|8,8,7,7 ORG-AFF|20,20,23,24 PHYS|23,24,27,27 PHYS|8,8,20,20 PHYS
+7,7 org|5,5 gpe| part-whole|8,8 per|7,7 org| org-aff|20,20 fac|23,24 fac| phys|23,24 fac|27,27 gpe| phys|8,8 per|20,20 fac| phys
 
 Those deaths are not yet included in the official casualty count .
 
@@ -569,43 +569,43 @@ At last report , though , 41 Americans had been killed by hostile forces , 13 ot
 
 
 Of the 27 British troops , in all who have been killed , at least 19 of them were said to be victims of friendly fire or accidents .
-4,4,3,3 ORG-AFF
+4,4 per|3,3 gpe| org-aff
 
 The official Iraqi casualty figures remain the same this day , including more than 400 civilians killed , Iraqi authorities say .
-19,19,18,18 ORG-AFF
+19,19 per|18,18 gpe| org-aff
 
 And U.S . Central Command says more than 4,000 Iraqis have been captured , but British officials believe that figure is much higher .
-3,4,1,1 PART-WHOLE|16,16,15,15 ORG-AFF
+3,4 org|1,1 gpe| part-whole|16,16 per|15,15 gpe| org-aff
 
 We know that seven Americans are known to be held as prisoner of war in Iraq .
-4,4,15,15 PHYS
+4,4 per|15,15 gpe| phys
 
 Another 15 Americans listed as missing in action .
 
 
 Well , funeral services were held today in Colorado for 21-year - old Marine Corporal Randall Kent Rosacker .
-14,14,13,13 ORG-AFF
+14,14 per|13,13 org| org-aff
 
 He was killed in action in Iraq .
-0,0,6,6 PHYS
+0,0 per|6,6 gpe| phys
 
 His story is especially poignant .
 
 
 His father is a navy commander .
-0,0,1,1 PER-SOC|5,5,4,4 ORG-AFF
+0,0 per|1,1 per| per-soc|5,5 per|4,4 org| org-aff
 
 He received word of his son 's death within hours after the submarine that he was assigned to returned home from an extended deployment .
-14,14,12,12 ART|5,5,4,4 PER-SOC
+14,14 per|12,12 veh| art|5,5 per|4,4 per| per-soc
 
 The Iraqis promise an unconventional attack on U.S . troops tonight .
-9,9,7,7 ORG-AFF
+9,9 per|7,7 gpe| org-aff
 
 Do they mean guerilla warfare , as in Vietnam ?
 
 
 We 're going to ask our military analyst .
-7,7,5,5 ORG-AFF
+7,7 per|5,5 org| org-aff
 
 That 's coming up .
 
@@ -656,13 +656,13 @@ NEWS STORY
 
 
 we begin with strom thurmond the man who set an endureance record for politics died last night in his hometown of edgefield , south carolina .
-18,18,19,19 GEN-AFF|6,6,19,19 PHYS|21,21,23,24 PART-WHOLE
+18,18 per|19,19 gpe| gen-aff|6,6 per|19,19 gpe| phys|21,21 gpe|23,24 gpe| part-whole
 
 he won his first election in 1928 , the office of the county superintendent .
 
 
 from there , he had a 36-year career affiliated with the democratic party before he switched parties in 1964 to support barry goldwater 's campaign for president .
-3,3,12,12 ORG-AFF
+3,3 per|12,12 org| org-aff
 
 it started a 36-year career of the republican party .
 
@@ -695,13 +695,13 @@ mike is off tonight .
 
 
 to our top story of the evening -- martha stewart is stepping down as head of her media empire .
-14,14,18,18 ORG-AFF|16,16,18,18 ORG-AFF
+14,14 per|18,18 org| org-aff|16,16 per|18,18 org| org-aff
 
 she announced her decision to vacate her post as chief executive of martha stewart living omnimedia , following word of a federal indictment .
-10,10,12,15 ORG-AFF
+10,10 per|12,15 org| org-aff
 
 in a statement , she says she 's stepping aside in the best interest of the company , but she will stay on the board of directors .
-19,19,24,24 PER-SOC
+19,19 per|24,24 per| per-soc
 
 stewart pleaded not guilty to a nine-count indictment .
 
@@ -713,13 +713,13 @@ the government also filed civil charges against her .
 
 
 she is charged with using insider information to bail out of a biotech stock the day before its price tanked , and then trying to cover it up .
-0,0,12,12 ORG-AFF
+0,0 per|12,12 org| org-aff
 
 her stockbroker was also charged .
-0,0,1,1 PER-SOC
+0,0 per|1,1 per| per-soc
 
 if convicted on all counts , stewart faces up to 30 years in prison and $ 2 million in fines .
-6,6,13,13 PHYS
+6,6 per|13,13 fac| phys
 
 2003-06-04 23:09:21
 
@@ -743,19 +743,19 @@ Mark Backer
 
 
 It 's now just one day until I hop in the car and head back in time to the loveliest village on the Plains ... Auburn , Alabama .
-7,7,11,11 ART|25,25,27,27 PART-WHOLE|20,20,23,23 PART-WHOLE|7,7,20,20 PHYS
+7,7 per|11,11 veh| art|25,25 gpe|27,27 gpe| part-whole|20,20 gpe|23,23 loc| part-whole|7,7 per|20,20 gpe| phys
 
 I have n't been back since 1994 and when I was talking to my wife about the trip this morning , it seems like a lifetime ago .
-13,13,14,14 PER-SOC
+13,13 per|14,14 per| per-soc
 
 Hell , it 's been half my life since I was in school there and over two thirds of my adult life , assuming that people that know me think my adult life has actually started yet .
-9,9,12,12 PHYS|12,12,13,13 PART-WHOLE
+9,9 per|12,12 fac| phys|12,12 fac|13,13 gpe| part-whole
 
 Anyway , enough nostalgia from me , at least for now .
 
 
 The wife and I were watching SportsCenter this morning , and Lee Corso , Mark May and Trev Alberts were ALL picking Auburn to beat Georgia , and the last two were picking them to run the table for the right to play USC for the national championship .
-3,3,1,1 PER-SOC
+3,3 per|1,1 per| per-soc
 
 Blurble ....
 
@@ -812,19 +812,19 @@ That 's a pretty nice run .
 
 
 Auburn leads the SEC in scoring offense , scoring defense and rushing defense .
-0,0,3,3 ORG-AFF
+0,0 org|3,3 org| org-aff
 
 Auburn is second in the nation in scoring defense and seventh in pass defense .
-0,0,5,5 GEN-AFF
+0,0 org|5,5 gpe| gen-aff
 
 Jason Campbell is 3rd in the nation in passing efficiency while David Greene is 10th .
-11,12,6,6 GEN-AFF
+11,12 per|6,6 gpe| gen-aff
 
 Here are a couple of middle of the road stats :
 
 
 Auburn 's Quentin Groves and Georgia 's David Pollack are tied for the SEC sack lead .
-2,3,0,0 ORG-AFF|7,8,5,5 ORG-AFF
+2,3 per|0,0 org| org-aff|7,8 per|5,5 org| org-aff
 
 Here 's the biggest for what it 's worth stat as far as I am concerned : both teams are undefeated this year when scoring first .
 
@@ -839,19 +839,19 @@ Auburn 's offense is potent and efficient .
 
 
 UGA 's defense is relentless and contains a couple of the country 's biggest hitters , especially Greg Blue and Odell Thurman .
-14,14,11,11 GEN-AFF
+14,14 per|11,11 gpe| gen-aff
 
 Auburn 's defense is fast and relentless and the DB 's are experienced and big .
 
 
 UGA 's receivers are leaders , with one of them a team captain .
-2,2,0,0 ORG-AFF
+2,2 per|0,0 org| org-aff
 
 Auburn 's two running backs are seniors and very experienced and dangerous , bruising backs .
-4,4,0,0 ORG-AFF
+4,4 per|0,0 org| org-aff
 
 UGA 's two backs are smaller freshmen with less experience , but are dangerous as well .
-3,3,0,0 ORG-AFF
+3,3 per|0,0 org| org-aff
 
 In my mind , the game is going to turn on a few key points , some obvious and some not .
 
@@ -869,7 +869,7 @@ Here goes the prediction machine :
 
 
 If Auburn goes for 150 between their two backs , they 're almost impossible to beat .
-8,8,6,6 ORG-AFF
+8,8 per|6,6 org| org-aff
 
 Conversely , Georgia MUST be able to run the ball to set up play action and keep the pressure off of David Greene .
 
@@ -938,7 +938,7 @@ we begin we will finish .
 
 
 [ applause ] d the extra $ 400 per child to american families this year , 2003 .
-12,12,11,11 GEN-AFF
+12,12 per|11,11 gpe| gen-aff
 
 all together these tax reductions will help 92 million americans .
 
@@ -947,7 +947,7 @@ and a significant part of the benefit to our economy will come within the first 
 
 
 a family of four with an income of $ 40,000 would receive a 96 % reduction in federal income taxes .
-1,1,3,3 PER-SOC
+1,1 per|3,3 per| per-soc
 
 instead of paying $ 1,178 per year , the family would pay $ 45 a year .
 
@@ -977,7 +977,7 @@ most small businesses are sole proprietorships , limited partnerships , are subc
 
 
 as a matter of fact , under this plan , some 23 million small business owners will see their taxes cut .
-15,15,14,14 ORG-AFF
+15,15 per|14,14 org| org-aff
 
 which leaves more money for investment , more money for growth , more money for job creation .
 
@@ -1028,10 +1028,10 @@ removal of double taxation would put more money in the hands of investors .
 
 
 it would encourage more investment in american businesses .
-7,7,6,6 GEN-AFF
+7,7 org|6,6 gpe| gen-aff
 
 economists say that this plan will help our stock markets , and since half of american families own stock , the reform will help them save and help our economy grow .
-16,16,15,15 GEN-AFF
+16,16 per|15,15 gpe| gen-aff
 
 now , these measures were presented to congress in the first week of this year .
 
@@ -1085,7 +1085,7 @@ we are defending the peace of the world .
 
 
 we 're bringing freedom to corners of the world who have n't seen freedom in years .
-5,5,8,8 PART-WHOLE
+5,5 loc|8,8 loc| part-whole
 
 we 're all building the prosperity of our country .
 
@@ -1124,7 +1124,7 @@ the federal government will not appeal the court ruling that cleared the way for
 
 
 prime minister jean chretien says the government will now draft legislation legalizing gay marriages .
-2,3,6,6 ORG-AFF
+2,3 per|6,6 gpe| org-aff
 
 and the u.s .
 
@@ -1139,13 +1139,13 @@ the justice department argued that releasing the names could hamper ongoing inve
 
 
 as we 've been reporting , only within the past hour or so , there 's been a shooting incident in central israel , not far from the west bank .
-22,22,28,29 PHYS
+22,22 loc|28,29 loc| phys
 
 a 7-year-old israeli girl has died .
-3,3,2,2 GEN-AFF
+3,3 per|2,2 gpe| gen-aff
 
 two others , her father apparently and another sister , have been wounded in this incident .
-3,3,4,4 PER-SOC
+3,3 per|4,4 per| per-soc
 
 we 're going to continue to get more details on this late-breaking development and bring you those details when we have them .
 
@@ -1169,7 +1169,7 @@ WOODRUFF
 
 
 And , as we listened to John King 's report , we can tell you that President Bush has just -- his plane has just landed at Andrews Air Force Base , just close to the Washington area , the president having flown back to the United States from that meeting in Northern Ireland in Belfast with the British prime minister , Tony Blair .
-27,30,37,37 PHYS|37,37,36,36 PHYS|60,60,58,58 ORG-AFF
+27,30 fac|37,37 loc| phys|37,37 loc|36,36 gpe| phys|60,60 per|58,58 gpe| org-aff
 
 You just heard John reporting about it .
 
@@ -1190,10 +1190,10 @@ His regime has left behind some disturbing evidence to support those claims .
 
 
 The abandoned secret police headquarters in Basra is just one example .
-3,3,4,4 ART|4,4,6,6 PART-WHOLE
+3,3 org|4,4 fac| art|4,4 fac|6,6 gpe| part-whole
 
 ITN 's Bill Neely is with the Royal Marines and he takes us on a tour of Basra 's chamber of horrors .
-19,19,17,17 PART-WHOLE|2,3,0,0 ORG-AFF
+19,19 fac|17,17 gpe| part-whole|2,3 per|0,0 org| org-aff
 
 ( BEGIN VIDEOTAPE )
 
@@ -1202,19 +1202,19 @@ BILL NEELY , ITN REPORTER ( voice-over )
 
 
 Saddam Hussein 's Iraq is a state of terror , and this is where it 's planned and perpetrated , the headquarters of his secret police , this one in Basra .
-25,25,21,21 ART
+25,25 org|21,21 fac| art
 
 No British soldier has been here yet .
-2,2,1,1 ORG-AFF|2,2,5,5 PHYS
+2,2 per|1,1 gpe| org-aff|2,2 per|5,5 fac| phys
 
 Today , as I walked in , I met Iraqis , none of whom had ever been inside willingly .
 
 
 What was to follow was a horrific education in terror and torture : in the smoking basement of the bombed building , a warren of cells .
-16,16,20,20 PART-WHOLE|25,25,23,23 PART-WHOLE
+16,16 fac|20,20 fac| part-whole|25,25 fac|23,23 fac| part-whole
 
 Here , prisoners were tortured .
-2,2,0,0 PHYS
+2,2 per|0,0 fac| phys
 
 UNIDENTIFIED MALE
 
@@ -1232,7 +1232,7 @@ UNIDENTIFIED MALE
 
 
 People died , people in prison without court , without trial .
-3,3,5,5 PHYS
+3,3 per|5,5 fac| phys
 
 NEELY
 
@@ -1265,13 +1265,13 @@ You can imagine this every day , every month .
 
 
 So many people come here , but we do n't know about them at all .
-2,2,4,4 PHYS
+2,2 per|4,4 fac| phys
 
 NEELY
 
 
 These ordinary Iraqis had been terrified to come here , until today , though one student on the left had been here before .
-15,15,21,21 PHYS
+15,15 per|21,21 fac| phys
 
 UNIDENTIFIED MALE
 
@@ -1307,7 +1307,7 @@ He prayed too much and was seen as a dangerous radical .
 
 
 ( voice-over ) : But the Mukhabarat headquarters had more horrors to reveal .
-6,6,7,7 ART
+6,6 org|7,7 fac| art
 
 UNIDENTIFIED MALE
 
@@ -1319,10 +1319,10 @@ NEELY
 
 
 These men had relatives murdered here .
-1,1,3,3 PER-SOC
+1,1 per|3,3 per| per-soc
 
 So desperate are they to tell their story that they began reenacting what they and their brothers and friends have suffered .
-15,15,16,16 PER-SOC|15,15,18,18 PER-SOC
+15,15 per|16,16 per| per-soc|15,15 per|18,18 per| per-soc
 
 The hook in the ceiling is for one purpose only , another hook in a different cell and a different form of torture .
 
@@ -1331,16 +1331,16 @@ Saddam Hussein controlled Iraq through fear , torture and execution .
 
 
 And it happened here to tens of thousands of Iraqis that Saddam 's secret police deemed dangerous .
-9,9,3,3 PHYS
+9,9 per|3,3 fac| phys
 
 This man cowered for months , crammed with 300 mothers into a huge cell .
-1,1,13,13 PHYS
+1,1 per|13,13 fac| phys
 
 Hamid Fatil ( ph ) may look like he 's acting , but he was tortured here , along with his two brothers , who were executed .
-20,20,22,22 PER-SOC
+20,20 per|22,22 per| per-soc
 
 This man was here , too , with his brother .
-1,1,3,3 PHYS|9,9,3,3 PHYS
+1,1 per|3,3 fac| phys|9,9 per|3,3 fac| phys
 
 UNIDENTIFIED MALE
 
@@ -1352,7 +1352,7 @@ And they sent him to Baghdad and killed .
 
 
 He was hanged there , hanged .
-0,0,3,3 PHYS
+0,0 per|3,3 gpe| phys
 
 UNIDENTIFIED MALE
 
@@ -1373,7 +1373,7 @@ And there 's plenty here that we simply can not show you .
 
 
 In this block , it was men over here , hundreds of them , and women and children here .
-6,6,2,2 PHYS|15,15,2,2 PHYS|17,17,2,2 PHYS
+6,6 per|2,2 fac| phys|15,15 per|2,2 fac| phys|17,17 per|2,2 fac| phys
 
 ( voice-over ) : To call all this a chamber of horrors is a cliche .
 
@@ -1382,10 +1382,10 @@ And this place is beyond cliche .
 
 
 The hundreds or thousands who died here who were given no trial , no voice , cry out .
-4,4,6,6 PHYS
+4,4 per|6,6 fac| phys
 
 On the ground , I found a book called " The Psychology of Interrogation , " as if the men who worked here for Saddam needed a handbook .
-19,19,22,22 ART
+19,19 per|22,22 fac| art
 
 I was glad of the fresh air and glad to leave , glad I could .
 
@@ -1394,7 +1394,7 @@ No one knows yet whether the new Iraq will be the kind of place where these chil
 
 
 Bill Neely , ITV News , Basra .
-0,1,3,4 ORG-AFF|0,1,6,6 PHYS
+0,1 per|3,4 org| org-aff|0,1 per|6,6 gpe| phys
 
 ( END VIDEOTAPE )
 
@@ -1406,10 +1406,10 @@ Unspeakable .
 
 
 Journalists killed in the line of duty in Baghdad -- how neutral are reporters in a war supposed to be ?
-0,0,8,8 PHYS
+0,0 per|8,8 gpe| phys
 
 Our Jeff Greenfield examines that question when we come back .
-1,2,0,0 ORG-AFF
+1,2 per|0,0 org| org-aff
 
 CNN_ENG_20030306_083604 .6
 
@@ -1421,10 +1421,10 @@ NEWS STORY
 
 
 tens of thousands of college and high school students stage antiwar protests on campuses yesterday from coast - to - coast .
-8,8,4,4 ORG-AFF|8,8,6,7 ORG-AFF|13,13,16,16 PART-WHOLE|13,13,20,20 PART-WHOLE
+8,8 per|4,4 org| org-aff|8,8 per|6,7 org| org-aff|13,13 fac|16,16 loc| part-whole|13,13 fac|20,20 loc| part-whole
 
 california now , high school and college students there skipped class to show their opposition to a u.s .
-7,7,3,4 ORG-AFF|7,7,6,6 ORG-AFF|7,7,8,8 PHYS
+7,7 per|3,4 org| org-aff|7,7 per|6,6 org| org-aff|7,7 per|8,8 gpe| phys
 
 - led war with iraq .
 
@@ -1475,7 +1475,7 @@ The report did not give the amount of the fine , but said it would be " exponent
 
 
 Last month , the SEC slapped fines totaling 1.4 billion dollars on 10 Wall Street brokerages to settle charges of conflicts of interest between analysts and investors .
-15,15,13,14 GEN-AFF
+15,15 org|13,14 loc| gen-aff
 
 MCI and the SEC negotiated the agreement for months after a partial settlement in November under which MCI , formerly known as WorldCom , agreed not to mislead investors about its finances , and to improve internal controls , the Journal said .
 
@@ -1484,13 +1484,13 @@ The estimated value of the fraud has reached historic proportions , swelling fro
 
 
 Separately , former WorldCom CEO Bernard Ebbers failed on April 29 to make a first repayment of 25 million dollars , plus interest , on a 400-million-dollar loan from MCI , the Journal said , citing SEC documents .
-4,4,3,3 ORG-AFF
+4,4 per|3,3 org| org-aff
 
 Because he is now in default MCI must now seize additional assets owned by Ebbers , to secure the loan .
 
 
 The company has already sold his Georgia - based yacht building business for 15 million dollars , and is close to selling his ranch in British Colombia , which is expected to bring 60 to 70 million dollars , the Journal said .
-5,5,11,11 ORG-AFF|11,11,6,6 GEN-AFF|22,22,23,23 ART|23,23,25,26 PART-WHOLE
+5,5 per|11,11 org| org-aff|11,11 org|6,6 gpe| gen-aff|22,22 per|23,23 fac| art|23,23 fac|25,26 gpe| part-whole
 
 APW_ENG_20030519 .0548
 
@@ -1505,13 +1505,13 @@ Jordan rejects government critic 's bid to run in June 17 parliamentary election
 
 
 AMMAN , Jordan ( AP )
-0,0,2,2 PART-WHOLE
+0,0 gpe|2,2 gpe| part-whole
 
 Jordanian authorities on Monday said Jordan 's first female lawmaker was ineligible to run in June 17 parliamentary elections following her conviction last year over publishing information that harmed the government 's reputation .
-1,1,0,0 ORG-AFF|9,9,5,5 ORG-AFF
+1,1 per|0,0 gpe| org-aff|9,9 per|5,5 gpe| org-aff
 
 Toujan Faisal , 54 , said she was informed of the refusal by an Interior Ministry committee overseeing election preparations .
-16,16,14,15 ORG-AFF
+16,16 per|14,15 org| org-aff
 
 `` The excuse is invalid because I 've been convicted on political not criminal grounds , which does n't violate my right for contesting the elections , '' Faisal told The Associated Press .
 
@@ -1520,19 +1520,19 @@ Faisal was convicted in May 2002 for publishing false and exaggerated informatio
 
 
 She was sentenced to 1 { years in jail .
-0,0,8,8 PHYS
+0,0 per|8,8 fac| phys
 
 But after spending 40 days in prison , Jordan 's King Abdullah II pardoned the former legislator known for her harsh criticism of the state .
-16,16,6,6 PHYS|10,10,8,8 ORG-AFF
+16,16 per|6,6 fac| phys|10,10 per|8,8 gpe| org-aff
 
 Jordan 's electoral law bans Jordanians from contesting the polls if they were convicted of any crime , except political , and sentenced to more than one year in jail .
 
 
 Government officials were not immediately available for comment .
-1,1,0,0 ORG-AFF
+1,1 per|0,0 gpe| org-aff
 
 During Faisal 's 1993-97 stint in parliament , she became known as a fierce critic of the government and Muslim extremists and a champion of liberal views in conservative Jordan .
-23,23,29,29 PHYS|1,1,6,6 ORG-AFF
+23,23 per|29,29 gpe| phys|1,1 per|6,6 org| org-aff
 
 She lost her seat in the 1997 election .
 
@@ -1559,7 +1559,7 @@ a first step he says toward peace with israel .
 
 
 now palestinian leaders must vote on whether to september 24 - member cabinet that mazen is presenting .
-2,2,1,1 GEN-AFF
+2,2 per|1,1 gpe| gen-aff
 
 kelly wallace is standing by .
 
@@ -1586,28 +1586,28 @@ HONG KONG ( AP )
 
 
 The Hong Kong Jockey Club is in talks about buying out the horse racing club in neighboring Macau , a newspaper reported Tuesday .
-14,14,17,17 GEN-AFF
+14,14 org|17,17 gpe| gen-aff
 
 The South China Morning Post quoted Hong Kong Jockey Club Chief Executive Lawrence Wong as saying the discussions were underway , but no price was reported .
-10,11,6,9 ORG-AFF
+10,11 per|6,9 org| org-aff
 
 The Hong Kong club is a charitable entity , while the Macau Jockey Club is a for-profit concern controlled by gambling tycoon Stanley Ho .
-3,3,1,2 GEN-AFF|22,23,17,17 ORG-AFF
+3,3 org|1,2 gpe| gen-aff|22,23 per|17,17 org| org-aff
 
 Hong Kong angered Macau 's gaming industry last year when it banned gamblers in Hong Kong from placing horse bets with anyone but the Hong Kong Jockey Club .
-6,6,3,3 GEN-AFF|12,12,14,15 PHYS
+6,6 org|3,3 gpe| gen-aff|12,12 per|14,15 gpe| phys
 
 Macau had been taking off-track bets from people in Hong Kong , but the offices handling those wagers were closed .
-7,7,9,10 PHYS
+7,7 per|9,10 gpe| phys
 
 The Macau club later threatened to start taking wagers on Hong Kong races in Macau , at a better price for gamblers because less tax would be levied , but the plan never materialized .
-2,2,1,1 GEN-AFF
+2,2 org|1,1 gpe| gen-aff
 
 Neither club immediately returned phone calls from The Associated Press to inquire about the buyout talks .
 
 
 Macau is a gambling enclave 60 kilometers ( 40 miles ) west of Hong Kong that was governed by the Portuguese for more than four centuries before it returned to Chinese sovereignty in 1999 .
-4,4,13,14 PHYS
+4,4 gpe|13,14 gpe| phys
 
 Hong Kong , a former British colony , returned to Chinese rule in 1997 .
 
@@ -1625,13 +1625,13 @@ central command says it is investigating iraqi allegations that u.s .
 
 
 attacks are to blame for hundreds of civilian s casualties in hillah .
-9,9,11,11 PHYS
+9,9 per|11,11 gpe| phys
 
 that 's about 60 miles south of baghdad .
-0,0,7,7 PHYS
+0,0 gpe|7,7 gpe| phys
 
 a member of the international committee of red cross visited the local hospital there , and he says it 's a horrible scene .
-1,1,4,8 ORG-AFF|1,1,12,12 PHYS|12,12,13,13 PART-WHOLE
+1,1 per|4,8 org| org-aff|1,1 per|12,12 fac| phys|12,12 fac|13,13 gpe| part-whole
 
 2003-04-02 19:36:19
 
@@ -1655,10 +1655,10 @@ Byrne
 
 
 We all know by now that Choicepoint allowed some highly respectable Nigerian businessmen of impeccable credentials to view hundreds of thousands of customer records for entirely legitimate purposes -- they were paying customers , after all , and The Customer is Always Right .
-12,12,11,11 GEN-AFF
+12,12 per|11,11 gpe| gen-aff
 
 But even after that huge mistake -- or rather , because of it -- the company 's top executives began dumping shares like mad .
-18,18,15,15 ORG-AFF
+18,18 per|15,15 org| org-aff
 
 What 's scary is that since they started selling , the stock 's down about 5 % .
 
@@ -1667,7 +1667,7 @@ Clearly , they were expecting lots more damage .
 
 
 These insider sales were certainly stupid , and probably criminal ( though the legal proof may be hard to come by ) but the solution is easy enough : They need to buy stock from the company itself , at some premium to the prices at which they sold -- they 'll have the same stake as before , the shareholders would have gotten their money back ( since the premium goes to the company , which is owned by the shareholders ) , and there 's no need to disrupt their business by taking the matter to court .
-29,29,36,36 ORG-AFF|60,60,36,36 ORG-AFF
+29,29 per|36,36 org| org-aff|60,60 per|36,36 org| org-aff
 
 Or , if you want to do things the SEC 's way , you could 1 ) Hire a bunch of lawyers with the company 's ( shareholders ' ) money , 2 ) Hire a legion of PR firms to explain away that frivolous spending , 3 ) Hire a new accountant to magically turn that spending into an investment amortizable over twenty years , and 4 ) Settle out-of - court by having the execs give the SEC some pittance ( for which they 'll likely be compensated by the company ) and a statement that " We neither admit nor deny that we did what you claim , but we 'll never do it again . "
 
@@ -1688,10 +1688,10 @@ a federal appeals court will decide how long dirty bomb suspect jose padilla can
 
 
 the u.s . attorney says padilla is an enemy combattant and not entitled to counsel .
-3,3,1,1 ORG-AFF
+3,3 per|1,1 gpe| org-aff
 
 he is accused of attempting to ignite a dirty bomb in this country .
-0,0,12,12 PHYS
+0,0 per|12,12 gpe| phys
 
 2003-04-09 18:07:07
 
@@ -1715,10 +1715,10 @@ Will Vehrs
 
 
 An old friend , Joseph Britt of Kennesaw , GA , recently emailed to ask about anti-immigration as an issue for Virginia Democrats .
-7,7,9,9 PART-WHOLE|4,5,7,7 GEN-AFF|22,22,21,21 GEN-AFF
+7,7 gpe|9,9 gpe| part-whole|4,5 per|7,7 gpe| gen-aff|22,22 per|21,21 gpe| gen-aff
 
 Joe had just read a George W. Grayson article in the William & Mary Alumni Magazine , " Myths About Illegal Immigration . "
-14,14,11,13 ORG-AFF
+14,14 per|11,13 org| org-aff
 
 Grayson does not cite any Virginia examples , but among the " myths " he attempts to explode are that illegal immigrants perform jobs Americans do n't want and that they contribute more in taxes and social security than they take from government programs .
 
@@ -1763,7 +1763,7 @@ The illegal immigrants themselves , of course .
 
 
 The employers who hire them instead of raising wages to attract native-born Americans and legal immigrants .
-2,2,4,4 PER-SOC
+2,2 per|4,4 per| per-soc
 
 And families who hire cheap domestic labor , whether to clean the house , wash the laundry or maintain the lawn .
 
@@ -1775,7 +1775,7 @@ Poor , native-born Americans who otherwise would be paid higher wages for their 
 
 
 Legal immigrants like my Brazilian friend , who sometimes feels like a sap for playing by the rules .
-3,3,5,5 PER-SOC|5,5,4,4 GEN-AFF
+3,3 per|5,5 per| per-soc|5,5 per|4,4 gpe| gen-aff
 
 And the rest of us who wo n't hire anyone to work for us unless they 're paying their taxes , even if it means we pay more .
 
@@ -1805,13 +1805,13 @@ DAVID BOWDEN , CNN CORRESPONDENT
 
 
 House clearance Royal Marine style , troops from ( UNINTELLIGIBLE ) commando task to seek out the last pockets of Iraqi resistance in Umm Qasr go in hard to arrest suspected regime sympathizers and search for weapons .
-6,6,23,24 PHYS
+6,6 per|23,24 gpe| phys
 
 It 's not pretty and there 's no please and thank you but for the Marines , every door potentially hides a gunman and when your life is on the line , manners go out the window .
 
 
 The Iraqis arrested looked bemused ( ph ) and plead innocence but with many militia here , pretending to surrender only to open fire on their captors later , first impressions can be deceptive and lethal .
-14,14,15,15 PHYS
+14,14 per|15,15 gpe| phys
 
 This patrol did find hidden weapons .
 
@@ -1820,13 +1820,13 @@ They 're not the first and they 're unlikely to be the last .
 
 
 The Marines believe they have a firm hold on Umm Qasr right now but they ca n't afford to slack in their grip and allow those who are hostile to the coalition forces to regroup and begin again their cycle of violence .
-32,32,31,31 ORG-AFF
+32,32 per|31,31 gpe| org-aff
 
 The Marines with their snipers have now snipers have now spread their area of operations north to include the town of Umm Kiou ( ph ) .
-3,3,4,4 PER-SOC|7,7,19,19 PHYS
+3,3 per|4,4 per| per-soc|7,7 per|19,19 gpe| phys
 
 As in Umm Qasr before it , they 're here to clear out the opponents to regime change .
-7,7,9,9 PHYS|7,7,2,3 PHYS
+7,7 per|9,9 gpe| phys|7,7 per|2,3 gpe| phys
 
 A man in this vehicle took a pot shot at the commandos .
 
@@ -1838,7 +1838,7 @@ MAJOR ROB MACGOWAN , ROYAL MARINES
 
 
 We sent in one of our companies of about 100 men in here this morning and we took about 12 or 13 prisoners , three or four enemy were injured and they 've now been flown out and we 're treating them including a man who is almost dead with a gunshot wound to the chest .
-3,3,12,12 PHYS
+3,3 per|12,12 gpe| phys
 
 We 've now evacuated them out and the enemy now have either fled or they 've been captured .
 
@@ -1847,13 +1847,13 @@ BOWDEN
 
 
 The Royal Marines are satisfied they are in control of this small corner of Iraq .
-12,12,14,14 PART-WHOLE
+12,12 loc|14,14 gpe| part-whole
 
 Their task now is to keep it that way .
 
 
 David Bowden in southern Iraq .
-0,1,4,4 PHYS
+0,1 per|4,4 loc| phys
 
 ( END VIDEOTAPE )
 
@@ -1871,22 +1871,22 @@ Retired navy officer regrets involvement in bungled plot to protect Ocalan
 
 
 ATHENS , Greece ( AP )
-0,0,2,2 PART-WHOLE
+0,0 gpe|2,2 gpe| part-whole
 
 A retired navy officer facing life in prison over a failed effort to protect Kurdish rebel leader Abdullah Ocalan , told a court Thursday he felt remorse for his part in the 1999 plot .
-3,3,7,7 PHYS|3,3,2,2 ORG-AFF|16,16,14,14 GEN-AFF
+3,3 per|7,7 fac| phys|3,3 per|2,2 org| org-aff|16,16 per|14,14 gpe| gen-aff
 
 `` I have a guilty conscience , '' Andonis Naxakis said during his two-hour testimony .
 
 
 Naxakis is one of 13 people on trial for bringing the fugitive guerrilla leader to Greece .
-13,13,15,15 PHYS
+13,13 per|15,15 gpe| phys
 
 Ocalan was moved by the government to its embassy compound in Kenya , where he was captured by Turkish commandos .
-0,0,9,9 PHYS|7,7,9,9 ART|9,9,11,11 PART-WHOLE|19,19,18,18 ORG-AFF
+0,0 per|9,9 fac| phys|7,7 gpe|9,9 fac| art|9,9 fac|11,11 gpe| part-whole|19,19 per|18,18 gpe| org-aff
 
 The retired Greek officer said he had been trying to get Ocalan to The Netherlands , home to a large Kurdish community .
-3,3,2,2 ORG-AFF|21,21,20,20 GEN-AFF|21,21,16,16 PHYS
+3,3 per|2,2 gpe| org-aff|21,21 per|20,20 gpe| gen-aff|21,21 per|16,16 gpe| phys
 
 He claimed he had been manipulated by the government .
 
@@ -1895,13 +1895,13 @@ He claimed he had been manipulated by the government .
 
 
 Naxakis and two of Ocalan 's Kurdish associates are being tried on criminal charges of endangering national security .
-7,7,6,6 GEN-AFF|4,4,7,7 PER-SOC
+7,7 per|6,6 gpe| gen-aff|4,4 per|7,7 per| per-soc
 
 Ocalan , being tried in absentia , was indicted for entering the country illegally , a misdemeanor .
 
 
 Ocalan , leader of the Kurdistan Workers Party , or PKK , is serving a life sentence in Turkey for leading a 15-year insurgency against the country that left 37,000 people dead .
-2,2,5,7 ORG-AFF|0,0,18,18 PHYS
+2,2 per|5,7 org| org-aff|0,0 per|18,18 gpe| phys
 
 He is being tried in Greece in absentia .
 
@@ -1925,7 +1925,7 @@ Will Vehrs
 
 
 Earth & Sky , a program that airs on NPR , featured a Virginia Tech chemist this morning .
-15,15,13,14 ORG-AFF
+15,15 per|13,14 org| org-aff
 
 Karen Brewer is working to develop a hydrogen generation system " that 's energy efficient , inexpensive , clean and renewable . "
 
@@ -1934,7 +1934,7 @@ Wonder what she thought of Larry Summer 's remarks on women and science ....
 
 
 Maybe some day we 'll be stuck in traffic in hydrogen-powered cars .
-3,3,11,11 ART
+3,3 per|11,11 veh| art
 
 Phil Rodokanakis
 
@@ -1979,7 +1979,7 @@ States like New Jersey are putting solar on school roofs and allowing those scho
 
 
 Virginia is falling behind when we should be ahead with schools like Tech developing the technology .
-10,10,0,0 PART-WHOLE
+10,10 org|0,0 gpe| part-whole
 
 Will Vehrs
 
@@ -2012,88 +2012,88 @@ U.S. troops tighten grip on capital , U.S. military criticized for media casualt
 
 
 BAGHDAD , Iraq ( AP )
-0,0,2,2 PART-WHOLE
+0,0 gpe|2,2 gpe| part-whole
 
 U.S . forces tightened their grip throughout Baghdad , entering the city for the first time from the north , seizing a military airport and battling snipers and Republican Guard fighters .
-2,2,0,0 ORG-AFF|2,2,11,11 PHYS|22,22,23,23 ART|30,30,28,29 ORG-AFF
+2,2 per|0,0 gpe| org-aff|2,2 per|11,11 gpe| phys|22,22 org|23,23 fac| art|30,30 per|28,29 org| org-aff
 
 Meanwhile , the U.S . military faced sharp criticism over assaults that killed three foreign journalists .
-5,5,3,3 PART-WHOLE
+5,5 org|3,3 gpe| part-whole
 
 Pentagon officials said Tuesday they did n't know whether Iraqi President Saddam Hussein died in the U.S .
-1,1,0,0 ORG-AFF|10,10,9,9 ORG-AFF
+1,1 per|0,0 org| org-aff|10,10 per|9,9 gpe| org-aff
 
 airstrike on a Baghdad neighborhood the day before .
-4,4,3,3 PART-WHOLE
+4,4 gpe|3,3 gpe| part-whole
 
 The strike destroyed three nearby houses and killed at least two people .
 
 
 U.S . Marines battled snipers as they fought deeper into the capital from the east .
-2,2,0,0 ORG-AFF|6,6,11,11 PHYS
+2,2 per|0,0 gpe| org-aff|6,6 per|11,11 gpe| phys
 
 They seized the Rasheed Airport and captured enough ammunition for an estimated 3,000 troops .
-0,0,3,4 PHYS
+0,0 per|3,4 fac| phys
 
 Ominously , they also took a prison where they found U.S . Army uniforms and chemical weapons suits possibly belonging to American POWs .
-12,12,10,10 PART-WHOLE|2,2,6,6 PHYS|22,22,21,21 GEN-AFF
+12,12 org|10,10 gpe| part-whole|2,2 per|6,6 fac| phys|22,22 per|21,21 gpe| gen-aff
 
 Some army units routed Iraqi fighters from a Republican Guard headquarters inside the capital .
-2,2,1,1 ORG-AFF|5,5,4,4 ORG-AFF|8,9,10,10 ART|10,10,13,13 PART-WHOLE|5,5,10,10 PHYS
+2,2 per|1,1 org| org-aff|5,5 per|4,4 gpe| org-aff|8,9 org|10,10 fac| art|10,10 fac|13,13 gpe| part-whole|5,5 per|10,10 fac| phys
 
 Others discovered a 12-room complex inside a cave , complete with white marble floors and fluorescent lighting .
-4,4,7,7 PART-WHOLE
+4,4 fac|7,7 loc| part-whole
 
 Members of the U.S . Army 's V Corps opened up a new front by entering Baghdad from the north .
-5,5,3,3 PART-WHOLE|7,8,5,5 PART-WHOLE|0,0,16,16 PHYS
+5,5 org|3,3 gpe| part-whole|7,8 per|5,5 org| part-whole|0,0 per|16,16 gpe| phys
 
 The toll on Iraqi civilians four days after Americans first penetrated the Baghdad outskirts is unknown .
-4,4,3,3 GEN-AFF|8,8,13,13 PHYS|13,13,12,12 PART-WHOLE
+4,4 per|3,3 gpe| gen-aff|8,8 per|13,13 loc| phys|13,13 loc|12,12 gpe| part-whole
 
 But the World Health Organization said Baghdad 's hospitals were running out of supplies to treat the burns , shrapnel wounds and spinal injuries caused by the fighting .
-8,8,6,6 PART-WHOLE
+8,8 fac|6,6 gpe| part-whole
 
 Iraqi officials , however , remained defiant , saying Iraq 's forces would never surrender to American forces : `` They will be burnt , '' said Information Minister Mohammed Saeed al-Sahhaf .
-17,17,16,16 ORG-AFF|11,11,9,9 ORG-AFF|1,1,0,0 ORG-AFF
+17,17 per|16,16 gpe| org-aff|11,11 per|9,9 gpe| org-aff|1,1 per|0,0 gpe| org-aff
 
 In central Baghdad , a Reuters cameraman and a cameraman for Spain 's Telecinco died when an American tank fired on the Palestine Hotel .
-6,6,2,2 PHYS|9,9,2,2 PHYS|6,6,5,5 ORG-AFF|9,9,13,13 ORG-AFF|13,13,11,11 GEN-AFF|17,17,18,18 ART
+6,6 per|2,2 loc| phys|9,9 per|2,2 loc| phys|6,6 per|5,5 org| org-aff|9,9 per|13,13 org| org-aff|13,13 org|11,11 gpe| gen-aff|17,17 gpe|18,18 veh| art
 
 `` The incident ... raises questions about the judgment of the advancing U.S . troops who have known all along that this hotel is the main base for almost all foreign journalists in Baghdad , '' Reuters Editor-in-Chief Geert Linnebank said .
-14,14,12,12 ORG-AFF|31,31,33,33 PHYS|37,37,36,36 ORG-AFF
+14,14 per|12,12 gpe| org-aff|31,31 per|33,33 gpe| phys|37,37 per|36,36 org| org-aff
 
 Tareq Ayyoub , a journalist with Al-Jazeera , died when a U.S . warplane bombed the Arab-language satellite television 's office .
-4,4,6,6 ORG-AFF|11,11,13,13 ART
+4,4 per|6,6 org| org-aff|11,11 gpe|13,13 veh| art
 
 An Abu Dhabi TV office in Baghdad also was hit .
-1,3,4,4 ART|4,4,6,6 PART-WHOLE
+1,3 org|4,4 fac| art|4,4 fac|6,6 gpe| part-whole
 
 Al-Jazeera categorically denied that its Baghdad bureau had been used by Iraqi forces to fire on U.S . troops .
-18,18,16,16 ORG-AFF|12,12,11,11 ORG-AFF|4,4,6,6 ART|6,6,5,5 PART-WHOLE
+18,18 per|16,16 gpe| org-aff|12,12 per|11,11 gpe| org-aff|4,4 org|6,6 fac| art|6,6 fac|5,5 gpe| part-whole
 
 U.S. Central Command said it fired on the TV office and the hotel after U.S . forces came under `` significant '' fire from those buildings .
-16,16,14,14 ORG-AFF
+16,16 per|14,14 gpe| org-aff
 
 Associated Press photographer Jerome Delay said he watched from the top floor of the hotel as American tanks took up positions on the bridge .
-11,11,14,14 PART-WHOLE|2,2,0,1 ORG-AFF|3,4,11,11 PHYS|16,16,17,17 ART
+11,11 fac|14,14 fac| part-whole|2,2 per|0,1 org| org-aff|3,4 per|11,11 fac| phys|16,16 gpe|17,17 veh| art
 
 `` All the shooting was concentrated on the bridge and across the river , '' where U.S . forces were located , he said .
-18,18,16,16 ORG-AFF
+18,18 per|16,16 gpe| org-aff
 
 It was not clear whether any Iraqi leader had been killed in the airstrike targeting Saddam in an upscale Baghdad neighborhood .
-20,20,19,19 PART-WHOLE|7,7,6,6 ORG-AFF|15,15,20,20 PHYS
+20,20 gpe|19,19 gpe| part-whole|7,7 per|6,6 gpe| org-aff|15,15 per|20,20 gpe| phys
 
 Iraqi rescue workers pulled two bodies from the rubble but said the toll could be as high as 14 .
-2,2,0,0 ORG-AFF
+2,2 per|0,0 gpe| org-aff
 
 `` I do n't know whether he survived , '' U.S President George W. Bush said of Saddam at a joint news conference with British Prime Minister Tony Blair .
-11,11,10,10 ORG-AFF|25,26,24,24 ORG-AFF
+11,11 per|10,10 gpe| org-aff|25,26 per|24,24 gpe| org-aff
 
 `` The only thing I know is that he 's losing power . ''
 
 
 Iraq 's U.N . ambassador , Mohammed Al-Douri , said Tuesday he believes that Saddam is alive , although al-Douri acknowledged he has not communicated with Baghdad .
-4,4,0,0 ORG-AFF
+4,4 per|0,0 gpe| org-aff
 
 Bush and Blair sought to minimize their differences over who should govern and rebuild Iraq .
 
@@ -2114,34 +2114,34 @@ in the reconstruction of Iraq , '' Blair said .
 
 
 In northern Iraq , Kurdish forces tightened their ring around Kirkuk on Tuesday , following heavy coalition airstrikes on Iraqi fronts .
-5,5,10,10 PHYS|5,5,4,4 GEN-AFF
+5,5 per|10,10 gpe| phys|5,5 per|4,4 per| gen-aff
 
 Kurdish militia took control of Sekamian plateau , about 10 kilometers ( six miles ) north of Kirkuk , Kurdish media reported .
-5,6,17,17 PHYS|0,0,1,1 GEN-AFF|1,1,5,6 PHYS|20,20,19,19 GEN-AFF
+5,6 loc|17,17 gpe| phys|0,0 per|1,1 per| gen-aff|1,1 per|5,6 loc| phys|20,20 org|19,19 per| gen-aff
 
 The area affords a commanding view of the city and the vast oil fields of Iraq 's No. 2 oil region .
-13,13,20,20 PART-WHOLE|20,20,15,15 PART-WHOLE
+13,13 fac|20,20 loc| part-whole|20,20 loc|15,15 gpe| part-whole
 
 The U.S . military said two planes had been lost .
-3,3,1,1 PART-WHOLE
+3,3 org|1,1 gpe| part-whole
 
 An A-10 `` Warthog '' warplane was shot down near Baghdad , believed to be the first fixed-wing aircraft downed by an Iraqi surface-to-air missile since the war began .
-22,22,24,24 ART
+22,22 gpe|24,24 wea| art
 
 U.S. Central Command said the pilot ejected , was recovered by ground forces and was in good condition .
 
 
 A U.S . F-15E jet fighter also went down early Monday and a search was under way for its two - man crew , the military announced Tuesday .
-1,1,5,5 ART|22,22,18,18 ART
+1,1 gpe|5,5 veh| art|22,22 per|18,18 veh| art
 
 Officials did not say whether the plane was shot down or crashed accidentally .
 
 
 British forces in southern Iraq worked to restore order in the heavily looted streets of Basra , as desperate citizens swarmed water tanker trucks the day after British soldiers claimed Iraq 's second largest city .
-19,19,13,13 PHYS|28,28,34,34 PHYS|1,1,0,0 ORG-AFF|28,28,27,27 ORG-AFF|13,13,15,15 PART-WHOLE|34,34,30,30 PART-WHOLE
+19,19 per|13,13 fac| phys|28,28 per|34,34 gpe| phys|1,1 per|0,0 gpe| org-aff|28,28 per|27,27 gpe| org-aff|13,13 fac|15,15 gpe| part-whole|34,34 gpe|30,30 gpe| part-whole
 
 British forces also began establishing the country 's first postwar administration Tuesday , granting a local sheik power to set up an administrative committee representing the groups in the region .
-10,10,6,6 PART-WHOLE|26,26,29,29 PHYS|1,1,0,0 ORG-AFF
+10,10 org|6,6 gpe| part-whole|26,26 per|29,29 loc| phys|1,1 per|0,0 gpe| org-aff
 
 XIN_ENG_20030408 .0341
 
@@ -2156,61 +2156,61 @@ Roundup : UK , US downplay divide on UN role in post-war Iraq
 
 
 BELFAST , Britain , April 8 ( Xinhua )
-0,0,2,2 PART-WHOLE
+0,0 gpe|2,2 gpe| part-whole
 
 A two-day summit between British Prime Minister Tony Blair and US President George W. Bush ended here Tuesday with both countries trying to minimize splits on UN role in rebuilding Iraq after the ongoing US - led war against the country is over .
-7,8,16,16 PHYS|6,6,4,4 ORG-AFF|11,11,10,10 ORG-AFF
+7,8 per|16,16 gpe| phys|6,6 per|4,4 gpe| org-aff|11,11 per|10,10 gpe| org-aff
 
 As the US - led coalition troops are reportedly thrusting into Baghdad and the second Iraqi city of Basra , Blair and Bush agreed there would be a " vital role " for the United Nations in post-war Iraq .
-6,6,16,16 PHYS|6,6,5,5 ORG-AFF|6,6,11,11 PHYS|16,16,15,15 PART-WHOLE
+6,6 per|16,16 gpe| phys|6,6 per|5,5 gpe| org-aff|6,6 per|11,11 gpe| phys|16,16 gpe|15,15 gpe| part-whole
 
 During their first war summit on March 27 at Camp David , Blair and Bush became divided over what a role the United Nations will play in postwar Iraq , when Bush gave no positive reaction to Blair 's suggestion of a strong UN role .
-12,12,9,10 PHYS|14,14,9,10 PHYS
+12,12 per|9,10 fac| phys|14,14 per|9,10 fac| phys
 
 After the Camp David talks , Blair , who analysts say has been pursuing a special relationship with Washington in order to restore Britain 's traditional role as a transatlantic " bridge " , was forced to readjust his tone .
 
 
 Blair and Bush were expected to bridge their gap on the issue by reaching an agreement on UN role in post-war Iraq , some analysts said even before this summit at Hillsborough , south of Belfast , the second of its kind since the war broke out on March 20 .
-31,31,35,35 PHYS
+31,31 gpe|35,35 gpe| phys
 
 In a joint written statement , the two allies pledged to seek UN Security Council resolutions to affirm Iraq 's territorial integrity , ensure aid delivery and endorse an " appropriate " post - conflict administration for Iraq . "
-13,14,12,12 PART-WHOLE
+13,14 org|12,12 org| part-whole
 
 We welcome the appointment by the United Nations Secretary - General of a special adviser for Iraq to work with the people of Iraq and coalition representatives , " the statement added .
-8,10,6,7 ORG-AFF|21,21,23,23 GEN-AFF|26,26,25,25 ORG-AFF
+8,10 per|6,7 org| org-aff|21,21 per|23,23 gpe| gen-aff|26,26 per|25,25 gpe| org-aff
 
 The United Nations would have a " vital role " in the effort to repair Iraq 's infrastructure , Blair told reporters at a news conference after his talks with Bush , downplaying UN role in emphasizing that ultimately the country must be run by the Iraqi people . "
-47,47,46,46 GEN-AFF
+47,47 per|46,46 gpe| gen-aff
 
 The key is that Iraq in the end should be governed by the Iraqi people , " Blair said , pledging that British and US forces would not stay in the country " a day longer than necessary " .
-25,25,24,24 ORG-AFF|14,14,13,13 GEN-AFF|25,25,22,22 ORG-AFF
+25,25 per|24,24 gpe| org-aff|14,14 per|13,13 gpe| gen-aff|25,25 per|22,22 gpe| org-aff
 
 It was a " false choice " to debate whether Iraq should be run by coalition forces or the United Nations , said Blair , who was believed to be in favor of a stronger UN role in post-conflict Iraq than Bush .
-16,16,15,15 ORG-AFF
+16,16 per|15,15 gpe| org-aff
 
 Echoing Blair , Bush said the UN would play a role in all aspects of post-war Iraq , from humanitarian aid to a future interim authority , adding that Iraq would " move as quickly as possible " to an interim authority made up of Iraqis from inside and outside the country .
-45,45,41,41 ORG-AFF
+45,45 per|41,41 org| org-aff
 
 However , when pressed on what precisely the UN role would be , Bush on Tuesday mentioned only humanitarian work , " suggesting " people to staff the interim authority and helping Iraq " progress . " "
-24,24,29,29 ORG-AFF
+24,24 per|29,29 org| org-aff
 
 When we say vital role for the United Nations , we mean vital role for the United Nations in all aspects of the issue , whether it be humanitarian aid , or whether it be helping to stand up an interim authority .
 
 
 The Iraqi people will decide who 's on the Iraqi interim authority , " said Bush .
-2,2,1,1 GEN-AFF|5,5,11,11 ORG-AFF
+2,2 per|1,1 gpe| gen-aff|5,5 per|11,11 org| org-aff
 
 Bush did not spell out how much power the United Nations would have , nor did he elaborate on Washington 's plans to place US officials alongside Iraqis in the interim administration .
-25,25,31,31 ORG-AFF|27,27,31,31 ORG-AFF|25,25,24,24 ORG-AFF
+25,25 per|31,31 org| org-aff|27,27 per|31,31 org| org-aff|25,25 per|24,24 gpe| org-aff
 
 Differences still remain between the United States and Britain , analysts said , over the speed with which Iraq should be handed to an interim Iraqi administration , and the extent to which a US - led group of generals and former diplomats should effectively run the country .
-26,26,25,25 PART-WHOLE
+26,26 org|25,25 gpe| part-whole
 
 Yet , analysts argued , both Britain and the United States hope their agreed vision of a postwar scenario will placate anti-war nations such as France , Germany and Russia . "
 
 
 We will move as quickly as possible to place governmental responsibilities under the control of an interim authority composed of Iraqis from both inside and outside the country , " Bush vowed at the joint news conference with Blair , adding that the interim authority would serve until a permanent government could be chosen by the Iraqi people . "
-20,20,17,17 ORG-AFF|57,57,56,56 GEN-AFF
+20,20 per|17,17 org| org-aff|57,57 per|56,56 gpe| gen-aff
 
 Rebuilding of Iraq will require the support and expertise of the international community .
 
@@ -2255,7 +2255,7 @@ magellan and new millennium are closed to new investors .
 
 
 current investors are not going to be charge peoria police department they are trying to take advantage of investor 's renewed interests to buy stock .
-10,10,8,8 PART-WHOLE
+10,10 org|8,8 gpe| part-whole
 
 many investors show away from funds that include a low or fee .
 
@@ -2321,31 +2321,31 @@ stay with us .
 
 
 major fighting may be over , but many american service men and women injured in iraq are just beginning the very long process of recovery .
-10,10,9,9 ORG-AFF|12,12,9,9 ORG-AFF|9,9,8,8 PART-WHOLE|10,10,15,15 PHYS|12,12,15,15 PHYS
+10,10 per|9,9 org| org-aff|12,12 per|9,9 org| org-aff|9,9 org|8,8 gpe| part-whole|10,10 per|15,15 gpe| phys|12,12 per|15,15 gpe| phys
 
 besides the naval hospital outside washington , d.c .
-3,3,5,5 PHYS|2,2,3,3 ART
+3,3 org|5,5 gpe| phys|2,2 org|3,3 org| art
 
 , has already treated more than 200 marines and sailors from the war in iraq .
-7,7,14,14 PHYS|9,9,14,14 PHYS
+7,7 per|14,14 gpe| phys|9,9 per|14,14 gpe| phys
 
 19 of them are still there .
-2,2,5,5 PHYS
+2,2 per|5,5 fac| phys
 
 i visited some of them only yesterday including one marine whose life was saved by a twist of fate .
 
 
 what strikes you about patrick teeterman and so many of his buddies is how young they are .
-10,10,11,11 PER-SOC
+10,10 per|11,11 per| per-soc
 
 corporal teeterman , a fresh-faced kid from chicago had a job more important and dangerous than you 'll find in the hands of most 21-year - olds .
-5,5,7,7 GEN-AFF
+5,5 per|7,7 gpe| gen-aff
 
 i 'm a sniper platoon lead are for isst battalion naval marines .
-5,6,8,11 ORG-AFF
+5,6 per|8,11 org| org-aff
 
 reporter : the story of how he got to washington , d.c .
-9,9,11,11 PART-WHOLE|6,6,9,9 PHYS
+9,9 gpe|11,11 gpe| part-whole|6,6 per|9,9 gpe| phys
 
 , is compelling for several reasons , starting with how close he came to not being here at all .
 
@@ -2357,10 +2357,10 @@ reporter : and how close he came to witnessing history .
 
 
 24 hours before the fall of baghdad , 24 hours before his fellow marines engaged in a fierce firefight at baghdad university , teeterman 's orders had him just south of the capital taking out iraqi resistance a top a warehouse roof .
-11,11,13,13 PER-SOC|13,13,20,21 PHYS|27,27,41,41 PHYS|41,41,40,40 PART-WHOLE|36,36,35,35 GEN-AFF
+11,11 per|13,13 per| per-soc|13,13 per|20,21 fac| phys|27,27 per|41,41 fac| phys|41,41 fac|40,40 fac| part-whole|36,36 per|35,35 gpe| gen-aff
 
 there were small pockets of resistance in the area , two , three man groups who had ak-47s and possible rpgs and what not and our job was to just observe forward and make sure no one was waiting to ambush the avs or the tanks and i was on a metal roof and i stepped
-47,47,52,52 PHYS|5,5,8,8 PHYS|14,14,17,17 ART|14,14,20,20 ART|14,14,22,23 ART
+47,47 per|52,52 fac| phys|5,5 per|8,8 loc| phys|14,14 per|17,17 wea| art|14,14 per|20,20 wea| art|14,14 per|22,23 wea| art
 
 2003-05-07 17:33:03
 
@@ -2387,13 +2387,13 @@ MILES O'BRIEN , CNN CORRESPONDENT ( voice-over )
 
 
 The people of Tikrit are saying Saddam 's family left that city three days ago , well before the Americans arrived .
-1,1,3,3 GEN-AFF|6,6,8,8 PER-SOC|8,8,11,11 PHYS|19,19,11,11 PHYS
+1,1 per|3,3 gpe| gen-aff|6,6 per|8,8 per| per-soc|8,8 per|11,11 gpe| phys|19,19 per|11,11 gpe| phys
 
 Saddam 's clan is said to have left for a small village in the desert .
-0,0,2,2 PER-SOC|11,11,14,14 PART-WHOLE
+0,0 per|2,2 per| per-soc|11,11 gpe|14,14 loc| part-whole
 
 12:19 p.m. : CNN 's Ryan Chilcote reports the 101st Airborne 2nd Brigade finds 11 of what an Army general describes as chem-bio labs buried to avoid detection near Karbala , each of the structures 20-by - 20 feet .
-5,6,3,3 ORG-AFF|19,19,18,18 ORG-AFF
+5,6 per|3,3 org| org-aff|19,19 per|18,18 org| org-aff
 
 And the military also found over 1,000 pounds of documents buried at the site .
 
@@ -2417,7 +2417,7 @@ Now , regular cell phones rarely work these days in the city , we 're told , but
 
 
 CNN 's Rula Amin reports from the Iraqi capital .
-2,3,8,8 PHYS|2,3,0,0 ORG-AFF|8,8,7,7 PART-WHOLE
+2,3 per|8,8 gpe| phys|2,3 per|0,0 org| org-aff|8,8 gpe|7,7 gpe| part-whole
 
 ( BEGIN VIDEOTAPE )
 
@@ -2429,10 +2429,10 @@ They wait for hours to find a journalist and they plead with us to borrow our mo
 
 
 They need to send a message to their families abroad just to tell them , " We are alive , " says this woman .
-7,7,8,8 PER-SOC
+7,7 per|8,8 per| per-soc
 
 Here , they wait outside a restaurant where journalists hang out .
-8,8,7,7 PHYS
+8,8 per|7,7 fac| phys
 
 And they are desperate . "
 
@@ -2441,19 +2441,19 @@ Only for one minute , " says this mother .
 
 
 She wants to call her pregnant daughter Saba ( ph ) in Sweden to see if she has delivered . "
-4,4,6,6 PER-SOC|7,7,12,12 PHYS
+4,4 per|6,6 per| per-soc|7,7 per|12,12 gpe| phys
 
 It 's not good for her to worry about us , " she says .
 
 
 Across the fence , a 21-year-old U.S . Marine named Jason Cook ( ph ) is after the same phones .
-8,8,6,6 ORG-AFF
+8,8 per|6,6 gpe| org-aff
 
 He wants to call his mom in Houston .
-4,4,5,5 PER-SOC|5,5,7,7 PHYS
+4,4 per|5,5 per| per-soc|5,5 per|7,7 gpe| phys
 
 A " New York Times " reporter lends Cook his mobile sat phone .
-6,6,2,4 ORG-AFF
+6,6 per|2,4 org| org-aff
 
 UNIDENTIFIED MALE
 
@@ -2465,22 +2465,22 @@ Hey , old man .
 
 
 I 'm in the middle of Baghdad , just patrolling up and down the streets .
-4,4,6,6 PART-WHOLE|0,0,4,4 PHYS
+4,4 loc|6,6 gpe| part-whole|0,0 per|4,4 loc| phys
 
 AMIN
 
 
 Cook has n't spoken to his family since Super Bowl Sunday , January 26 .
-5,5,6,6 PER-SOC
+5,5 per|6,6 per| per-soc
 
 On this one sidewalk in Baghdad , they were all doing the most natural thing during war , trying to reach their loved ones .
-21,21,23,23 PER-SOC|7,7,3,3 PHYS
+21,21 per|23,23 per| per-soc|7,7 per|3,3 fac| phys
 
 UNIDENTIFIED MALE
 
 
 My mother , brother and sister .
-0,0,1,1 PER-SOC|0,0,3,3 PER-SOC
+0,0 per|1,1 per| per-soc|0,0 per|3,3 per| per-soc
 
 AMIN ( on camera )
 
@@ -2492,13 +2492,13 @@ UNIDENTIFIED MALE
 
 
 I got an older brother and a little brother and sister .
-0,0,4,4 PER-SOC|0,0,8,8 PER-SOC|0,0,10,10 PER-SOC
+0,0 per|4,4 per| per-soc|0,0 per|8,8 per| per-soc|0,0 per|10,10 per| per-soc
 
 AMIN ( voice-over )
 
 
 His mother told him to keep his head down .
-0,0,1,1 PER-SOC
+0,0 per|1,1 per| per-soc
 
 UNIDENTIFIED MALE
 
@@ -2531,7 +2531,7 @@ So , on small notes , they wrote the phone numbers we did n't get to dial , hopi
 
 
 Rula Amin , CNN , Baghdad .
-0,1,5,5 PHYS|0,1,3,3 ORG-AFF
+0,1 per|5,5 gpe| phys|0,1 per|3,3 org| org-aff
 
 ( END VIDEOTAPE )
 
@@ -2570,7 +2570,7 @@ Byrne
 
 
 I 've been keeping a careful eye on the Blockbuster / Hollywood machinations for a while ( and well I should -- I have stock in one of the deal 's participants , Movie Gallery ) , but even so I 'm surprised that Blockbuster 's latest gambit is to buy up Hollywood 's debt .
-22,22,26,26 ORG-AFF
+22,22 per|26,26 org| org-aff
 
 It 's an admirable hedge -- if Movie Gallery wins , it could improve Hollywood 's rating , and either way it offers Blockbuster some leverage .
 
@@ -2603,13 +2603,13 @@ that experience should continue to inspire us , as we seek to build a more peace
 
 
 when i visited your country in 1994 , i recall saying to president yeltsin that he and i spent most of our lives believing such a visit would never happen .
-3,3,4,4 GEN-AFF|1,1,4,4 PHYS
+3,3 per|4,4 gpe| gen-aff|1,1 per|4,4 gpe| phys
 
 and that i hoped he was as delighted as i was to be proved wrong .
 
 
 i 'm just as delighted now , nine years later , to be able to welcome you here and to learn about the great changes which have occurred in your country since i was there .
-29,29,30,30 GEN-AFF|16,16,17,17 PHYS|32,32,34,34 PHYS
+29,29 per|30,30 gpe| gen-aff|16,16 per|17,17 gpe| phys|32,32 per|34,34 gpe| phys
 
 russia has established itself as our partner and our friend .
 
@@ -2636,7 +2636,7 @@ but we are now able to look forward together firmly in agreement on the route we
 
 
 although , the tragic loss of british lives today reminds us all of the difficulties to be faced .
-7,7,6,6 GEN-AFF
+7,7 per|6,6 gpe| gen-aff
 
 but as we look ahead , we know that our long-term partnership is of profound importance to both of us .
 
@@ -2645,16 +2645,16 @@ this is clearly evident , if we look beyond the challenges of international poli
 
 
 in the last few months alone , we have heard the announcements of major investments in russia by british companies .
-19,19,18,18 PART-WHOLE|19,19,16,16 ORG-AFF
+19,19 org|18,18 gpe| part-whole|19,19 org|16,16 gpe| org-aff
 
 we have also heard a different sign of sir paul mccartney playing to enthusiastic crowds in red square .
-14,14,16,17 PHYS
+14,14 per|16,17 fac| phys
 
 and we , in turn , have been enthralled by the celebrations of your own city in petersburg .
 
 
 at the same time , work continues to bring the young people of our countries closer together through language , teaching , school exchanges and university programs .
-11,11,14,14 GEN-AFF
+11,11 per|14,14 gpe| gen-aff
 
 we have a vibrant and exciting relationship from which we both derive mass benefit .
 
@@ -2663,7 +2663,7 @@ mr .
 
 
 president , your country is rich --
-2,2,3,3 GEN-AFF
+2,2 per|3,3 gpe| gen-aff
 
 2003-06-24 15:56:33
 
@@ -2837,7 +2837,7 @@ it 's with wednesday , march 5 200 3 .
 
 
 i 'm wolf blitzer in washington .
-2,3,5,5 PHYS
+2,3 per|5,5 gpe| phys
 
 is the u.s .
 
@@ -2849,16 +2849,16 @@ if you listen to the from 's men it sounds like the battle is about to begin , m
 
 
 america 's top diplomat laid out the case for war .
-3,3,0,0 ORG-AFF
+3,3 per|0,0 gpe| org-aff
 
 secretary of state colin powell acted like a prosecutor , pointing out iraq 's failures .
 
 
 over at the pentagon , the military leaders say that troops are ready to fight right now even as they await word of the president 's order , but there is major opposition today , france , germany and russia plan a showdown at theupups in a bid to stop the u.s .
-7,7,6,6 ORG-AFF
+7,7 per|6,6 org| org-aff
 
 's war machine and their voices of dissent echoed by protestors from australia to egypt to university students right here in the united states .
-10,10,12,12 GEN-AFF|10,10,14,14 GEN-AFF|17,17,16,16 ORG-AFF|17,17,19,19 GEN-AFF
+10,10 per|12,12 gpe| gen-aff|10,10 per|14,14 gpe| gen-aff|17,17 per|16,16 org| org-aff|17,17 per|19,19 gpe| gen-aff
 
 even the vatican voiced concerns today .
 
@@ -2885,34 +2885,34 @@ NEWS STORY
 
 
 back in this city , a courthouse in manhattan .
-6,6,8,8 PART-WHOLE
+6,6 fac|8,8 gpe| part-whole
 
 sam waksal , founder and former considers o of imclone is scheduled to be sentenced today .
-3,3,9,9 ORG-AFF|6,7,9,9 ORG-AFF
+3,3 per|9,9 org| org-aff|6,7 per|9,9 org| org-aff
 
 he pleaded guilty earlier this year to insider trading , bank fraud and tax evasion .
 
 
 waksal could be fined $ 3.5 million , facing a maximum of 75 years in prison , expected , though , to receive about six to seven years .
-0,0,15,15 PHYS
+0,0 per|15,15 fac| phys
 
 that 's the early indication we 've been given .
 
 
 a friend of his , martha stewart , pleaded not guilty last week .
-1,1,3,3 PER-SOC
+1,1 per|3,3 per| per-soc
 
 the charges related to her sale of imclone stock .
-4,4,7,7 ORG-AFF
+4,4 per|7,7 org| org-aff
 
 she sold the share as day before bad news about the company sent the stock price falling .
-0,0,11,11 ORG-AFF
+0,0 per|11,11 org| org-aff
 
 considerably .
 
 
 sam waksal , sentenced , 10:00 a.m. , local time here in new york .
-0,1,10,10 PHYS
+0,1 per|10,10 gpe| phys
 
 2003-06-10 09:17:34
 
@@ -2927,13 +2927,13 @@ NEWS STORY
 
 
 make this final port call for some of these men and women on board who have been there for ten months at sea .
-14,14,22,22 PHYS
+14,14 per|22,22 loc| phys
 
 chad myers joining me on the set .
 
 
 typical perfect day in san diego waiting for these men and women to come home .
-9,9,14,14 GEN-AFF|11,11,14,14 GEN-AFF
+9,9 per|14,14 gpe| gen-aff|11,11 per|14,14 gpe| gen-aff
 
 raining in l.a .
 
@@ -2948,7 +2948,7 @@ it 's a picture perfect place to live .
 
 
 have you ever been down there ?
-1,1,5,5 PHYS
+1,1 per|5,5 gpe| phys
 
 no , i have not .
 
@@ -2960,7 +2960,7 @@ it is beautiful out there .
 
 
 i just think about all the family members sitting at home , sitting on the dock looking at this boat coming in .
-7,7,15,15 PHYS
+7,7 per|15,15 fac| phys
 
 it 's just amazing .
 
@@ -2972,7 +2972,7 @@ they were in danger .
 
 
 your loved ones are in danger for ten months .
-0,0,2,2 PER-SOC
+0,0 per|2,2 per| per-soc
 
 is he okay today ?
 
@@ -2993,13 +2993,13 @@ think about when i was doing when i was 18 , i was thinking about going to colle
 
 
 these guys are running ships .
-1,1,4,4 ART
+1,1 per|4,4 veh| art
 
 some of these , as you say , are children .
 
 
 some of these had children while they were out at sea and this is the first time that -- first opportunity to get home and meet and hold them .
-6,6,10,10 PHYS|0,0,4,4 PER-SOC
+6,6 per|10,10 loc| phys|0,0 per|4,4 per| per-soc
 
 we 've seen the reunions for the past week or so .
 
@@ -3017,7 +3017,7 @@ you can just imagine what these people must be thinking and how antsy they must 
 
 
 got to think the last five minutes must feel like five days as they 've spent ten months on the water .
-13,13,20,20 PHYS
+13,13 per|20,20 loc| phys
 
 just about to come home .
 
@@ -3026,10 +3026,10 @@ sense the anticipation there beginning to build on those docks .
 
 
 friend of mine in richmond , virginia , on the radio up there wrba .
-13,13,12,12 GEN-AFF|0,0,4,4 GEN-AFF|0,0,2,2 PER-SOC|4,4,6,6 PART-WHOLE|0,0,13,13 ORG-AFF
+13,13 org|12,12 gpe| gen-aff|0,0 per|4,4 gpe| gen-aff|0,0 per|2,2 per| per-soc|4,4 gpe|6,6 gpe| part-whole|0,0 per|13,13 org| org-aff
 
 his son was on one of the ships that escorted a carrier .
-0,0,1,1 PER-SOC|1,1,4,4 ART
+0,0 per|1,1 per| per-soc|1,1 per|4,4 veh| art
 
 although this came home by itself from hawaii .
 
@@ -3050,16 +3050,16 @@ eight , nine , ten ships and a submarine .
 
 
 while some of these ladies and gentlemen are going to be joining their families half of them are going to stay on board because this -- the " lincoln " is going to be docked in everett , washington .
-12,12,13,13 PER-SOC|1,1,24,24 ART|14,14,28,28 ART|36,36,38,38 PART-WHOLE
+12,12 per|13,13 per| per-soc|1,1 per|24,24 veh| art|14,14 per|28,28 veh| art|36,36 gpe|38,38 gpe| part-whole
 
 that 's where the home base is .
-5,5,2,2 PART-WHOLE
+5,5 fac|2,2 gpe| part-whole
 
 it 's going to have to make a trip up the coast .
 
 
 they wo n't get to see their loved ones until tuesday or wednesday .
-6,6,8,8 PER-SOC
+6,6 per|8,8 per| per-soc
 
 i wonder who gets to get off first .
 
@@ -3071,7 +3071,7 @@ was there a raffle ?
 
 
 we 've got to deal with the person who 's going to be getting off here .
-8,8,15,15 PHYS
+8,8 per|15,15 gpe| phys
 
 as you 've been watching throughout the morning , you 've been seeing that balloon .
 
@@ -3122,7 +3122,7 @@ we 're going to say good-bye to betsy .
 
 
 some of these ladies and gentlemen are going to be saying hello to their families .
-13,13,14,14 PER-SOC
+13,13 per|14,14 per| per-soc
 
 standing on the side of the ship .
 
@@ -3161,19 +3161,19 @@ SEOUL , April 29 ( AFP )
 
 
 South Korea 's ruling party is facing an internal reformist call for dissolving itself to create a new group after a humiliating defeat at last week 's by-elections , party officials said Tuesday .
-4,4,0,1 GEN-AFF|30,30,29,29 ORG-AFF
+4,4 org|0,1 gpe| gen-aff|30,30 per|29,29 org| org-aff
 
 The ruling Millennium Democratic Party ( MDP ) , founded by former president Kim Dae-Jung , has suffered declining popularity since President Roh Moo-Hyun took office in February .
-13,14,2,4 ORG-AFF
+13,14 per|2,4 org| org-aff
 
 A group of 18 reformist MDP lawmakers , mostly Roh 's confidants , demanded late Wednesday that the party be " constructively dissolved " to create a new grouping , MDP officials said .
-31,31,30,30 ORG-AFF|6,6,5,5 ORG-AFF|9,9,11,11 PER-SOC
+31,31 per|30,30 org| org-aff|6,6 per|5,5 org| org-aff|9,9 per|11,11 per| per-soc
 
 But the established MDP leadership has opposed the sudden overhaul , they added .
 
 
 Reformist MDP members , however , vowed to launch a preparatory committee next month and to make " tangible progress " in the process of forging a new party .
-2,2,1,1 ORG-AFF
+2,2 per|1,1 org| org-aff
 
 The internal dispute erupted after the MDP lost three parliamentary seats in Thursday 's by-elections .
 
@@ -3215,13 +3215,13 @@ Ironically down in North Carolina today was also the day funeral services were h
 
 
 Is her family 's pain and suffering only worth $ 250,000 ?
-1,1,2,2 PER-SOC
+1,1 per|2,2 per| per-soc
 
 Here to debate medical malpractice reform are consumer advocate Ralph Nader and Dr .
 
 
 Donald Palmisano , the president - elect of the American Medical Association .
-4,4,9,11 ORG-AFF
+4,4 per|9,11 org| org-aff
 
 ( CROSSTALK )
 
@@ -3230,7 +3230,7 @@ NOVAK
 
 
 Ralph Nader , there are states in crisis that keep adding to the list by the AMA where doctors are going out of business because they ca n't afford the medical malpractice rates .
-18,18,5,5 PHYS
+18,18 per|5,5 gpe| phys
 
 We 'll just run a scroll of some of the states .
 
@@ -3263,10 +3263,10 @@ And so they 're jacking up the rates on a few key specialties like obstetricians
 
 
 But if you take the entire amount of premiums , Bob , that 's paid by doctors in this country to malpractice insurers and divide it evenly , they 'd be paying less than $ 9,000 each .
-16,16,19,19 GEN-AFF
+16,16 per|19,19 gpe| gen-aff
 
 That 's one-third of what they pay a receptionist .
-5,5,8,8 PER-SOC
+5,5 per|8,8 per| per-soc
 
 NOVAK
 
@@ -3284,22 +3284,22 @@ NADER
 
 
 Well , as much as they 've poured into those coffers , it 's much less than what the doctors , the malpractice insurers , the hospital chains and the HMOs and the nursing home chains have poured into members of Congress ' coffers .
-39,39,41,41 ORG-AFF
+39,39 per|41,41 org| org-aff
 
 This is first and foremost , Bob , a question of equity .
 
 
 Are we going to allow severely injured people who have found a lung taken out that 's the wrong lung or a double mastectomy that was n't indicated that was inflicted on a woman in the Midwest , or that organ transplant that was incompatible on that 17-year-old teenager in North Carolina .
-33,33,36,36 GEN-AFF|48,48,50,51 GEN-AFF
+33,33 per|36,36 loc| gen-aff|48,48 per|50,51 gpe| gen-aff
 
 Are we going to say to these and so many others , you ca n't have your full day in court ?
 
 
 The Congress is going to handcuff the judges and juries in the United States at the state court level ?
-7,7,12,13 GEN-AFF|9,9,12,13 GEN-AFF
+7,7 per|12,13 gpe| gen-aff|9,9 per|12,13 gpe| gen-aff
 
 I have n't yet met one senator or representative who 's for this bill who has demonstrated that the jurors in their home state and the judges in their home state are incompetent , unwilling or unable to perform justice in these medical malpractice cases .
-19,19,23,23 PHYS|26,26,30,30 PHYS|21,21,23,23 GEN-AFF|28,28,30,30 GEN-AFF
+19,19 per|23,23 gpe| phys|26,26 per|30,30 gpe| phys|21,21 per|23,23 gpe| gen-aff|28,28 per|30,30 gpe| gen-aff
 
 And I 've never heard one person say that the insurance executives who make $ 250,000 a week , every week without any pain and suffering , no one is saying cap those .
 
@@ -3314,7 +3314,7 @@ Dr .
 
 
 Palmisano , first thank you for being here .
-4,4,7,7 PHYS
+4,4 per|7,7 fac| phys
 
 DR. DONALD PALMISANO , PRESIDENT-ELECT , AMA
 
@@ -3335,7 +3335,7 @@ And , I want to ask you to respond to one of the witnesses , John McCormick test
 
 
 He 's the father of a little girl , 13-month-old girl , who he said today died because of medical malpractice .
-3,3,7,7 PER-SOC
+3,3 per|7,7 per| per-soc
 
 He said that the hospital ignored abnormal CO2 levels in her blood .
 
@@ -3362,7 +3362,7 @@ Mr .
 
 
 President , from father to father , my family 's pain and suffering are not frivolous .
-7,7,8,8 PER-SOC
+7,7 per|8,8 per| per-soc
 
 ( END VIDEO CLIP )
 
@@ -3374,7 +3374,7 @@ Is n't he right ?
 
 
 Is n't our president wrong to be -- did he win the Lottery ?
-3,3,2,2 ORG-AFF
+3,3 per|2,2 gpe| org-aff
 
 You know , Mr .
 
@@ -3383,7 +3383,7 @@ Bush -- President Bush says these guys have won the litigation Lottery .
 
 
 Does that look like a Lottery winner to you , holding a picture of his dead baby ?
-14,14,16,16 PER-SOC
+14,14 per|16,16 per| per-soc
 
 PALMISANO
 
@@ -3395,7 +3395,7 @@ The American Medical Association works very hard to make safety a priority in th
 
 
 That 's why we founded the National Patient Safety Foundation .
-3,3,6,9 ORG-AFF
+3,3 org|6,9 org| org-aff
 
 The current system does n't measure negligence .
 
@@ -3404,10 +3404,10 @@ It measures disability .
 
 
 And what we 're finding now is that the emergency rooms are closing , trauma centers are closing , pregnant women ca n't find a doctor to deliver the baby , a boy knocked unconscious has to be transported to another state .
-32,32,41,41 PHYS
+32,32 per|41,41 gpe| phys
 
 Another witness today told of what happened to her husband because there were no longer neurosurgeons available in the community .
-8,8,9,9 PER-SOC|15,15,19,19 PHYS
+8,8 per|9,9 per| per-soc|15,15 per|19,19 gpe| phys
 
 The patient had to be airavacked and by that time it was too late to prevent the brain damage .
 
@@ -3434,7 +3434,7 @@ McCormick 's point .
 
 
 Who are you , who 's our president to tell him that his suffering is only worth $ 250,000 for the loss of a child ?
-7,7,6,6 ORG-AFF
+7,7 per|6,6 gpe| org-aff
 
 PALMISANO
 
@@ -3443,13 +3443,13 @@ Well , what has to be done here is balance .
 
 
 What we need is a system that 's fair to everyone , a system that keeps the physicians in practice and allows patients to have access to physicians in their hour of need .
-22,22,27,27 PER-SOC
+22,22 per|27,27 per| per-soc
 
 And the system in California that 's in the bill , in Congress now , HR-5 , that 's a system that has worked .
 
 
 It brought stability to California and obstetricians in California will pay 55 , 57 , $ 60,000 in Los Angeles and in South Florida in Miami , they 'll pay $ 210,000 ... ( CROSSTALK )
-6,6,8,8 GEN-AFF|25,25,22,23 PART-WHOLE|27,27,25,25 GEN-AFF
+6,6 per|8,8 gpe| gen-aff|25,25 gpe|22,23 loc| part-whole|27,27 per|25,25 gpe| gen-aff
 
 NADER
 
@@ -3461,7 +3461,7 @@ And in Florida , they 've been very weak on it .
 
 
 And in some states , for example , there are doctors that are -- you know , there are 45 payouts in ten years and they 're not disciplined by the state medical board .
-33,33,31,31 PART-WHOLE|10,10,3,3 GEN-AFF
+33,33 per|31,31 gpe| part-whole|10,10 per|3,3 gpe| gen-aff
 
 I mean , you 've got 5 percent of the doctors accounting for over 55 percent of the payoffs , Paul .
 
@@ -3554,13 +3554,13 @@ president bush , when he talked earlier to reporters , mentioned that this effor
 
 
 john king , that whole issue of homeland security must be so much on the minds of so many government officials , given the level of the terror alert today .
-20,20,19,19 ORG-AFF
+20,20 per|19,19 org| org-aff
 
 reporter : so far , so good is the assessment we 're getting from senior administration officials as they try to track what they worry about most .
-16,16,15,15 ORG-AFF
+16,16 per|15,15 org| org-aff
 
 as we have the strikes overseas throughout iraq , there will be retaliatory terror strikes , either by organized terrorist networks or sympathetic terrorists or people against the united states in this country .
-19,19,20,20 ORG-AFF
+19,19 per|20,20 org| org-aff
 
 so far , so good .
 
@@ -3572,10 +3572,10 @@ so microsoft of the president 's business has been behind the scenes today .
 
 
 he 's the most senior of about a handful of senior administration officials , including the vice president and the secretary of state .
-12,12,11,11 ORG-AFF|20,20,22,22 ORG-AFF
+12,12 per|11,11 org| org-aff|20,20 per|22,22 org| org-aff
 
 the national security advisor fanning out , we 're told in phone calls to more than three dozen world leaders offering them an update on what is going on .
-19,19,18,18 GEN-AFF
+19,19 per|18,18 loc| gen-aff
 
 but we did here hear from the president a bit earlier today .
 
@@ -3587,13 +3587,13 @@ mr .
 
 
 bush in the cabinet room at the white house to portray a different image , trying to show in washington , it 's business as usual , urgent business as , but still business as usual with secretary of defense rumsfeld on one side , secretary of state powell on the other .
-3,3,4,4 ART|0,0,4,4 PHYS|4,4,7,8 PART-WHOLE
+3,3 per|4,4 fac| art|0,0 per|4,4 fac| phys|4,4 fac|7,8 fac| part-whole
 
 the president offered a brief statement in the cabinet room .
-8,8,9,9 ART|1,1,9,9 PHYS
+8,8 per|9,9 fac| art|1,1 per|9,9 fac| phys
 
 call my cabinet together to review our strategies , to make the world more peaceful , to make our country more secure .
-1,1,2,2 PER-SOC
+1,1 per|2,2 per| per-soc
 
 to make the lives of our citizens as healthy and as prosperous as possible .
 
@@ -3602,7 +3602,7 @@ we heard from secretary rumsfeld who briefed us on the early stages of the war .
 
 
 there is no question we 've set the finest of our citizens into harm 's way .
-8,8,11,11 GEN-AFF
+8,8 per|11,11 gpe| gen-aff
 
 they performed with great skill and great bravery .
 
@@ -3611,7 +3611,7 @@ we thank them .
 
 
 we thank their loved ones .
-2,2,4,4 PER-SOC
+2,2 per|4,4 per| per-soc
 
 we appreciate their sacrifice .
 
@@ -3647,31 +3647,31 @@ we 're confident we can achieve our objectives .
 
 
 i 'm grateful for their service to their country .
-7,7,8,8 GEN-AFF
+7,7 per|8,8 gpe| gen-aff
 
 thank you all .
 
 
 reporter : so even at the very early stages of a defining moment of bush presidency , the president trying to make the case his eyes and especially the eyes of his cabinet still on the domestic affairs of the united states as the early prosecution of the war continues .
-31,31,32,32 PER-SOC
+31,31 per|32,32 per| per-soc
 
 one thing the president said that will be the point of contention around the world , the president called it an ever-growing coalition of 40 countries .
 
 
 that is handful more nations that were actively involved in the coalition his father assembled 12 years ago for the persian gulf war , but there is a significant difference , of course .
-12,12,13,13 PER-SOC
+12,12 per|13,13 per| per-soc
 
 in this coalition , it ips the united states doing the overwhelming load of the fighting .
 
 
 british forces on the ground , australian troops scheduled to take part , perhaps in some way .
-1,1,0,0 ORG-AFF|7,7,6,6 ORG-AFF
+1,1 per|0,0 gpe| org-aff|7,7 per|6,6 gpe| org-aff
 
 in the last gulf war , you had arab forces on the ground .
-9,9,8,8 GEN-AFF
+9,9 per|8,8 per| gen-aff
 
 the egyptians , syrians , saudis , qataris taking up arms to expel the iraqi armiy kuwait .
-1,1,10,10 ART|3,3,10,10 ART|5,5,10,10 ART|7,7,10,10 ART|15,15,14,14 PART-WHOLE
+1,1 per|10,10 wea| art|3,3 per|10,10 wea| art|5,5 per|10,10 wea| art|7,7 per|10,10 wea| art|15,15 org|14,14 gpe| part-whole
 
 no such participation this time around .
 
@@ -3701,13 +3701,13 @@ Byrne
 
 
 Shares of Martha Stewart Living Omnimedia , a company whose name is so breathtakingly self-promoting it makes me long for the days when every single entity involve in real estate or casinos was called Trump , continues to soar ; it rose $ 1.78 , or 7.29 % , on news that the company 's namesake will star in a new TV show once she , er ... gets out of prison .
-55,55,53,53 ORG-AFF
+55,55 per|53,53 org| org-aff
 
 Now , I know there have been succesful companies that dealt with crooks ( Warner Communications , which started as a merger between business in the three most mob - influenced industries around , comes to mind ) , but it 's a gamble and not a business strategy .
 
 
 The company 's performance was n't all that hot even before the CEO went to prison , and until very recently the stock price reflected that .
-12,12,15,15 PHYS|12,12,1,1 ORG-AFF
+12,12 per|15,15 fac| phys|12,12 per|1,1 org| org-aff
 
 But this is a one - person company , and at this point it 's saying the ' Martha ' brand is worth some $ 1.31 billion .
 
@@ -3719,7 +3719,7 @@ And she 's been convincted of obstruction of justice .
 
 
 This runup is based on the inexplicable hope that now that the head of the firm and the embodiment of a much-resented brand is no longer doing time for lying to the Federal government , they 'll be able to really coin some money .
-12,12,15,15 ORG-AFF
+12,12 per|15,15 org| org-aff
 
 I just do n't know what to say .
 
@@ -3767,7 +3767,7 @@ JERUSALEM ( AP )
 
 
 A suicide bomber detonated explosives at the entrance to a crowded mall in northern Israel on Monday , killing at least four shoppers and wounding 20 in the fifth such attack in two days .
-2,2,11,11 PHYS|11,11,14,14 PART-WHOLE|25,25,11,11 PHYS
+2,2 per|11,11 fac| phys|11,11 fac|14,14 loc| part-whole|25,25 per|11,11 fac| phys
 
 The spate of bombings underscored how difficult it will be to carry out the U.S .
 
@@ -3776,13 +3776,13 @@ The spate of bombings underscored how difficult it will be to carry out the U.S 
 
 
 There was no immediate claim of responsibility for Monday 's attack at the Shaarei Amakim mall in the working class town of Afula , which has been targeted repeatedly by Palestinian militants because of its proximity to the West Bank .
-13,15,20,20 PART-WHOLE|31,31,30,30 GEN-AFF|34,34,38,39 PHYS
+13,15 fac|20,20 gpe| part-whole|31,31 per|30,30 gpe| gen-aff|34,34 gpe|38,39 loc| phys
 
 The Islamic militant group Hamas carried out four bombings over the weekend .
 
 
 The Afula explosion _ the 95th in 32 months of fighting _ went off at 5:14 p.m. ( 1414 gmt ) at the entrance to the mall , reportedly as shoppers were waiting in line for a security check .
-30,30,26,26 PHYS
+30,30 per|26,26 fac| phys
 
 Malls and other public places have significantly stepped up security since the outbreak of Israeli - Palestinian fighting in September 2000 .
 
@@ -3794,25 +3794,25 @@ Twenty people were wounded , including several who were in serious condition .
 
 
 Earlier Monday , a 19-year-old Palestinian riding a bicycle detonated a 30-kilo ( 66-pound ) bomb near a military jeep in the Gaza Strip , injuring three soldiers .
-5,5,8,8 ART|5,5,15,15 ART|18,18,19,19 ART
+5,5 per|8,8 veh| art|5,5 per|15,15 wea| art|18,18 org|19,19 veh| art
 
 In response the spate of bombings , Israel threatened to boycott foreign envoys who meet with Yasser Arafat .
 
 
 Israel holds the Palestinian leader responsible for the latest violence , even though the recent attacks were carried out by Islamic militants .
-4,4,3,3 ORG-AFF
+4,4 per|3,3 gpe| org-aff
 
 Hamas said Monday it has no intention of halting attacks , despite Egypt 's efforts to have Palestinian militant groups agree to a one-year suspension of shootings and bombings .
-19,19,17,17 GEN-AFF
+19,19 org|17,17 gpe| gen-aff
 
 In a renewed mediation attempt , Egyptian envoys have been holding meetings in Gaza and Damascus in recent days with leaders of the militant groups .
-7,7,6,6 ORG-AFF|7,7,13,13 PHYS|7,7,15,15 PHYS|20,20,13,13 PHYS|20,20,24,24 ORG-AFF
+7,7 per|6,6 gpe| org-aff|7,7 per|13,13 loc| phys|7,7 per|15,15 gpe| phys|20,20 per|13,13 loc| phys|20,20 per|24,24 org| org-aff
 
 The armed groups say they might agree to a truce if Israel promises to stop hunting militants _ a proposal Israeli Prime Minister Ariel Sharon has turned down .
-22,22,20,20 ORG-AFF
+22,22 per|20,20 gpe| org-aff
 
 A Hamas leader , Abdel Aziz Rantisi , said Monday that `` legitimate resistance will continue as long as occupation exists on our holy land . ''
-2,2,1,1 ORG-AFF
+2,2 per|1,1 org| org-aff
 
 Asked whether Hamas was challenging Abbas , Rantisi said only that there was no point in trying to negotiate with Sharon , whom he called a `` terrorist . ''
 
@@ -3821,22 +3821,22 @@ Israel said there will be no letup in its campaign against those involved in vio
 
 
 Israel `` will continue to fight terror everywhere , at any time and in any way possible , '' a Cabinet statement said Sunday , after a Hamas suicide bomber killed seven Israelis on a Jerusalem bus earlier in the day .
-29,29,27,27 ORG-AFF|32,32,36,36 ART
+29,29 per|27,27 org| org-aff|32,32 per|36,36 veh| art
 
 The ministers also decided to cold-shoulder foreign envoys who meet with Arafat .
 
 
 `` Whoever wants to visit Arafat can visit Arafat but he wo n't be allowed to meet senior Israeli officials , '' said a senior Sharon adviser , Raanan Gissin .
-19,19,18,18 ORG-AFF|26,26,25,25 PER-SOC
+19,19 per|18,18 gpe| org-aff|26,26 per|25,25 per| per-soc
 
 Israel first threatened such a boycott several weeks ago , but enforced it only selectively .
 
 
 The European Union on Monday dismissed the decision and a spokeswoman said EU leaders will continue to involve Arafat in the search for peace .
-13,13,12,12 ORG-AFF|10,10,1,2 ORG-AFF
+13,13 per|12,12 gpe| org-aff|10,10 per|1,2 gpe| org-aff
 
 Arafat , who has been confined by Israel to the West Bank town of Ramallah for more than a year , accused Israel of inciting against him .
-2,2,12,12 PHYS|12,12,10,11 PART-WHOLE
+2,2 per|12,12 gpe| phys|12,12 gpe|10,11 loc| part-whole
 
 `` Not to forget I condemned it completely , these terrorist activities , '' Arafat said Monday in halting English , speaking before the Afula bombing .
 
@@ -3848,10 +3848,10 @@ This is to increase the siege around me .
 
 
 Where did it happen that a president was forbidden from moving out of his office ? ''
-6,6,14,14 PHYS
+6,6 per|14,14 fac| phys
 
 The new Palestinian prime minister , Mahmoud Abbas , has denounced violence against Israelis , but also told Sharon in a weekend meeting
-4,4,2,2 ORG-AFF
+4,4 per|2,2 gpe| org-aff
 
 _ the first Israeli - Palestinian summit in three years _ that he wants to persuade the militants to stop attacks , rather than disarm them by force .
 
@@ -3860,58 +3860,58 @@ The argument over how rein in the militants and halt violence has been holding u
 
 
 The plan calls for parallel steps in the first stage , including a Palestinian crackdown on militants , an Israeli troop pullback from Palestinian towns and a construction freeze in Jewish settlements .
-20,20,19,19 ORG-AFF|24,24,23,23 PART-WHOLE
+20,20 per|19,19 gpe| org-aff|24,24 gpe|23,23 gpe| part-whole
 
 Sharon insists the Palestinians make the first move .
 
 
 He was to have discussed his objections with U.S . President George W. Bush this week , but canceled his trip after Sunday 's bus bombing .
-10,10,8,8 ORG-AFF
+10,10 per|8,8 gpe| org-aff
 
 The Palestinians have accepted the plan as is .
 
 
 The latest wave of attacks began Saturday evening when a Hamas bomber blew himself up in a square in the West Bank city of Hebron , killing an Israeli settler and his pregnant wife .
-11,11,10,10 ORG-AFF|11,11,17,17 PHYS|29,29,17,17 PHYS|33,33,17,17 PHYS|31,31,33,33 PER-SOC|29,29,28,28 GEN-AFF|22,22,20,21 PART-WHOLE|17,17,22,22 PART-WHOLE
+11,11 per|10,10 org| org-aff|11,11 per|17,17 fac| phys|29,29 per|17,17 fac| phys|33,33 per|17,17 fac| phys|31,31 per|33,33 per| per-soc|29,29 per|28,28 gpe| gen-aff|22,22 gpe|20,21 loc| part-whole|17,17 fac|22,22 gpe| part-whole
 
 On Sunday morning , another Hamas assailant blew up the Jerusalem bus and about half an hour later , a third bomber from the group detonated explosives on the outskirts of Jerusalem , killing only himself .
-21,21,24,24 ORG-AFF|29,29,31,31 PART-WHOLE|6,6,5,5 ORG-AFF
+21,21 per|24,24 org| org-aff|29,29 loc|31,31 gpe| part-whole|6,6 per|5,5 org| org-aff
 
 Israeli analyst Mark Heller said that `` Hamas is trying to ensure that the road map does n't go anywhere and that Abu Mazen ( Abbas ) does n't go anywhere either . ''
-1,1,0,0 GEN-AFF
+1,1 per|0,0 gpe| gen-aff
 
 The three bombers came from Hebron and at one point studied at the Polytechnic Institute in the city .
-2,2,5,5 GEN-AFF|2,2,13,14 ORG-AFF|13,14,17,17 GEN-AFF
+2,2 per|5,5 gpe| gen-aff|2,2 per|13,14 org| org-aff|13,14 org|17,17 gpe| gen-aff
 
 Two bombers , Fuad Qawasmeh , 18 , and Bassem Takrouri , 19 , lived in the same Hebron neighborhood and were friends .
-1,1,19,19 GEN-AFF|19,19,18,18 PART-WHOLE
+1,1 per|19,19 loc| gen-aff|19,19 loc|18,18 gpe| part-whole
 
 The Israeli military on Monday demolished the Qawasmeh family home , part of a policy of trying to deter attacks by punishing assailants ' relatives .
-2,2,1,1 PART-WHOLE|8,8,9,9 ART|22,22,24,24 PER-SOC
+2,2 org|1,1 gpe| part-whole|8,8 per|9,9 fac| art|22,22 per|24,24 per| per-soc
 
 The three bombers released farewell videos , apparently taken in the same wooded area .
-2,2,13,13 PHYS
+2,2 per|13,13 loc| phys
 
 In frame grabs published in the Yediot Ahronot daily , the three struck identical poses , holding up assault rifles .
-11,11,19,19 ART
+11,11 per|19,19 wea| art
 
 Each wore a green headband with Quranic verses and an olive-colored vest with pockets for ammunition and grenades .
 
 
 In another development , Israeli forensics experts identified a body that washed up on a Tel Aviv beach last week as that of a Briton , Omar Khan Sharif , 27 , the suspected accomplice of a British suicide bomber who blew himself up outside a Tel Aviv pub April 30 .
-6,6,4,4 GEN-AFF|10,10,17,17 PHYS|48,48,46,47 PART-WHOLE|39,39,37,37 GEN-AFF|40,40,48,48 PHYS|17,17,15,16 PART-WHOLE
+6,6 per|4,4 gpe| gen-aff|10,10 per|17,17 loc| phys|48,48 fac|46,47 gpe| part-whole|39,39 per|37,37 gpe| gen-aff|40,40 per|48,48 fac| phys|17,17 loc|15,16 gpe| part-whole
 
 Two musicians and a waitress were killed in the blast .
 
 
 Sharif also carried explosives , but they did n't go off , and he fled .
-0,0,3,3 ART
+0,0 per|3,3 wea| art
 
 It was not known whether he was hurt at the time .
 
 
 The identification was made with the help of DNA samples supplied to Israel 's Forensics Institute by British detectives , said the head of the institute , Dr .
-14,15,12,12 PART-WHOLE|18,18,17,17 ORG-AFF|22,22,25,25 ORG-AFF
+14,15 org|12,12 gpe| part-whole|18,18 per|17,17 gpe| org-aff|22,22 per|25,25 org| org-aff
 
 Yehuda Hiss .
 
@@ -3935,25 +3935,25 @@ aol time warner and microsoft are burying the hatchet .
 
 
 allan chernoff live from the new york stock exchange with more .
-0,1,5,8 PHYS
+0,1 per|5,8 fac| phys
 
 bring us up to speed .
 
 
 aol time warner , of course , our parent company .
-7,7,9,9 PART-WHOLE
+7,7 org|9,9 org| part-whole
 
 exactly in question about that .
 
 
 bill gates and dick parson , the ceos of these two companies , smoking a peace pipe right now .
-7,7,11,11 ORG-AFF
+7,7 per|11,11 org| org-aff
 
 the companies settling a lawsuit .
 
 
 aol time warner ings our corporate parent , will get $ 750 million from microsoft .
-4,4,6,6 PART-WHOLE
+4,4 org|6,6 org| part-whole
 
 the software giant paying to settle charges it used its monopoly power in after to block the aol netscape browser .
 
@@ -3986,28 +3986,28 @@ NEWS STORY
 
 
 meanwhile , the man in charge of putting iraq 's government back together spent today in a stronghold of one of the country most important ethnic minorities the kurds .
-26,26,22,22 GEN-AFF
+26,26 per|22,22 gpe| gen-aff
 
 for the second day in a row , lieutenant general jay garner was mobbed by friendly crowds after touring a kurdish school in the northern iraqi city of irbil , the cursd should show as a model for the rest of the country .
-20,20,21,21 ART|26,26,25,25 PART-WHOLE|10,11,21,21 PHYS|39,39,42,42 GEN-AFF|21,21,26,26 PART-WHOLE
+20,20 per|21,21 fac| art|26,26 gpe|25,25 loc| part-whole|10,11 per|21,21 fac| phys|39,39 per|42,42 gpe| gen-aff|21,21 fac|26,26 gpe| part-whole
 
 u.s . officials keep finding cash hidden by saddam 's regime .
-2,2,0,0 ORG-AFF|8,8,10,10 ORG-AFF
+2,2 per|0,0 gpe| org-aff|8,8 per|10,10 org| org-aff
 
 $ 112 million turned up today in some dog kennels .
 
 
 so far u.s . soldiers have discovered nearly $ 600 million hidden around baghdad .
-4,4,2,2 ORG-AFF|4,4,13,13 PHYS
+4,4 per|2,2 gpe| org-aff|4,4 per|13,13 gpe| phys
 
 four u.s . soldiers are under investigation for allegedly keeping some of that .
-3,3,1,1 ORG-AFF
+3,3 per|1,1 gpe| org-aff
 
 the four were turned in after other soldiers discovered several hundreds missing from near neatly-packed cases .
 
 
 sars is spreading , major league baseball plans to warn its players heading to canada , particularly to toronto for the all - star break in july to take some precaugs .
-11,11,10,10 ORG-AFF|11,11,14,14 PHYS|11,11,18,18 PHYS
+11,11 per|10,10 org| org-aff|11,11 per|14,14 gpe| phys|11,11 per|18,18 gpe| phys
 
 that means instead of meeting the fans and signing autographs , they 'll be keeping their distance and waving .
 
@@ -4031,25 +4031,25 @@ LONDON , April 1 ( AFP )
 
 
 British Chancellor of the Exchequer Gordon Brown on Tuesday named the current head of the country 's energy regulator as the new chairman of finance watchdog the Financial Services Authority ( FSA ) .
-12,12,18,18 ORG-AFF|22,22,27,29 ORG-AFF|1,1,4,4 ORG-AFF
+12,12 per|18,18 org| org-aff|22,22 per|27,29 org| org-aff|1,1 per|4,4 org| org-aff
 
 Former senior banker Callum McCarthy begins what is one of the most important jobs in London 's financial world in September , when incumbent Howard Davies steps down .
 
 
 Davies is leaving to become chairman of the London School of Economics , one of the best-known parts of the University of London .
-13,13,20,22 PART-WHOLE|5,5,8,11 ORG-AFF
+13,13 org|20,22 org| part-whole|5,5 per|8,11 org| org-aff
 
 Brown said McCarthy would bring to the FSA " an unrivalled combination of experience of the public sector , experience as a senior practitioner in the financial services industry , and chairman of a highly successful regulator . "
-31,31,36,36 ORG-AFF
+31,31 per|36,36 org| org-aff
 
 McCarthy currently heads the Office of Gas and Electricity Markets , or Ofgem , which regulates Britain 's privatised energy industry .
-0,0,4,9 ORG-AFF
+0,0 per|4,9 org| org-aff
 
 As well as previously holding senior positions at Barclays Bank , BZW and Kleinwort Benson , McCarthy was formerly a top civil servant at the Department of Trade and Industry .
-16,16,8,9 ORG-AFF|16,16,11,11 ORG-AFF|16,16,13,14 ORG-AFF|22,22,25,29 ORG-AFF
+16,16 per|8,9 org| org-aff|16,16 per|11,11 org| org-aff|16,16 per|13,14 org| org-aff|22,22 per|25,29 org| org-aff
 
 Under Davies 's watch , the FSA became Britain 's sole regulatory body for financial services in November 2001 , taking on the various functions of nine separate agencies .
-12,12,8,8 PART-WHOLE
+12,12 org|8,8 gpe| part-whole
 
 CNN_ENG_20030329_170349 .7
 
@@ -4061,31 +4061,31 @@ NEWS STORY
 
 
 today 's battles include pictures of the oil field fires in southern iraq .
-8,8,12,12 PART-WHOLE
+8,8 fac|12,12 loc| part-whole
 
 firefighters continue their work at the ramallah oil field .
-0,0,8,8 PHYS|8,8,6,6 PHYS
+0,0 per|8,8 fac| phys|8,8 fac|6,6 gpe| phys
 
 officials say they capped one blaze , leaving only two wells still burning out of 500 oil fields in the area .
-17,17,20,20 PART-WHOLE
+17,17 fac|20,20 loc| part-whole
 
 they say some iraqis who worked in the field before the war already are asking for their jobs back .
-3,3,8,8 PHYS
+3,3 per|8,8 fac| phys
 
 and these pictures show iraqis running for cover just before u.s . planes dropped a bomb near northern iraq .
-10,10,12,12 ART
+10,10 gpe|12,12 veh| art
 
 just as they disappear over the ridge , you can hear the planes and the explosions and then you see the cloud .
 
 
 ask any american marine and they 'll tell you they 'll do anything possible to recover the bodies of fallen comrades .
-3,3,2,2 ORG-AFF
+3,3 per|2,2 gpe| org-aff
 
 that grim task was carried out by marines engaged in the fierce battle for the city of nasiriyah nasiriyah .
 
 
 aless so vinci is there with the marines .
-0,2,4,4 PHYS|7,7,4,4 PHYS
+0,2 per|4,4 gpe| phys|7,7 per|4,4 gpe| phys
 
 2003-03-29 17:18:16
 
@@ -4109,7 +4109,7 @@ Mark Backer
 
 
 would it make a noise and if it did , would anyone south of Boston give a shit ?
-11,11,14,14 PHYS
+11,11 per|14,14 gpe| phys
 
 Wednesday , Commissioner Gary Bettman announced the cancellation of the 2004-2005 NHL season .
 
@@ -4148,13 +4148,13 @@ Gary Bettman is a mindless troll and the professional sports commissioner equiva
 
 
 The first thing that needs to happen is that Bettman and Goodenow ( the players ' association rep ) need to be fired , deported , flogged , tarred and feathered and finally forced to pay for four tickets plus a program , four dogs , four beers , and two cokes and parking to a game at an NHL arena for every day of the next season so they understand what the fans go thru to see a hockey game .
-17,17,14,16 ORG-AFF|59,59,60,60 ART
+17,17 per|14,16 org| org-aff|59,59 org|60,60 fac| art
 
 Then , all current contracts need to be voided by the end of the season in 2006 .
 
 
 That means no team would own any player , and the owners would be free to sign whomever they 'd like using the " fiscal restraint " they all droned on and on about all year .
-7,7,3,3 ORG-AFF|11,11,17,17 PER-SOC
+7,7 per|3,3 org| org-aff|11,11 per|17,17 per| per-soc
 
 That way , they 'd only pay as much as they could afford ... right ?
 
@@ -4196,7 +4196,7 @@ Period .
 
 
 Atlanta lost the Flames 25 years ago because , despite full houses every night , it 's TV revenue that pays the freight and the Flames had no tv contract .
-3,3,0,0 GEN-AFF
+3,3 org|0,0 gpe| gen-aff
 
 Imagine an entire league with no TV contract .
 
@@ -4238,7 +4238,7 @@ American Future has a link up to a article written in yesterdays Houston Chronic
 
 
 It describes how the European Governments look to be changing their tune in regards to President Bush .
-5,5,4,4 PART-WHOLE
+5,5 org|4,4 gpe| part-whole
 
 Why you ask ?
 
@@ -4247,7 +4247,7 @@ But there is arguably more to this sea change than just a grumpy acceptance of t
 
 
 From a European perspective , three things are making it easier to warm to the Bush White House .
-15,15,16,17 ORG-AFF
+15,15 per|16,17 org| org-aff
 
 One is the death of Yasser Arafat .
 
@@ -4262,25 +4262,25 @@ That another reason why I respect Bush so much , his refusal to acknowledge that
 
 
 May he rot in hell .
-1,1,4,4 PHYS
+1,1 per|4,4 loc| phys
 
 But since Arafat 's death , Europeans and Americans have been able to find common ground : supporting Ariel Sharon 's withdrawal from Gaza , putting pressure on Israel to let the Palestinians hold elections and , covertly , backing Mahmoud Abbas to become the next Palestinian leader .
-47,47,46,46 ORG-AFF
+47,47 per|46,46 gpe| org-aff
 
 A second reason is Europe 's growing worries about Islamic terrorism .
 
 
 The murder in November of Theo van Gogh , a provocative Dutch filmmaker , at the hands of an Islamic militant has been called Europe 's 9/11 .
-12,12,11,11 GEN-AFF|20,20,19,19 GEN-AFF
+12,12 per|11,11 gpe| gen-aff|20,20 per|19,19 per| gen-aff
 
 Though the two events are obviously not fully comparable , it is certainly true that American conservatives , such as Francis Fukuyama and Bernard Lewis , have found a wider audience recently for the idea that radical Islam is inimical to European traditions of tolerance .
-16,16,15,15 GEN-AFF|16,16,20,21 GEN-AFF|16,16,23,24 GEN-AFF
+16,16 per|15,15 gpe| gen-aff|16,16 per|20,21 per| gen-aff|16,16 per|23,24 per| gen-aff
 
 You mean those radical muslims can be kinda nasty sometimes ?
 
 
 Get outta here .... Keep doing business like the cowards in Spain and they will more then likely have their very own 9/11 to cry about .
-9,9,11,11 PHYS
+9,9 per|11,11 gpe| phys
 
 The third force is the reappearance , albeit in a milder form , of the threat that kept the trans - Atlantic alliance together for half a century .
 
@@ -4289,10 +4289,10 @@ The Russian bear is growling again .
 
 
 The Ukrainian election --- complete with its KGB - style poisoning of the opposition leader and heavy-handed electoral fraud -- has reminded European diplomats of Vladimir V. Putin 's determination to control his " near abroad . "
-23,23,22,22 ORG-AFF|32,32,35,35 PHYS
+23,23 per|22,22 gpe| org-aff|32,32 per|35,35 loc| phys
 
 They should be very worried about this item , I believe Putin is slowly sliding Russia back to what it once was .
-11,11,15,15 ORG-AFF
+11,11 per|15,15 gpe| org-aff
 
 Hopefully our Government is n't asleep at the wheel with this situation either .
 
@@ -4301,10 +4301,10 @@ There is a personal edge to all this .
 
 
 Just as the snooty continentals eventually came to admire the gormless Hollywood actor , there is a grudging willingness to rethink some prejudices about the inarticulate Texan .
-12,12,11,11 ORG-AFF
+12,12 per|11,11 org| org-aff
 
 Many European leaders once swallowed the Michael Moore version of history : that Bush was an ignorant interloper who stole the White House .
-2,2,1,1 ORG-AFF
+2,2 per|1,1 gpe| org-aff
 
 His thumping re-election , however , shows that he represents a large body of conservative American opinion .
 
@@ -4400,13 +4400,13 @@ as bob pointed out , the next battle ground is a bill to block lawsuits by victi
 
 
 and one person whose suit would be blocked is denise johnson if the legislation goes through , the widow of bus driver conrad johnson , the last person killed in the washington , d.c .
-18,18,22,23 PER-SOC|21,21,20,20 ART|27,27,31,31 PHYS
+18,18 per|22,23 per| per-soc|21,21 per|20,20 veh| art|27,27 per|31,31 gpe| phys
 
 sniper attacks .
 
 
 jonathan lowe is an attorney with the brady center to prevent gun violence who filed the suit on behalf of johnson and other victims ' families .
-4,4,7,12 ORG-AFF|23,23,25,25 PER-SOC|13,13,25,25 PER-SOC
+4,4 per|7,12 org| org-aff|23,23 per|25,25 per| per-soc|13,13 per|25,25 per| per-soc
 
 good of you to join us .
 
@@ -4418,13 +4418,13 @@ johnson wrote in the " washington post " today .
 
 
 we 'll put a small part of that up on the screen right now where she said , " i am confident that the criminal justice system will work to punish the people who killed my husband .
-35,35,36,36 PER-SOC
+35,35 per|36,36 per| per-soc
 
 but the civil justice system must also be allowed to work .
 
 
 those who share responsibility for my husband 's death must also be held accountable . "
-5,5,6,6 PER-SOC
+5,5 per|6,6 per| per-soc
 
 what does she mean ?
 
@@ -4442,13 +4442,13 @@ NEWS STORY
 
 
 looking at like pictures of heirs force one now on the ground at a royal air force base outside of belfast , northern ireland .
-17,17,20,20 PHYS|14,16,17,17 ART|20,20,23,23 PART-WHOLE
+17,17 fac|20,20 gpe| phys|14,16 org|17,17 fac| art|20,20 gpe|23,23 loc| part-whole
 
 it 's called aldergrove , just outside belfast .
-3,3,7,7 PHYS
+3,3 fac|7,7 gpe| phys
 
 the president of the united states coming for a brief two-day summit with the british prime minister tony blair .
-1,1,4,5 ORG-AFF|16,16,14,14 ORG-AFF
+1,1 per|4,5 gpe| org-aff|16,16 per|14,14 gpe| org-aff
 
 they 'll be talking about a postwar iraq among other important subjects .
 
@@ -4478,7 +4478,7 @@ you 're look at the picture of air force one taxiing in on the tarmac , getting 
 
 
 as we watched this picture of the air force one getting into this airport i want to bring in our military analyst general dan crisman to go over what happens happening in baghdad .
-21,21,19,19 ORG-AFF
+21,21 per|19,19 org| org-aff
 
 seems pretty far away from belfast right now , general .
 
@@ -4487,7 +4487,7 @@ but decisions that these two leaders make could have a significant impact on the
 
 
 first of all , general , we 'll keep this picture up of air force one , talk about what you sense is happening on the streets of baghdad right now .
-26,26,28,28 PART-WHOLE
+26,26 fac|28,28 gpe| part-whole
 
 wolf , it 's clearly the final phase .
 
@@ -4499,31 +4499,31 @@ i think it 's very significant not only in baghdad but basra itself .
 
 
 you have coalition forces there in some strength .
-3,3,2,2 ORG-AFF|3,3,4,4 PHYS
+3,3 per|2,2 gpe| org-aff|3,3 per|4,4 gpe| phys
 
 apparently three ba talians of the u.s . 3rd division in baghdad three coalition assets , three huge battle groups in basra itself which the u.k . has there , what they 've developed here , wolf , over the last several weeks i very clear and increasingly clear intelligence as to what the final remnants of the regime leadership are in terms of where they are embedded in the cities .
-2,3,11,11 PHYS|23,23,28,28 PHYS|19,19,21,21 PHYS|2,3,8,9 ORG-AFF|8,9,6,6 PART-WHOLE|14,14,13,13 PHYS|19,19,25,25 ORG-AFF|65,65,70,70 PHYS|59,59,58,58 ORG-AFF
+2,3 per|11,11 gpe| phys|23,23 per|28,28 gpe| phys|19,19 per|21,21 gpe| phys|2,3 per|8,9 org| org-aff|8,9 org|6,6 gpe| part-whole|14,14 per|13,13 gpe| phys|19,19 per|25,25 gpe| org-aff|65,65 per|70,70 gpe| phys|59,59 per|58,58 org| org-aff
 
 what they 're doing is going in now , very carefully , obviously some symbolic raids against palaces .
 
 
 but the more important presence is to go after what intelligence delivers and that 's where these key leaders are located .
-18,18,15,15 PHYS
+18,18 per|15,15 loc| phys
 
 they 're going to be defended fanatically but intelligence is so crucial from aerial platforms and special ops personnel to give the three assets the intel which they need to close with and eliminate final remnants of the regime in those citys .
-35,35,38,38 ORG-AFF|38,38,41,41 GEN-AFF
+35,35 per|38,38 org| org-aff|38,38 org|41,41 gpe| gen-aff
 
 this is a very important final phase here , wolf , and it looks like the closure is coming here now more rapidly than we anticipated .
 
 
 as we continue to watch air force one , now on the ground outside belfast , northern ireland , we 'll be watching president bush emerge from the plane momentarily .
-14,14,17,17 PART-WHOLE|24,24,28,28 ART
+14,14 gpe|17,17 loc| part-whole|24,24 per|28,28 veh| art
 
 we 'll continue to have live coverage of that .
 
 
 when walter rodgers , our embedded reporter with the 3-7th cavalry says three battalions of troops are on the ground , inside baghdad itself , have taken up positions they 're going to spend the night there presumably , how many soldiers are we talking about right now ?
-6,6,4,4 ORG-AFF|6,6,9,10 PER-SOC|15,15,22,22 PHYS|29,29,36,36 PHYS
+6,6 per|4,4 org| org-aff|6,6 per|9,10 org| per-soc|15,15 per|22,22 gpe| phys|29,29 per|36,36 gpe| phys
 
 between 700 and 1,000 .
 
@@ -4532,16 +4532,16 @@ the task forces really , wolf are probably built around the m-2 bradley the basi
 
 
 it is the equipment of choice for a task force like this to go into baghdad .
-9,9,3,3 ART|9,9,15,15 PHYS
+9,9 per|3,3 veh| art|9,9 per|15,15 gpe| phys
 
 it 's cannon , it 's ability to implace troops and fire through the firing ports in that bradley vehicle to take them in under protection .
-9,9,4,4 ART|2,2,0,0 PART-WHOLE
+9,9 per|4,4 veh| art|2,2 wea|0,0 veh| part-whole
 
 it 's a very , very important piece of equipment .
 
 
 these are probably mechanized heavy task forces that have overhead aerial platforms to provide direct support .
-6,6,11,11 ART
+6,6 per|11,11 fac| art
 
 it 's significant the degradation of the iraqi air defenses has allowed a-10s , predators , u-s , other assets to hover and loiter and provide the overhead protection to these task
 
@@ -4559,10 +4559,10 @@ NEWS STORY
 
 
 well , sex abuse by priests remains an issue in the catholic church in the united states and it is certain to be an issue as bishops gather tomorrow in st. louis for their semiannual meeting .
-12,12,15,16 GEN-AFF|26,26,30,31 PHYS
+12,12 org|15,16 gpe| gen-aff|26,26 per|30,31 gpe| phys
 
 under a charter approved last year by the national conference of catholic bishops , diocese officials will report allegations of sexual abuse of a minor to public authorities .
-15,15,14,14 ORG-AFF
+15,15 per|14,14 org| org-aff
 
 past , present or future sexual abuse of a minor will lead to removal from the ministry .
 
@@ -4571,7 +4571,7 @@ no priest or deacons who sexually abuse a minor may be transferred to another de
 
 
 with me now to talk more about the o'brien case and the divisions still dividing the church are barbara blain , the founder of the survivors network in st. louis and also joining us from detroit joe mayor , the founder of a priest support group .
-22,22,26,26 ORG-AFF|26,26,28,29 GEN-AFF|36,37,35,35 PHYS|40,40,45,45 ORG-AFF|43,43,45,45 ORG-AFF
+22,22 per|26,26 org| org-aff|26,26 org|28,29 gpe| gen-aff|36,37 per|35,35 gpe| phys|40,40 per|45,45 org| org-aff|43,43 per|45,45 org| org-aff
 
 barbara , to you first .
 
@@ -4601,7 +4601,7 @@ France on Tuesday proposed immediately suspending U.N .
 
 
 sanctions targeting Iraq civilians , an important step toward the U.S .
-3,3,2,2 GEN-AFF
+3,3 per|2,2 gpe| gen-aff
 
 goal of ending trade embargoes that have crippled the country 's economy .
 
@@ -4610,10 +4610,10 @@ The surprise move by France , which led opposition to the U.S .
 
 
 war against Iraq , followed last week 's call by U.S . President George W. Bush for sanctions to be lifted quickly , so Iraq can trade freely and its oil revenue can be used to finance reconstruction .
-12,12,10,10 ORG-AFF
+12,12 per|10,10 gpe| org-aff
 
 France 's U.N . ambassador , Jean-Marc de La Sabliere , made the proposal at a Security Council meeting where members heard a briefing by chief U.N . weapons inspector Hans Blix and for the first time exchanged views on potentially divisive postwar issues .
-4,4,0,0 ORG-AFF|29,29,26,26 ORG-AFF
+4,4 per|0,0 gpe| org-aff|29,29 per|26,26 org| org-aff
 
 The proposal would end the U.N .
 
@@ -4625,7 +4625,7 @@ The Security Council imposed sanctions after Iraq 's 1990 invasion of Kuwait .
 
 
 Under council resolutions , sanctions can not be lifted until U.N . inspectors certify that Iraq 's nuclear , chemical and biological weapons have been destroyed along with the long-range missiles to deliver them .
-15,15,22,22 ART|12,12,10,10 ORG-AFF
+15,15 gpe|22,22 wea| art|12,12 per|10,10 org| org-aff
 
 Along with France , Russia , Germany and China also strongly opposed the war .
 
@@ -4634,10 +4634,10 @@ But de La Sabliere said before the meeting that Security Council `` must take in
 
 
 Russian Ambassador Sergey Lavrov had said his country is `` not at all opposed to the lifting of sanctions . ''
-1,1,0,0 ORG-AFF
+1,1 per|0,0 gpe| org-aff
 
 But he said Russia wants U.N . inspectors to certify that Iraq has been disarmed of all weapons of mass destruction , as required under U.N .
-7,7,5,5 ORG-AFF
+7,7 per|5,5 org| org-aff
 
 resolutions .
 
@@ -4646,13 +4646,13 @@ Asked about the French proposal , he said : `` We are ready to discuss it . ''
 
 
 At another closed-door council meeting later Tuesday , the council was to hear from Benon Sevan , head of the U.N .
-17,17,20,20 ORG-AFF
+17,17 per|20,20 org| org-aff
 
 oil-for-food program , which had been providing food for 60 percent of Iraq 's 24 million people .
-16,16,12,12 GEN-AFF
+16,16 per|12,12 gpe| gen-aff
 
 France 's de La Sabliere said he also proposed that the council phase out the oil-for-food program , which allowed Iraq to sell unlimited quantities of oil provided the money went for humanitarian goods and compensation to victims of the first Gulf War .
-2,4,0,0 ORG-AFF
+2,4 per|0,0 gpe| org-aff
 
 `` There should be some adjustment with a view of a phasing out of this program , '' de La Sabliere said .
 
@@ -4667,31 +4667,31 @@ role in Iraq now that the fighting is over , control of Iraq 's oil revenue , an
 
 
 Blix stressed that council resolutions call for U.N . inspectors to have access to all sites and people in Iraq .
-9,9,7,7 ORG-AFF|17,17,19,19 PHYS|15,15,19,19 PART-WHOLE
+9,9 per|7,7 org| org-aff|17,17 per|19,19 gpe| phys|15,15 fac|19,19 gpe| part-whole
 
 He said he told the council that he believes the world would like Iraq 's disarmament confirmed by an international body that has been involved in the country for over 10 years .
 
 
 The Bush administration , which accused Blix of hindering its drive for international support for the war , has already sent its own teams to Iraq to search for illegal weapons .
-23,23,25,25 PHYS|23,23,21,21 ORG-AFF
+23,23 per|25,25 gpe| phys|23,23 per|21,21 org| org-aff
 
 `` At the moment , the coalition has assumed the responsibilities for disarming Iraq , '' U.S . Ambassador John Negroponte , said Tuesday when asked whether U.S . teams would work with U.N . inspectors .
-35,35,33,33 ORG-AFF|18,18,16,16 ORG-AFF|29,29,27,27 ORG-AFF
+35,35 per|33,33 org| org-aff|18,18 per|16,16 gpe| org-aff|29,29 per|27,27 gpe| org-aff
 
 He said important scientists had turned themselves in , and the atmosphere had changed which should enable any Iraqi `` to speak more freely and speak without fear of retribution to those who are asking them the questions . ''
 
 
 France 's de La Sabliere said he also proposed that the council `` find practical and pragmatic arrangements '' to coordinate and combine the work of the American teams and the work of U.N . inspectors `` so that the Iraqi disarmament could be internationally verified . ''
-2,4,0,0 ORG-AFF|35,35,33,33 ORG-AFF|28,28,27,27 ORG-AFF
+2,4 per|0,0 gpe| org-aff|35,35 per|33,33 org| org-aff|28,28 per|27,27 gpe| org-aff
 
 He told The Associated Press he envisioned sanctions being suspended `` for a couple of months , '' and possibly renewed .
 
 
 He also envisioned U.S . and U.N . inspectors working together .
-8,8,6,6 ORG-AFF|8,8,3,3 ORG-AFF
+8,8 per|6,6 org| org-aff|8,8 per|3,3 gpe| org-aff
 
 `` And then sanctions could be lifted when a legitimate Iraqi government is in place , '' he said .
-11,11,10,10 PART-WHOLE
+11,11 org|10,10 gpe| part-whole
 
 In an interview with BBC radio aired Tuesday , Blix said that before the war , the U.S .
 
@@ -4703,22 +4703,22 @@ Blix said it was `` very , very disturbing '' that U.S .
 
 
 intelligence failed to identify as fakes documents suggesting Iraq tried to buy uranium from the West African nation of Niger .
-19,19,15,16 PART-WHOLE
+19,19 gpe|15,16 loc| part-whole
 
 He told reporters at the United Nations on Tuesday that the contract about `` yellow cake '' uranium `` was more than shaky , it was a fake . ''
-2,2,5,6 PHYS
+2,2 per|5,6 fac| phys
 
 U.N . inspectors went back to Iraq for the first time in four years in late November and discovered no weapons of mass destruction during 3 { months of searching .
-2,2,0,0 ORG-AFF
+2,2 per|0,0 org| org-aff
 
 Secretary-General Kofi Annan ordered all U.N . international staff , including the inspectors , to leave Iraq just before the war began on March 20 .
-8,8,5,5 ORG-AFF
+8,8 per|5,5 org| org-aff
 
 He has said he expects them to return .
 
 
 Annan also said Tuesday in Austria that Iraqis should be in charge of their own future and natural resources .
-0,0,5,5 PHYS
+0,0 per|5,5 gpe| phys
 
 He acknowledged that `` the U.N .
 
@@ -4745,10 +4745,10 @@ WOODRUFF
 
 
 U.S . forces moving ever closer to Baghdad , but military officials say they are not counting on capitulation .
-2,2,0,0 ORG-AFF|11,11,10,10 ORG-AFF
+2,2 per|0,0 gpe| org-aff|11,11 per|10,10 org| org-aff
 
 For a look at what might lie ahead for U.S . forces , let 's turn to our Miles O'Brien in Atlanta .
-11,11,9,9 ORG-AFF|18,19,17,17 ORG-AFF|18,19,21,21 PHYS
+11,11 per|9,9 gpe| org-aff|18,19 per|17,17 org| org-aff|18,19 per|21,21 gpe| phys
 
 MILES O'BRIEN , CNN ANCHOR
 
@@ -4760,10 +4760,10 @@ To help guide us through all this discussion about red zones , and daggers and e
 
 
 He 's retired with the United States Army .
-0,0,7,7 ORG-AFF|7,7,5,6 PART-WHOLE
+0,0 per|7,7 org| org-aff|7,7 org|5,6 gpe| part-whole
 
 He spent some time in the Defence Intelligence Agency , among other things .
-0,0,6,8 ORG-AFF
+0,0 per|6,8 org| org-aff
 
 Colonel , good to have you with us .
 
@@ -4781,7 +4781,7 @@ What do you suppose right now would be the governor on the forward advance ?
 
 
 Is it the Republican Guard or is it the U.S . and coalition supply lines ?
-9,9,14,14 ART|12,12,14,14 ART
+9,9 gpe|14,14 fac| art|12,12 gpe|14,14 fac| art
 
 Or both ?
 
@@ -4793,7 +4793,7 @@ Well , they are close enough up to Baghdad now so that the supply line issue is 
 
 
 So , probably the main thing is combing through the rubble that the air force has left of these Republican Guard divisions to make sure there are no strong points that you leave behind , that could threaten your lines of supply once they get past .
-38,38,39,39 ART|21,21,19,20 ORG-AFF
+38,38 per|39,39 fac| art|21,21 per|19,20 org| org-aff
 
 Once they are satisfied they are through all that , I would imaging there will be a pause while they start to reconnoiter into Baghdad , probing hard to see how much resistance there really is .
 
@@ -4808,7 +4808,7 @@ First of all , I just wanted to tell viewers where we just took our satellite im
 
 
 This is that Karbala area which is about 50 miles from Baghdad .
-5,5,11,11 PHYS|3,3,4,4 PART-WHOLE
+5,5 loc|11,11 gpe| phys|3,3 gpe|4,4 loc| part-whole
 
 Baghdad is roughly in that direction from there .
 
@@ -4832,7 +4832,7 @@ I mean a feature of that importance would always be something you 'd want to hol
 
 
 And besides , as soon as you get control of it you 'd be able to start using it for air operations , and put a survey team in there as soon as it 's secured , and then start using it for helicopter operations , haul forward some big bladders of fuel to refuel helicopters and rearm them and things like that .
-27,27,29,29 PHYS
+27,27 per|29,29 fac| phys
 
 And if the front stabilizes between there and the downtown Baghdad , they 'll start using it for a fixed wing aircraft as well .
 
@@ -4841,7 +4841,7 @@ O'BRIEN
 
 
 Now , as you go from Saddam International Airport into town you see there are some big , wide divided highways there .
-20,20,21,21 PART-WHOLE
+20,20 fac|21,21 gpe| part-whole
 
 Control of these highways will be crucial wo n't it ?
 
@@ -4850,13 +4850,13 @@ LANG
 
 
 Yeah , these are the high-speed approaches into the heart of the city and armored forces like the 3rd Mechanized Infantry Division just love high-speed approaches .
-9,9,12,12 PART-WHOLE|6,6,9,9 PART-WHOLE
+9,9 loc|12,12 gpe| part-whole|6,6 fac|9,9 loc| part-whole
 
 They will try to go down those things , cutting the city up into sectors as best they can , and then work on the specific sectors of the city they think are a key terrain .
-26,26,29,29 PART-WHOLE
+26,26 loc|29,29 gpe| part-whole
 
 I would think , probably , various facilities as well as major government buildings that they need to control to set up a new government .
-12,12,13,13 ART
+12,12 org|13,13 fac| art
 
 O'BRIEN
 
@@ -4880,7 +4880,7 @@ If the population , in fact , or at least a big part of them like the Shia half 
 
 
 If , in fact , a lot of people in the city do n't want to be liberated and you 're never going to know that until you try , then you 're going to need a much larger force , and we might end up waiting a couple of weeks for reinforcements .
-8,8,11,11 GEN-AFF
+8,8 per|11,11 gpe| gen-aff
 
 O'BRIEN
 
@@ -4907,7 +4907,7 @@ Yes , there is , but these folks are going to be mighty cautious .
 
 
 They have a long history of being kicked around by the Sunni Arab population of central Iraq .
-13,13,16,16 GEN-AFF
+13,13 per|16,16 loc| gen-aff
 
 And they do n't have any particular reason to trust us , so far .
 
@@ -4916,7 +4916,7 @@ So they 'll wait and see what happens .
 
 
 It 's the other people in the city you have to worry about , who are ethnically much the same as the Saddam Hussein regime .
-4,4,7,7 GEN-AFF
+4,4 per|7,7 gpe| gen-aff
 
 And their behavior right now is unpredictable .
 
@@ -4925,10 +4925,10 @@ O'BRIEN
 
 
 Colonel Patrick Lang , retired , United states Army , thanks for your insights .
-1,2,8,8 ORG-AFF|8,8,6,7 PART-WHOLE
+1,2 per|8,8 org| org-aff|8,8 org|6,7 gpe| part-whole
 
 A man who has been to Baghdad many times and can tell us with great knowledge exactly what it 's going to be like to fight on those avenues in that sprawling city of Baghdad - Judy .
-28,28,32,32 PART-WHOLE|2,2,6,6 PHYS
+28,28 fac|32,32 gpe| part-whole|2,2 per|6,6 gpe| phys
 
 WOODRUFF
 
@@ -4946,7 +4946,7 @@ That means stocks were up today on Wall Street as they look at the progress of t
 
 
 We 're going to check in with Rhonda Schaffler at the stock exchange in just a moment .
-7,8,11,12 PHYS
+7,8 per|11,12 fac| phys
 
 CNN_ENG_20030611_102832 .3
 
@@ -4961,22 +4961,22 @@ we are now hitting 33 after the hour this morning .
 
 
 embattled imclone founder sam waksal sentenced to more than seven years in prison for insider trading .
-2,2,1,1 ORG-AFF
+2,2 per|1,1 org| org-aff
 
 the scandal drew national headlines when it ensnared domestic diva martha stewart .
 
 
 waksal admitted advising his daughter to dump her stock , stewart is being accused of unloading her stock after also learning some inside information .
-3,3,4,4 PER-SOC
+3,3 per|4,4 per| per-soc
 
 waksal is the first chief executive to be sentenced in a wave of corporate scandals and that started with the big enron bankruptcy into 2001 .
 
 
 top executives at the company accused of cooking the books to hide billions of dollars in debt .
-1,1,4,4 ORG-AFF
+1,1 per|4,4 org| org-aff
 
 former enron vice president sherron watkins who wrote that now-famous memo questioning the accounting practice and joining us now from houston , we want to talk to her about the fate of her form are company as justice department continues to build its case against key enroan executives and insight on maybe some other headlines we are seeing this morning .
-47,47,46,46 ORG-AFF|3,3,1,1 ORG-AFF|32,32,35,35 ORG-AFF|3,3,20,20 PHYS
+47,47 per|46,46 org| org-aff|3,3 per|1,1 org| org-aff|32,32 per|35,35 org| org-aff|3,3 per|20,20 gpe| phys
 
 2003-06-11 10:41:45
 
@@ -4991,28 +4991,28 @@ NEWS STORY
 
 
 that standing ovation that sammy sosa got at wrigley field last night .
-4,5,8,9 PHYS
+4,5 per|8,9 fac| phys
 
 a major league baseball official is skilledded to conduct interviews in chicago .
-4,4,1,3 ORG-AFF|4,4,11,11 PHYS
+4,4 per|1,3 org| org-aff|4,4 per|11,11 gpe| phys
 
 those interviews could be a factor as the league decides how sammy sosa will be punished for using a court-filled bat .
 
 
 our gary tuchman is live .
-1,2,0,0 ORG-AFF
+1,2 per|0,0 org| org-aff
 
 good morning .
 
 
 reporter : the cub 's player this afternoon , once again , sammy sosa will be in the lineup but he could find out as early as today what his punishment will be and how many games he 'll be suspend for .
-5,5,3,3 ORG-AFF
+5,5 per|3,3 org| org-aff
 
 last night when he went to play for the first time , most of the fans on wrigley field gave him a standing ovation .
-15,15,17,18 PHYS
+15,15 per|17,18 fac| phys
 
 in all fairness , not all of them totally believed sammy sosa but he 's a hero here and they want to believe sammy sosa .
-16,16,17,17 PHYS
+16,16 per|17,17 gpe| phys
 
 he hit the ground ball on the first inning , that scored a run , but the run was taken away .
 
@@ -5048,7 +5048,7 @@ reporter : last night with the bat , we assumed was not cork , sammy sosa struck
 
 
 he did hit a single in the ninety inning in a losing effort for the chicago cubs .
-0,0,15,16 ORG-AFF
+0,0 per|15,16 org| org-aff
 
 back to you .
 
@@ -5066,13 +5066,13 @@ so if he wanted to play against the yankees , he probably will be able to .
 
 
 gary tuchman in chicago .
-0,1,3,3 PHYS
+0,1 per|3,3 gpe| phys
 
 thanks so much .
 
 
 let ' s bring jack back in with the question of the day and bill 's also joining us from d.c .
-14,14,20,20 PHYS
+14,14 per|20,20 gpe| phys
 
 .
 
@@ -5090,16 +5090,16 @@ martha stewart unfairly singled out for prosecution or is she getting what she d
 
 
 jim in new york , i 've des piesed martha stewart for years before the imclone scandal , but all this prosecution does is how bias prosecutors are when they deal with moguls who strip the hopes of investors .
-0,0,2,3 PHYS
+0,0 per|2,3 gpe| phys
 
 ceos , sleaze walk free , market should be free to stroll right along with them into the ceo hall of shame .
 
 
 joe in michigan , prosecute , when your skit in life is professing trust and integrity and you violate that responsilibity to your believing public , then you should be done .
-0,0,2,2 PHYS
+0,0 per|2,2 gpe| phys
 
 jude nith florida , says eye never liked martha , but now she 's a part of good
-0,0,2,2 PHYS
+0,0 per|2,2 gpe| phys
 
 2003-06-05 09:34:02
 
@@ -5123,16 +5123,16 @@ Scott
 
 
 I wish I could have been at a Pub , or wherever these people convene , to see the reactions from all the Britons who read the Telegraph this morning ( emphasis added ) : Britain 's gun laws are aimed at the wrong target , curbing and criminalising legal ownership while failing to tackle huge rises in shooting offences over the past few years , according to an international firearms legislation expert .
-13,13,11,11 PHYS|2,2,8,8 PHYS
+13,13 per|11,11 fac| phys|2,2 per|8,8 fac| phys
 
 Prof Gary Mauser said that Britain was making the same mistake as Canada and Australia in focusing on legal owners - a section of the law-abiding community where gun crimes , such as the Dunblane massacre , were aberrations .
 
 
 The Home Office and police chiefs should instead tackle the possession of guns in criminal hands , said Prof Mauser , a member of the independent Fraser Institute in Canada .
-5,5,4,4 ORG-AFF|22,22,26,27 ORG-AFF|26,27,29,29 GEN-AFF
+5,5 per|4,4 org| org-aff|22,22 per|26,27 org| org-aff|26,27 org|29,29 gpe| gen-aff
 
 He has given evidence to select committees of the House of Commons and the Canadian Senate and predicted the escalation of gun crime on Britain 's streets .
-6,6,9,11 PART-WHOLE|6,6,15,15 PART-WHOLE|15,15,14,14 PART-WHOLE|26,26,24,24 PART-WHOLE
+6,6 per|9,11 org| part-whole|6,6 per|15,15 org| part-whole|15,15 org|14,14 gpe| part-whole|26,26 fac|24,24 gpe| part-whole
 
 His warning comes as gun crime incidents are averaging about 29 a day in England and Wales , more than twice the level of when the Labour Government came to power in 1997 .
 
@@ -5147,7 +5147,7 @@ Police crackdowns , Home Office initiatives and over-regulation of legally held 
 
 
 Prof Mauser added : " The sad truth is that while the police officers are inspecting farmers ' gun cabinets to see if they comply with regulations somewhere in the UK , someone , who has not filled in a firearms certificate form , will be smuggling a gun into the country or selling one to an inner city youth . "
-13,13,12,12 ORG-AFF|27,27,30,30 PART-WHOLE|59,59,58,58 PHYS|32,32,18,18 ART
+13,13 per|12,12 org| org-aff|27,27 loc|30,30 gpe| part-whole|59,59 per|58,58 gpe| phys|32,32 per|18,18 wea| art
 
 Recorded gun crime rose by three per cent to 10,590 incidents in the year to June .
 
@@ -5186,7 +5186,7 @@ they also believed one of those attacked in this string is age 79 as well .
 
 
 we talked with the lieutenant in miami and there is big time concern in the shenandoah neighborhood , southwestern portion of miami .
-4,4,6,6 PHYS|16,16,15,15 PART-WHOLE|19,19,21,21 PART-WHOLE
+4,4 per|6,6 gpe| phys|16,16 loc|15,15 gpe| part-whole|19,19 loc|21,21 gpe| part-whole
 
 overseas in iraq , a major operation underway .
 
@@ -5204,28 +5204,28 @@ NEWS STORY
 
 
 adrenaline is high on the flight deck of this carrier at war .
-6,6,9,9 PART-WHOLE
+6,6 veh|9,9 veh| part-whole
 
 soon after dawn on this fourth day , confirmation of the ship 's first strike .
 
 
 fourth day of combat operations today bore fruit for the air wing and the ship team here .
-15,15,14,14 ART|15,15,16,16 PHYS
+15,15 per|14,14 veh| art|15,15 per|16,16 loc| phys
 
 we had f-14 aircraft drop laser-guided bombs , f-18s drop joint direct attack munitions or j-dam weapons into eastern afghanistan today this is the first of an unknown number of strikes we 'll conduct during our watch in " operation enduring freedom . "
 
 
 they 'll come back high fiving and feeling pretty good about it but it is a bit of a somber event that they 're going through out here .
-22,22,27,27 PHYS
+22,22 per|27,27 loc| phys
 
 but the biggest thing you 're seeing is the intensity .
 
 
 reporter : the fighter jets dropped their ordnance in a coordinated atack on a convoy near the afghan city of choft .
-14,14,18,18 PHYS|18,18,17,17 PART-WHOLE
+14,14 per|18,18 gpe| phys|18,18 gpe|17,17 gpe| part-whole
 
 the pentagon says the convoy was taliban and al qaeda troops .
-10,10,6,6 ORG-AFF|10,10,8,9 ORG-AFF
+10,10 per|6,6 org| org-aff|10,10 per|8,9 org| org-aff
 
 there was an attack on a convoy of leadership that was identified through various intelligence means .
 
@@ -5237,10 +5237,10 @@ reporter : but the strikes prove controversial .
 
 
 local afghans in the convoy say it was a group of elders on their way to the inaugural ceremony for interim afghan leader hamid karzai .
-22,22,21,21 ORG-AFF
+22,22 per|21,21 gpe| org-aff
 
 analysts believe some tribal warlords may have taken advantage of american firepower by accuse ing rife aal leaders of being taliban and misguiding u.s .
-17,17,20,20 ORG-AFF
+17,17 per|20,20 org| org-aff
 
 intelligence .
 
@@ -5273,7 +5273,7 @@ it is another day for me .
 
 
 when i 'm out here , i do n't look at a calendar , i do n't think about it .
-1,1,4,4 PHYS
+1,1 per|4,4 loc| phys
 
 i stay busy at work .
 
@@ -5312,10 +5312,10 @@ reporter : before boarding a cargo flight off the " uss stennis . "
 
 
 they 'll be home in time for christmas .
-0,0,3,3 PHYS
+0,0 per|3,3 gpe| phys
 
 i 've been here for four and a half years .
-0,0,3,3 PHYS
+0,0 per|3,3 loc| phys
 
 it is probably time to go .
 
@@ -5324,10 +5324,10 @@ but i 'm going miss them .
 
 
 they 're pretty much my family right now , or my family away from my family .
-14,14,15,15 PER-SOC|10,10,11,11 PER-SOC|4,4,5,5 PER-SOC
+14,14 per|15,15 per| per-soc|10,10 per|11,11 per| per-soc|4,4 per|5,5 per| per-soc
 
 reporter : savoring every last minute on the ship , commander knight rushes to the flight only seconds before the door closes .
-11,11,8,8 ART
+11,11 per|8,8 veh| art
 
 had is the best tour of my life .
 
@@ -5348,7 +5348,7 @@ we continue with the pride and professionalism we have shown to date , we ca n't
 
 
 please make sure you take care of your ship , take care of yourselves ,
-7,7,8,8 ART
+7,7 per|8,8 veh| art
 
 2003-05-26 20:03:43
 
@@ -5369,40 +5369,40 @@ WOODRUFF
 
 
 An apparent friendly fire incident in northern Iraq is taking more of a toll on Kurdish leaders than we knew at first .
-16,16,15,15 GEN-AFF
+16,16 per|15,15 per| gen-aff
 
 Eighteen people are now reported dead .
 
 
 And there are late reports that the 45 wounded include the brother and a son of a Kurdish political leader .
-11,11,19,19 PER-SOC|14,14,19,19 PER-SOC|19,19,17,17 GEN-AFF
+11,11 per|19,19 per| per-soc|14,14 per|19,19 per| per-soc|19,19 per|17,17 per| gen-aff
 
 Julian Manyon of ITN has more from Northern Iraq .
-0,1,3,3 ORG-AFF|0,1,8,8 PHYS
+0,1 per|3,3 org| org-aff|0,1 per|8,8 loc| phys
 
 ( BEGIN VIDEOTAPE )
 
 
 JULIAN MANYON , ITN CORRESPONDENT ( voice-over )
-4,4,3,3 ORG-AFF
+4,4 per|3,3 org| org-aff
 
 It is another friendly fire disaster .
 
 
 This morning , an American bomb destroyed a convoy carrying high officials of the Kurdish Peshmerga forces , which have been fighting alongside the Americans on the northern front .
-4,4,5,5 ART|11,11,8,8 ART
+4,4 gpe|5,5 wea| art|11,11 per|8,8 veh| art
 
 At least 17 Kurdish commanders and their guards were killed , along with an interpreter working for the BBC .
-4,4,3,3 GEN-AFF|6,6,7,7 PER-SOC|14,14,18,18 ORG-AFF
+4,4 per|3,3 per| gen-aff|6,6 per|7,7 per| per-soc|14,14 per|18,18 org| org-aff
 
 More than 40 were injured .
 
 
 The military chief of the Kurdish KDP , the brother of their leader , Massud Barzani ( ph ) , was gravely hurt .
-9,9,12,12 PER-SOC|2,2,6,6 ORG-AFF|5,5,6,6 ORG-AFF|12,12,11,11 ORG-AFF
+9,9 per|12,12 per| per-soc|2,2 per|6,6 org| org-aff|5,5 per|6,6 org| org-aff|12,12 per|11,11 org| org-aff
 
 ( on camera ) : Trying to organize a northern front with just a few hundred U.S . Special Forces troops and the poorly armed Kurdish Peshmerga guerrillas was always going to be a high-risk exercise .
-18,19,16,16 PART-WHOLE|20,20,18,19 ORG-AFF|27,27,25,26 ORG-AFF
+18,19 org|16,16 gpe| part-whole|20,20 per|18,19 org| org-aff|27,27 per|25,26 per| org-aff
 
 The idea was to open the way with heavy sustained American bombing of Iraqi positions .
 
@@ -5411,31 +5411,31 @@ But today , it all went disastrously wrong .
 
 
 ( voice-over ) : Even as we filmed the wreckage , U.S . jets were still dropping their bombs nearby .
-11,11,13,13 ART
+11,11 gpe|13,13 veh| art
 
 Giant explosions erupted down the road .
 
 
 Earlier , we had joined another convoy of U.S . Special Forces troops and Kurdish fighters as they tried to move south through country abandoned by the Iraqi army .
-10,11,8,8 PART-WHOLE|12,12,10,11 ORG-AFF|14,14,15,15 GEN-AFF|28,28,27,27 PART-WHOLE|12,12,6,6 ART|15,15,6,6 ART
+10,11 org|8,8 gpe| part-whole|12,12 per|10,11 org| org-aff|14,14 per|15,15 per| gen-aff|28,28 org|27,27 gpe| part-whole|12,12 per|6,6 veh| art|15,15 per|6,6 veh| art
 
 At first , all was calm .
 
 
 American troops controlled the operation from a rooftop .
-1,1,0,0 ORG-AFF
+1,1 per|0,0 gpe| org-aff
 
 Then , as the Kurds advanced again , the Iraqis opened up .
 
 
 ( on camera ) : Now we 're hearing the boom of Iraqi guns as they fire towards our positions .
-12,12,13,13 ART
+12,12 gpe|13,13 wea| art
 
 All morning , the Kurds have been trying to advance , and that was the shell going off .
 
 
 ( voice-over ) : The Iraqi gunners rapidly found our range , and we took refuge in an abandoned farm house .
-6,6,5,5 ORG-AFF|13,13,20,20 PHYS
+6,6 per|5,5 gpe| org-aff|13,13 per|20,20 fac| phys
 
 UNIDENTIFIED MALE
 
@@ -5450,13 +5450,13 @@ MANYON
 
 
 We finally managed to get out by car .
-0,0,7,7 ART
+0,0 per|7,7 veh| art
 
 Here in the north , Iraqi tanks and guns are still firing , and the American effort is looking a little ragged .
-5,5,6,6 ART|5,5,8,8 ART
+5,5 gpe|6,6 veh| art|5,5 gpe|8,8 wea| art
 
 Julian Manyon , ITV News , on the northern front .
-0,1,3,4 ORG-AFF
+0,1 per|3,4 org| org-aff
 
 ( END VIDEOTAPE )
 
@@ -5498,7 +5498,7 @@ While it 's not a major sum compared to the amounts consider before ( as high as
 
 
 Though , of course , there 's always the chance that these fund managers were stupid and shortsighted , not actually criminal ; apparently , the money stolen was lent to or invested in companies the managers controlled -- so they 're guilty of front-running , at the least .
-36,36,34,34 ORG-AFF
+36,36 per|34,34 org| org-aff
 
 But they might have been using Northshore as an alternative source of capital : Having invested all they could risk , it would only make sense to turn to other sources .
 
@@ -5546,7 +5546,7 @@ The looked good for 15 minutes , but then they got run over by Matt Leinert and 
 
 
 I have no beef with USC being number one , but Oklahoma is nowhere close to number two in the country , and I am sick of the pollsters who only look at East coast scores instead of watching tape of the games .
-17,17,20,20 GEN-AFF
+17,17 org|20,20 gpe| gen-aff
 
 Auburn has trailed in exactly two games this year , and has given up less than 9.5 points per game .
 
@@ -5594,61 +5594,61 @@ WASHINGTON , March 27 ( AFP )
 
 
 Thousands of fresh US troops headed for Iraq Thursday as British Prime Minister Tony Blair and US President George W. Bush discussed the effort to oust Saddam Hussein , which some senior US military officials warn could last months .
-4,4,3,3 ORG-AFF|17,17,16,16 ORG-AFF|12,12,10,10 ORG-AFF|34,34,33,33 ORG-AFF|33,33,32,32 PART-WHOLE|4,4,7,7 PHYS
+4,4 per|3,3 gpe| org-aff|17,17 per|16,16 gpe| org-aff|12,12 per|10,10 gpe| org-aff|34,34 per|33,33 org| org-aff|33,33 org|32,32 gpe| part-whole|4,4 per|7,7 gpe| phys
 
 About 1,000 soldiers from the US Army 's 173rd Airborne Brigade parachuted into an airfield in a Kurdish - controlled area of northern Iraq , establishing a base through which to bring in more troops and tanks , Pentagon officials said .
-2,2,8,10 ORG-AFF|8,10,5,6 PART-WHOLE|14,14,20,20 PART-WHOLE|20,20,23,23 PART-WHOLE|39,39,38,38 ORG-AFF|2,2,14,14 PHYS
+2,2 per|8,10 org| org-aff|8,10 org|5,6 org| part-whole|14,14 fac|20,20 loc| part-whole|20,20 loc|23,23 loc| part-whole|39,39 per|38,38 org| org-aff|2,2 per|14,14 fac| phys
 
 And some 12,000 soldiers from the US Army 's 4th Infantry Division , which was supposed to have gone into northern Iraq through Turkey , began flying out of Fort Hood , Texas , Thursday to the region , a military fort spokeswoman told AFP .
-3,3,9,11 ORG-AFF|9,11,6,7 PART-WHOLE|29,30,32,32 PART-WHOLE|42,42,41,41 ORG-AFF|3,3,29,30 PHYS|41,41,40,40 PART-WHOLE
+3,3 per|9,11 org| org-aff|9,11 org|6,7 org| part-whole|29,30 fac|32,32 gpe| part-whole|42,42 per|41,41 org| org-aff|3,3 per|29,30 fac| phys|41,41 org|40,40 org| part-whole
 
 The soldiers are to meet up with ships transporting their equipment , which is arriving in Kuwait from the Mediterranean , where it had been idling for weeks on navy ships awaiting Turkey 's decision .
-29,29,30,30 ART
+29,29 org|30,30 veh| art
 
 The war in Iraq could last months and require considerable US military reinforcements to assure a victory , the Washington Post reported Thursday , quoting senior US military officials .
-28,28,27,27 ORG-AFF|11,11,10,10 PART-WHOLE|27,27,26,26 PART-WHOLE|12,12,11,11 ORG-AFF
+28,28 per|27,27 org| org-aff|11,11 org|10,10 gpe| part-whole|27,27 org|26,26 gpe| part-whole|12,12 per|11,11 org| org-aff
 
 Sandstorms , dangerously long supply lines and a recalcitrant enemy " has led to a broad reassessment by some top generals of US military expectations and timelines , " the Post reports . "
-23,23,22,22 PART-WHOLE
+23,23 org|22,22 gpe| part-whole
 
 Tell me how this ends , " one senior officer asked the Post .
 
 
 Most US army commanders believe it is critical to pause the breakneck advance towards Baghdad to secure the supply lines and make sure weapons are operable and troops resupplied after days of powerful sandstorms and damage inflicted by Iraqi attacks , the Post reports .
-3,3,1,2 ORG-AFF
+3,3 per|1,2 org| org-aff
 
 The Post also quoted Central Intelligence Agency and Pentagon intelligence analysts complaining that Bush officials largely ignored their warning that Iraqi irregular forces would use guerrilla tactics and offer significant resistance .
-10,10,4,6 ORG-AFF|10,10,8,8 ORG-AFF|13,13,14,14 PER-SOC|22,22,20,20 ORG-AFF
+10,10 per|4,6 org| org-aff|10,10 per|8,8 org| org-aff|13,13 per|14,14 per| per-soc|22,22 per|20,20 gpe| org-aff
 
 Publicly US officials have insisted that the war is going according to plan , and the most advanced US forces are currently some 100 kilometers ( 60 miles ) outside of Baghdad .
-2,2,1,1 ORG-AFF|19,19,18,18 ORG-AFF|19,19,31,31 PHYS
+2,2 per|1,1 gpe| org-aff|19,19 per|18,18 gpe| org-aff|19,19 per|31,31 gpe| phys
 
 US Secretary of Defense Donald Rumsfeld dismissed worries that there were insufficient forces in the Gulf region if the battle for Baghdad goes wrong .
-1,1,0,0 ORG-AFF|1,1,3,3 ORG-AFF|12,12,16,16 PHYS|15,15,16,16 PART-WHOLE
+1,1 per|0,0 gpe| org-aff|1,1 per|3,3 org| org-aff|12,12 per|16,16 loc| phys|15,15 loc|16,16 loc| part-whole
 
 After briefing US senators on the war , Rumsfeld told reporters that the number of forces " has been increasing and it will continue to do so until it is finished . "
-3,3,2,2 ORG-AFF
+3,3 per|2,2 gpe| org-aff
 
 Meanwhile Blair arrived in Washington late Wednesday for two days of talks with Bush at the Camp David presidential retreat .
-1,1,4,4 PHYS|1,1,19,19 PHYS|13,13,19,19 PHYS
+1,1 per|4,4 gpe| phys|1,1 per|19,19 fac| phys|13,13 per|19,19 fac| phys
 
 Talks were to focus on how to run a post - Saddam Iraq , with Washington resisting a large United Nations role .
 
 
 Blair faces an uphill battle to win Bush over to giving the UN oversight of a post - Saddam administration , as Washington officials are still angry at Germany , Russia , and especially France , over the failure to secure UN Security Council approval for military action .
-23,23,22,22 ORG-AFF|42,43,41,41 PART-WHOLE
+23,23 per|22,22 gpe| org-aff|42,43 org|41,41 org| part-whole
 
 Blair and Bush were to hold a joint press conference at 1600 GMT Thursday .
 
 
 Britain has deployed some 45,000 troops to fight with the more than 250,000 US soldiers lined up against Iraqi troops .
-14,14,13,13 ORG-AFF|19,19,18,18 ORG-AFF|5,5,0,0 ORG-AFF
+14,14 per|13,13 gpe| org-aff|19,19 per|18,18 gpe| org-aff|5,5 per|0,0 gpe| org-aff
 
 Bush gave a new , stronger warning that the war could become drawn out . "
 
 
 As they approach Baghdad , our fighting units are facing the most desperate elements of a doomed regime , " Bush told cheering military personnel Wednesday at the Florida headquarters of Central Command , which is running the campaign . "
-7,7,5,5 ORG-AFF|13,13,17,17 ORG-AFF|24,24,23,23 ORG-AFF|29,29,28,28 PART-WHOLE|31,32,29,29 ART|20,20,29,29 PHYS|24,24,29,29 PHYS
+7,7 per|5,5 gpe| org-aff|13,13 per|17,17 gpe| org-aff|24,24 per|23,23 org| org-aff|29,29 fac|28,28 gpe| part-whole|31,32 org|29,29 fac| art|20,20 per|29,29 fac| phys|24,24 per|29,29 fac| phys
 
 We can not predict the final day of the Iraqi regime , but I can assure you -- and I assure the long-suffering people of Iraq -- there will be a day of reckoning for the Iraqi regime , and that day is drawing near , " he said .
 
@@ -5657,28 +5657,28 @@ At the last minute , Bush withdrew a phrase in his speech saying the campaign wa
 
 
 A senior administration official said the president had decided to be cautious .
-3,3,2,2 ORG-AFF
+3,3 per|2,2 org| org-aff
 
 Bush pointedly paid tribute to the 48 - nation " coalition of the willing " -- particularly Britain -- that is publicly backing the campaign .
 
 
 Separately , US Secretary of State Colin Powell emphasized US determination to pursue the military campaign despite the diplomatic pressure Washington faces at the United Nations . "
-3,3,2,2 ORG-AFF
+3,3 per|2,2 gpe| org-aff
 
 We are interested in concluding this conflict , not having a pause right now or stopping right now , but concluding this as quickly as possible so we can get on with the rebuilding of Iraq and putting in place a better system of governance , " Powell said in an interview with the Al-Jazeera Arab television network .
 
 
 Powell , the most moderate member of the Bush cabinet , said he fully agreed with the president 's policy on Iraq and had no plans to leave . "
-5,5,9,9 ORG-AFF
+5,5 per|9,9 per| org-aff
 
 Personally , I 'm very much in sync with the president and he values my services , " he said in an interview with National Public Radio .
 
 
 Meanwhile the Wall Street Journal reported that several British and US oil companies have quietly advised US and British forces on how oil fields operate so they could safeguard the fields in Iraq .
-26,26,30,30 PHYS|12,12,8,8 GEN-AFF|12,12,10,10 GEN-AFF|19,19,16,16 ORG-AFF|19,19,18,18 ORG-AFF|30,30,32,32 PART-WHOLE
+26,26 per|30,30 fac| phys|12,12 org|8,8 gpe| gen-aff|12,12 org|10,10 gpe| gen-aff|19,19 per|16,16 gpe| org-aff|19,19 per|18,18 gpe| org-aff|30,30 fac|32,32 gpe| part-whole
 
 The companies , including Britain 's BP PLC and the Texas - based Boots and Coots International Well Control Inc .
-6,7,4,4 GEN-AFF|13,19,10,10 GEN-AFF
+6,7 org|4,4 gpe| gen-aff|13,19 org|10,10 gpe| gen-aff
 
 , were not paid for their consultations , but allied military engineers said their advice was critical .
 
@@ -5711,13 +5711,13 @@ WOODRUFF
 
 
 One of the toughest jobs in Iraq right now is that of the military doctor .
-14,14,13,13 ORG-AFF
+14,14 per|13,13 org| org-aff
 
 CNN medical correspondent , Dr .
-2,2,0,0 ORG-AFF
+2,2 per|0,0 org| org-aff
 
 Sanjay Gupta , has been traveling with the Devil Docs throughout the war and now they are close to Baghdad .
-15,15,19,19 PHYS
+15,15 org|19,19 gpe| phys
 
 ( BEGIN VIDEOTAPE )
 
@@ -5738,7 +5738,7 @@ Nobody knows these stories better than the Devil Docs , Naval corpsmen who never
 
 
 They are often the first faces the injured see , be they Iraqi or coalition force members .
-15,15,14,14 PART-WHOLE|16,16,15,15 ORG-AFF|0,0,12,12 GEN-AFF
+15,15 org|14,14 gpe| part-whole|16,16 per|15,15 org| org-aff|0,0 org|12,12 gpe| gen-aff
 
 Even while statutes were coming down and there was dancing in the streets , the consequences of continuing firefights are seen here .
 
@@ -5747,19 +5747,19 @@ The work of the Devil Docs is by no means over .
 
 
 The Navy has set up a helicopter landing zone just a 100 meters from a mobile operating room , just on the outskirts of Baghdad .
-8,8,17,17 PHYS|22,22,24,24 PHYS|8,8,22,22 PART-WHOLE
+8,8 fac|17,17 fac| phys|22,22 loc|24,24 gpe| phys|8,8 fac|22,22 loc| part-whole
 
 This is the closest front line surgical company .
 
 
 Corpsmen quickly take patients by ambulance away from the blowing sand to a triage tent .
-0,0,5,5 ART|0,0,14,14 PHYS|3,3,14,14 PHYS
+0,0 per|5,5 veh| art|0,0 per|14,14 fac| phys|3,3 per|14,14 fac| phys
 
 It is there the doctors begin their work .
-4,4,2,2 PHYS
+4,4 org|2,2 fac| phys
 
 Over 45 minutes as we watched , 32 patients were delivered here , evaluated and nine operations started ; 29 of those delivered , Marines involved in a firefight in the center of Baghdad .
-8,8,11,11 PHYS|24,24,31,31 PHYS|31,31,33,33 PART-WHOLE
+8,8 per|11,11 fac| phys|24,24 per|31,31 loc| phys|31,31 loc|33,33 gpe| part-whole
 
 Their stories could be seen in the shrapnel wounds of rocket - propelled grenades and bullet wounds from semi-automatic weapons .
 
@@ -5780,7 +5780,7 @@ Dr .
 
 
 Sanjay Gupta , CNN with the Devil Docs outside Baghdad .
-0,1,3,3 ORG-AFF|6,7,9,9 PHYS|0,1,9,9 PHYS
+0,1 per|3,3 org| org-aff|6,7 org|9,9 gpe| phys|0,1 per|9,9 gpe| phys
 
 ( END VIDEOTAPE )
 
@@ -5795,16 +5795,16 @@ NEWS STORY
 
 
 right now , cast our eyes to the middle east , getting word that a massive assembly of shiite muslims is now come together in beirut , lebanon .
-25,25,27,27 PART-WHOLE|19,19,25,25 PHYS
+25,25 gpe|27,27 gpe| part-whole|19,19 per|25,25 gpe| phys
 
 this is a rather remarkable arrangement because they are cheering there the arrival of khatami , the president of iran .
-17,17,19,19 ORG-AFF
+17,17 per|19,19 gpe| org-aff
 
 now , he is making a trip and you see him there with his hands raised , there with the cloak on , shaking his fists , hands classped there , in a salute to the crowd .
 
 
 president khatami is in beirut and what is observed here is very closely watched , what kind of words he 'll utter when he speaks to this crowd .
-1,1,4,4 PHYS
+1,1 per|4,4 gpe| phys
 
 iran now being pressured by the u.s .
 
@@ -5813,7 +5813,7 @@ to back off on supporting hezbollah .
 
 
 hezbollah is an organization based in lebanon that has beenify dn dn been tied to terrorist activity and peter bergen mentioned saudi hezbollah an organization working in that country .
-3,3,6,6 GEN-AFF|22,22,21,21 GEN-AFF|24,24,28,28 GEN-AFF
+3,3 org|6,6 gpe| gen-aff|22,22 org|21,21 gpe| gen-aff|24,24 org|28,28 gpe| gen-aff
 
 the key is going to fwo see whether or not khatami actually does signal that he is going to be heeding the word of president bush and backing off in some way in supporting hezbollah .
 
@@ -5822,10 +5822,10 @@ that will be a very important development as we continue to watch the mideast pe
 
 
 we are seeing that secretary of state colin powell also traveling through the region , trying to get regional leaders there to put more pressure on the palestinians to stop any terrorist activities that may be happening on their behalf as well in that region .
-4,4,6,6 ORG-AFF|7,8,13,13 PHYS|19,19,20,20 PHYS
+4,4 per|6,6 org| org-aff|7,8 per|13,13 gpe| phys|19,19 per|20,20 gpe| phys
 
 we 'll watch and listening very closely to president khatami 's visit there in beirut , lebanon .
-14,14,16,16 PART-WHOLE|9,9,14,14 PHYS
+14,14 gpe|16,16 gpe| part-whole|9,9 per|14,14 gpe| phys
 
 moving on , president bush on road today , where is campaigning again for a tax cut package .
 
@@ -5834,7 +5834,7 @@ likely to comment on the developing story in saudi arabia .
 
 
 chris burns traveling with the president , he joins us from indianapolis .
-7,7,11,11 PHYS
+7,7 per|11,11 gpe| phys
 
 hi , chris .
 
@@ -5870,7 +5870,7 @@ On the other hand , Karmazin and Jobs are two of the smartest dealmakers around 
 
 
 My main suspicion is that this is Karmazin hoping to see the phrase " Mel Karmazin , CEO [ " That 's right , " Mel says to himself , " C-E-friggin - O ! " ] of Sirius Satellite Radio ... "
-17,17,38,40 ORG-AFF
+17,17 per|38,40 org| org-aff
 
 ira-cam
 
@@ -5993,10 +5993,10 @@ i want to thank the president for spain 's diplomatic support before the conflic
 
 
 [ translator speaking ] and for the use of spanish air space and bases as the war grew closer .
-9,9,13,13 ART|11,11,9,9 PART-WHOLE
+9,9 gpe|13,13 fac| art|11,11 loc|9,9 gpe| part-whole
 
 [ translator speaking ] i also offer my condolences to the family and friends of the two members of the spanish media who lost their lives while covering the hostilities .
-11,11,17,17 PER-SOC|17,17,21,21 ORG-AFF|21,21,20,20 GEN-AFF
+11,11 per|17,17 per| per-soc|17,17 per|21,21 org| org-aff|21,21 org|20,20 gpe| gen-aff
 
 [ translator speaking ] both spain and the united states are committed to a stable , democratic and peaceful future for the people of iraq .
 
@@ -6008,19 +6008,19 @@ i want to thank the president for spain 's diplomatic support before the conflic
 
 
 [ translator speaking ] today , i have moved to ease sanctions imposed by the united states against iraq 's old government .
-21,21,18,18 PART-WHOLE
+21,21 gpe|18,18 gpe| part-whole
 
 [ translator speaking ] first based on the authority recently given to me by congress i 'm suspending the iraq 's sanctions act , which restricts the export of certain commitment necessary for iraq 's reconstruction .
 
 
 [ translator speaking ] secondly , 'm directing the secretary to relax sanctions on american countries and citizens conducting business in iraq that contributed to humanitarian reconstruction .
-17,17,14,14 GEN-AFF
+17,17 per|14,14 gpe| gen-aff
 
 [ translator speaking ] soon , at the u.n . security council , the united states , great britain and spain will introduce a new resolution to lift the sanctions imposed by the united nations .
-11,11,8,8 PART-WHOLE
+11,11 org|8,8 org| part-whole
 
 [ translator speaking ] the regime that the sanctions were directed against no longer rules iraq .
-5,5,15,15 PART-WHOLE
+5,5 gpe|15,15 gpe| part-whole
 
 [ translator speaking ] and no country in good conscience can support using sanctions to hold back the hopes of the iraqi people .
 
@@ -6056,7 +6056,7 @@ i want to thank the president for spain 's diplomatic support before the conflic
 
 
 [ translator speaking ] i 'm grateful for the wise council and friendship of jose maria aznar .
-4,4,14,16 PER-SOC
+4,4 per|14,16 per| per-soc
 
 [ translator speaking ] [ speaking spanish ]
 
@@ -6077,13 +6077,13 @@ from the air , it looks like a big box of spifld matching and toothpicks .
 
 
 a runaway fragt train derailed in commerce , california , and spilled its load of lumber .
-6,6,8,8 PART-WHOLE
+6,6 gpe|8,8 gpe| part-whole
 
 our national correspondent frank buckley is on the scene for us .
-2,2,0,0 ORG-AFF
+2,2 per|0,0 org| org-aff
 
 he 's there and joining us live with details .
-0,0,2,2 PHYS
+0,0 per|2,2 gpe| phys
 
 how bad is it ?
 
@@ -6101,7 +6101,7 @@ NEWS STORY
 
 
 walt rodgers , 3-7th cavalry says iraqi missile hit operation center for 2nd brigade 3rd infantry zrigs south baghdad , at least four dead , two soldiers and two journalists .
-6,6,7,7 ART|10,10,18,18 PART-WHOLE
+6,6 gpe|7,7 wea| art|10,10 fac|18,18 loc| part-whole
 
 other report at least 15 are wounded .
 
@@ -6137,7 +6137,7 @@ The Good :
 
 
 On Friday a small group of friends and I attended a most-righteous Sister Hazel concert at Floyd 's Music Store for the third straight , and for the third straight year I was blown away by one of my favorite live bands .
-4,4,8,8 PER-SOC|4,4,16,19 PHYS|8,8,16,19 PHYS
+4,4 per|8,8 per| per-soc|4,4 per|16,19 fac| phys|8,8 per|16,19 fac| phys
 
 Sister Hazel has a way of becoming intimate with the fans by brining them into the show .
 
@@ -6164,7 +6164,7 @@ In addition , the quarterback controversy has once again debouched as Chris Rix 
 
 
 Alas , too little too late was the case thanks to the inept Wyatt Sexton who has been our starter since replacing Rix earlier in the season .
-19,19,18,18 ORG-AFF
+19,19 per|18,18 org| org-aff
 
 Fortunately the agony of defeat was blanketed somewhat by our Halloween party and I wo n't have to worry about Seminole Football until next Saturday .
 
@@ -6191,13 +6191,13 @@ Shaquille O'Neal 's wife gives birth to baby boy
 
 
 EL SEGUNDO , California ( AP )
-0,1,3,3 PART-WHOLE
+0,1 gpe|3,3 gpe| part-whole
 
 Shaquille O'Neal 's wife gave birth to a baby boy early Saturday , eliminating any chance that the Los Angeles Lakers center might skip a playoff game to witness the birth .
-0,1,3,3 PER-SOC|3,3,9,9 PER-SOC|21,21,18,20 ORG-AFF
+0,1 per|3,3 per| per-soc|3,3 per|9,9 per| per-soc|21,21 per|18,20 org| org-aff
 
 Shaunie O'Neal gave birth to the couple 's third child at 1:52 a.m. at a Los Angeles - area hospital , team spokesman John Black said .
-0,1,9,9 PER-SOC|6,6,9,9 PER-SOC|19,19,18,18 PART-WHOLE|15,16,18,18 PART-WHOLE|22,22,21,21 ORG-AFF|0,1,19,19 PHYS|9,9,19,19 PHYS
+0,1 per|9,9 per| per-soc|6,6 per|9,9 per| per-soc|19,19 fac|18,18 loc| part-whole|15,16 gpe|18,18 loc| part-whole|22,22 per|21,21 org| org-aff|0,1 per|19,19 fac| phys|9,9 per|19,19 fac| phys
 
 He did not provide the baby 's name or other details .
 
@@ -6206,13 +6206,13 @@ O'Neal was excused from Saturday 's practice .
 
 
 He was scheduled to fly on his own to Minneapolis late Saturday for Sunday 's opening game of a first-round playoff series against the Minnesota Timberwolves .
-0,0,9,9 PHYS
+0,0 per|9,9 gpe| phys
 
 `` We 're really happy for the delivery of a child and the fact that everything 's safe and sound and we can go forward from there , '' coach Phil Jackson said .
 
 
 `` Hopefully he can get to Minneapolis , get some rest and be ready to play the first game .
-2,2,6,6 PHYS
+2,2 per|6,6 gpe| phys
 
 That 's a pivotal game for every team . ''
 
@@ -6224,13 +6224,13 @@ The due date was April 27 , the same day as Game 4 of the best-of-seven series b
 
 
 Teammate Kobe Bryant said he would not be surprised if O'Neal had a big game Sunday despite his expected late arrival in Minneapolis .
-17,17,22,22 PHYS|1,2,10,10 PER-SOC
+17,17 per|22,22 gpe| phys|1,2 per|10,10 per| per-soc
 
 `` You just roll off the adrenaline , '' said Bryant , who scored 48 points in a 2001 playoff game at Sacramento after leaving the team to attend to a personal matter .
-12,12,22,22 PHYS
+12,12 per|22,22 gpe| phys
 
 The birth comes days after the death of O'Neal 's maternal grandfather , Sirlester O'Neal .
-8,8,11,11 PER-SOC
+8,8 per|11,11 per| per-soc
 
 Funeral services are expected to be held this week in South Carolina , Black said .
 
@@ -6365,13 +6365,13 @@ The Revolutionary Armed Forces of Colombia ( FARC ) said Monday that it was prep
 
 
 The FARC sought the exchange of more than 70 politicians , soldiers and policemen in its control for nearly 500 rebels imprisoned by the government , said Luis Devia , also known as Raul Reyes , a FARC leader , in a letter sent to the program Noticias Uno .
-38,38,37,37 ORG-AFF
+38,38 per|37,37 org| org-aff
 
 On May 5 , 10 hostages held by the FARC were killed during an attempt to rescue them by the army .
 
 
 The victims were Antioquia Governor Guillermo Gaviria , former Defense Minister Gilberto Echeverry and eight soldiers .
-4,4,3,3 ORG-AFF
+4,4 per|3,3 gpe| org-aff
 
 Reyes said in his letter that the " guerrilla units are in the moral obligation of saving and protecting lives and physical integrity of their prisoners . "
 
@@ -6380,7 +6380,7 @@ The rebels " in any case can not allow to have its prisoners to be taken away by
 
 
 The 17,000 - strong FARC , the largest guerrilla force in Colombia , has been fighting a war against the government for more than 40 years , leaving 400,000 dead .
-1,1,4,4 ORG-AFF|9,9,11,11 GEN-AFF
+1,1 per|4,4 org| org-aff|9,9 org|11,11 gpe| gen-aff
 
 It is still holding hundreds of hostages including three Americans .
 
@@ -6461,13 +6461,13 @@ who is aaron tonkin .
 
 
 he is one of the biggest if not the biggest names in the world of hollywood fund-raisers .
-16,16,15,15 ORG-AFF
+16,16 per|15,15 org| org-aff
 
 a person who would put together celebrities with charities to raise a lot of money .
 
 
 he was perhaps best known as kind of the focal point between bill and hillary clinton in the hollywood community .
-12,12,14,15 PER-SOC
+12,12 per|14,15 per| per-soc
 
 what 's interesting , i mean , reading the article , basically a lot of the celebrities paid by him to attend charity functions .
 
@@ -6500,10 +6500,10 @@ right now , aaron tonkin factors in no fewer than seven different federal and st
 
 
 one of them being an irs investigation into several million dollars worth of cash and gift that is he gave to many many hollywood celebrities .
-24,24,23,23 ORG-AFF
+24,24 per|23,23 org| org-aff
 
 now , his attorney gave us a statement i 'll put it on the screen .
-2,2,3,3 PER-SOC
+2,2 per|3,3 per| per-soc
 
 it says -- is that possible ?
 
@@ -6527,13 +6527,13 @@ Report : Toefting drops appeal of assault conviction , will do jail time
 
 
 COPENHAGEN , Denmark ( AP )
-0,0,2,2 PART-WHOLE
+0,0 gpe|2,2 gpe| part-whole
 
 Former Danish international Stig Toefting dropped his appeal of an assault conviction and will serve a four-month jail sentence , Denmark 's TV2 reported Monday .
-2,2,1,1 ORG-AFF|3,4,17,17 PHYS|22,22,20,20 GEN-AFF
+2,2 per|1,1 gpe| org-aff|3,4 per|17,17 fac| phys|22,22 org|20,20 gpe| gen-aff
 
 Toefting was convicted in October 2002 of assaulting a pair of restaurant workers during a night out with national squad teammates in the capital , Copenhagen .
-12,12,11,11 ORG-AFF|20,20,19,19 ORG-AFF|0,0,23,23 PHYS|12,12,23,23 PHYS|20,20,23,23 PHYS|0,0,20,20 PER-SOC
+12,12 per|11,11 org| org-aff|20,20 per|19,19 org| org-aff|0,0 per|23,23 gpe| phys|12,12 per|23,23 gpe| phys|20,20 per|23,23 gpe| phys|0,0 per|20,20 per| per-soc
 
 He was sentenced to four months in prison , but appealed .
 
@@ -6542,34 +6542,34 @@ The hearing was scheduled for April 10 .
 
 
 TV2 , quoting Toefting 's lawyer Anders Nemeth , reported that that 33-year-old midfielder was ready to serve his sentence immediately .
-3,3,5,5 PER-SOC
+3,3 per|5,5 per| per-soc
 
 Neither Toefting or Nemeth were immediately available for comment .
 
 
 Earlier this month , Toefting said English Premier League club Bolton let him go so he could prepare for the appeal .
-9,9,7,8 PART-WHOLE|12,12,10,10 ORG-AFF|7,8,6,6 GEN-AFF
+9,9 org|7,8 org| part-whole|12,12 per|10,10 org| org-aff|7,8 org|6,6 gpe| gen-aff
 
 It was unclear whether Toefting would return to Bolton after serving his sentence .
-4,4,8,8 ORG-AFF
+4,4 per|8,8 org| org-aff
 
 The club said it was n't aware of Toefting 's decision to drop his appeal .
 
 
 Toefting transferred to Bolton in February 2002 from German club Hamburg .
-0,0,3,3 ORG-AFF|0,0,10,10 ORG-AFF|9,9,8,8 GEN-AFF
+0,0 per|3,3 org| org-aff|0,0 per|10,10 org| org-aff|9,9 org|8,8 gpe| gen-aff
 
 Toefting has been convicted before .
 
 
 In 1999 he was given a 20-day suspended sentence for assaulting a fan who berated him for playing with German club Duisburg .
-15,15,21,21 ORG-AFF|20,20,19,19 GEN-AFF
+15,15 per|21,21 org| org-aff|20,20 org|19,19 gpe| gen-aff
 
 The popular player _ known for his temperament and the words `` No Regret '' tattooed across his chest _ retired from Denmark 's national team after it was knocked out in the second round of the 2002 World Cup .
-2,2,25,25 ORG-AFF|25,25,22,22 PART-WHOLE
+2,2 per|25,25 org| org-aff|25,25 org|22,22 gpe| part-whole
 
 Toefting joined the Danish squad in 1993 and has 41 caps .
-0,0,4,4 ORG-AFF|4,4,3,3 GEN-AFF
+0,0 per|4,4 org| org-aff|4,4 org|3,3 gpe| gen-aff
 
 CNN_ENG_20030429_110706 .7
 
@@ -6587,28 +6587,28 @@ we 're standing by for the white house press briefing .
 
 
 ari fleischer expected to come into the west wing briefing room to brief reporters on a wide variety of subjekts .
-0,1,10,10 PHYS|10,10,7,8 PART-WHOLE|13,13,10,10 PHYS
+0,1 per|10,10 fac| phys|10,10 fac|7,8 fac| part-whole|13,13 per|10,10 fac| phys
 
 we 're all getting this note in , this news in from the speech that the homeland security secretary tom ridge is expected to be delivering at the international press club around 1:00 eastern at the top of the hour .
-18,18,16,17 ORG-AFF|19,20,28,30 PHYS
+18,18 per|16,17 org| org-aff|19,20 per|28,30 fac| phys
 
 we 're expecting that the homeland security secretary will announce the iraqi lawyer who provided information that helped in the rescue op private first class jessica lynch the former p.o.w .
-7,7,5,6 ORG-AFF|13,13,11,11 GEN-AFF
+7,7 per|5,6 org| org-aff|13,13 per|11,11 gpe| gen-aff
 
 , that this iraqi lawyer , who provided the information to u.s . military authority ies has been granted asylum here in the united states , together with his wife and daughter .
-28,28,29,29 PER-SOC|4,4,3,3 GEN-AFF|14,15,13,13 ORG-AFF|13,13,11,11 PART-WHOLE|29,29,31,31 PER-SOC
+28,28 per|29,29 per| per-soc|4,4 per|3,3 gpe| gen-aff|14,15 per|13,13 org| org-aff|13,13 org|11,11 gpe| part-whole|29,29 per|31,31 per| per-soc
 
 they 're currently in the washington , d.c . area .
-5,5,7,7 PART-WHOLE|0,0,9,9 PHYS|5,5,9,9 PART-WHOLE
+5,5 gpe|7,7 gpe| part-whole|0,0 per|9,9 loc| phys|5,5 gpe|9,9 loc| part-whole
 
 an official tells our justice producer terry frieden .
-3,3,5,5 PER-SOC
+3,3 per|5,5 per| per-soc
 
 so that development important .
 
 
 might get more information from secretary tom ridge when he delivers that speech over at the press club in the next hour .
-6,7,16,17 PHYS
+6,7 per|16,17 fac| phys
 
 we 'll be monitoring that as well .
 
@@ -6617,7 +6617,7 @@ we also have an update on that disturbing development outside baghdad .
 
 
 about 40 miles or so outside baghdad in fallujah where there was h a shootout between u.s . troops and iraqies who had been demonstrating there .
-18,18,16,16 ORG-AFF|20,20,8,8 PHYS|21,21,25,25 PHYS|6,6,8,8 PHYS|18,18,9,9 PHYS
+18,18 per|16,16 gpe| org-aff|20,20 per|8,8 gpe| phys|21,21 per|25,25 gpe| phys|6,6 gpe|8,8 gpe| phys|18,18 per|9,9 gpe| phys
 
 karl penhaul is joining us life on the phone with more .
 
@@ -6644,7 +6644,7 @@ TOKYO , March 30 ( AFP )
 
 
 Some 2,500 mainly university students formed a human chain in Japanese characters spelling out " No War " in Osaka on Sunday to protest against the ongoing US - led military campaign in Iraq . "
-4,4,3,3 ORG-AFF|4,4,19,19 PHYS
+4,4 per|3,3 org| org-aff|4,4 per|19,19 gpe| phys
 
 We can not forgive this war , " Miyako Fuji , 20 , one of the rally 's organisers told Jiji news agency . "
 
@@ -6653,10 +6653,10 @@ I want to join together the feelings of each of us as individuals who oppose the
 
 
 Protesters , who exceeded the 2,000 expected to show up at the park at Osaka Castle in the city 's downtown neighbourhood , carried placards that read " Stop war " and " Love and Peace " while forming the human chain after 3:00 pm ( 0600 GMT ) , Jiji said .
-5,5,12,12 PHYS|21,21,20,20 PART-WHOLE|14,15,12,12 PART-WHOLE|14,15,21,21 PART-WHOLE
+5,5 per|12,12 fac| phys|21,21 loc|20,20 loc| part-whole|14,15 fac|12,12 fac| part-whole|14,15 fac|21,21 loc| part-whole
 
 The protest follows a string of others involving tens of thousands of peace activists across Japan since January .
-13,13,15,15 PHYS
+13,13 per|15,15 gpe| phys
 
 According to a poll by Kyodo news agency released Saturday , 78 of 100 people surveyed opposed the military action in Iraq .
 
@@ -6677,16 +6677,16 @@ see that graphic ?
 
 
 more than a million babies awaiting adoption in china today .
-4,4,8,8 PHYS
+4,4 per|8,8 gpe| phys
 
 a california family is now bigger by one .
-2,2,1,1 GEN-AFF
+2,2 per|1,1 gpe| gen-aff
 
 tonight they 're welcoming little abby kramer in the world was anything but simple .
 
 
 her new mom and dad had to contend with international red tape , traveling thousands of miles to meet the new addition and cope with the sars crisis going on in china .
-0,0,2,2 PER-SOC|0,0,4,4 PER-SOC
+0,0 per|2,2 per| per-soc|0,0 per|4,4 per| per-soc
 
 their story is remarkable .
 
@@ -6704,13 +6704,13 @@ i have passports and everything ready to pack .
 
 
 reporter : mark and denise are going to china to pick up a baby girl .
-14,14,8,8 PHYS|2,2,8,8 PHYS|4,4,8,8 PHYS
+14,14 per|8,8 gpe| phys|2,2 per|8,8 gpe| phys|4,4 per|8,8 gpe| phys
 
 her new parents will call her abby .
-0,0,2,2 PER-SOC
+0,0 per|2,2 per| per-soc
 
 to me looks like my child is my child .
-4,4,5,5 PER-SOC|7,7,8,8 PER-SOC
+4,4 per|5,5 per| per-soc|7,7 per|8,8 per| per-soc
 
 so i ca n't wait to have her .
 
@@ -6740,10 +6740,10 @@ reporter : still they have concerns .
 
 
 they 're heading to quinn joe .
-0,0,4,5 PHYS
+0,0 per|4,5 gpe| phys
 
 we understand that 's where the sars epidemic started from and we 're going right to the heart .
-11,11,2,2 PHYS
+11,11 per|2,2 gpe| phys
 
 reporter : nothing will stop them .
 
@@ -6752,10 +6752,10 @@ what would you tell her about somehow she came to you and why she was given up ?
 
 
 the people that gave birth to you are not necessarily your mom and dad .
-10,10,11,11 PER-SOC|10,10,13,13 PER-SOC|1,1,6,6 PER-SOC
+10,10 per|11,11 per| per-soc|10,10 per|13,13 per| per-soc|1,1 per|6,6 per| per-soc
 
 they 're the ones that love you and care for you .
-3,3,6,6 PER-SOC
+3,3 per|6,6 per| per-soc
 
 we are .
 
@@ -6800,7 +6800,7 @@ my goodness .
 
 
 reporter : the kramers must wait and travel to another town for abby .
-3,3,10,10 PHYS
+3,3 per|10,10 gpe| phys
 
 on the next flight , passengers wear masks and their temperatures are taken for signs of sars .
 
@@ -6809,7 +6809,7 @@ sod is the big day .
 
 
 we 're an hour and a half from getting our abigail .
-10,10,9,9 PER-SOC
+10,10 per|9,9 per| per-soc
 
 reporter : finally the kramers meet abby .
 
@@ -6821,25 +6821,25 @@ i kind of leaned over and gave her a kiss on the forehead and she looked up and 
 
 
 reporter : they know little about their little girl , found by the side of the road days after she was born .
-8,8,6,6 PER-SOC
+8,8 per|6,6 per| per-soc
 
 she spent most of her life in an orphannage .
 
 
 now abby has a new life in california with the kramers and their two kids .
-1,1,7,7 PHYS|12,12,14,14 PER-SOC|10,10,7,7 PHYS|14,14,7,7 PHYS
+1,1 per|7,7 gpe| phys|12,12 per|14,14 per| per-soc|10,10 per|7,7 gpe| phys|14,14 per|7,7 gpe| phys
 
 i think i love her more every day , every time i look at her .
 
 
 reporter : thelma gutierrez , cnn , los angeles .
-2,3,5,5 ORG-AFF|2,3,7,8 PHYS
+2,3 per|5,5 org| org-aff|2,3 per|7,8 gpe| phys
 
 well , it is our turn to meet the kramers back in the u.s .
-9,9,13,13 PHYS
+9,9 per|13,13 gpe| phys
 
 after their journey to china to bring home the newest and cutest perhaps , member of their family , in los angeles , the proud parents of 11 mnth abigail kramer .
-14,14,17,17 PER-SOC|29,30,25,25 PER-SOC|1,1,4,4 PHYS
+14,14 per|17,17 per| per-soc|29,30 per|25,25 per| per-soc|1,1 per|4,4 gpe| phys
 
 thank you for being with us .
 
@@ -6905,13 +6905,13 @@ it took about a day and a half for her to warm up .
 
 
 i had to hide in the hotel room .
-7,7,6,6 PART-WHOLE|0,0,7,7 PHYS
+7,7 fac|6,6 fac| part-whole|0,0 per|7,7 fac| phys
 
 she would find me in the room and start crying every time she saw me .
-3,3,6,6 PHYS
+3,3 per|6,6 fac| phys
 
 you had to hide in the hotel room ?
-7,7,6,6 PART-WHOLE|0,0,7,7 PHYS
+7,7 fac|6,6 fac| part-whole|0,0 per|7,7 fac| phys
 
 yeah , she 'd find me across the room and break into tears .
 
@@ -6989,10 +6989,10 @@ NEWS STORY
 
 
 call him the man with the golden guns .
-3,3,7,7 ART
+3,3 per|7,7 wea| art
 
 saddam hussein 's son uday was apparently the owner of 74 golden guns .
-8,8,12,12 ART|0,1,3,3 PER-SOC
+8,8 per|12,12 wea| art|0,1 per|3,3 per| per-soc
 
 the ak-47 's in the stash were gold-plated .
 
@@ -7001,7 +7001,7 @@ there also were silver and nickel-plated weapons .
 
 
 one that was a gift from saddam had an engraving from the former iraqi leader .
-14,14,13,13 GEN-AFF
+14,14 per|13,13 gpe| gen-aff
 
 2003-04-16 23:24:28
 
@@ -7049,7 +7049,7 @@ T21 :06:00
 
 
 Well , it 's owned heavily by everyone .
-7,7,2,2 ORG-AFF
+7,7 per|2,2 org| org-aff
 
 So the only thing folks can do is sell .
 
@@ -7073,19 +7073,19 @@ WASHINGTON
 
 
 U.S . intelligence officials now believe North Korea is developing the technology to make nuclear warheads small enough to fit atop the country 's growing arsenal of missideS ( potentially putting Tokyo and U.S . troops based in Japan at risk , according to officials who have received the intelligence reports .
-6,7,15,15 ART|2,2,0,0 PART-WHOLE|3,3,2,2 ORG-AFF|22,22,25,25 ART|35,35,33,33 ORG-AFF|35,35,38,38 PHYS
+6,7 gpe|15,15 wea| art|2,2 org|0,0 gpe| part-whole|3,3 per|2,2 org| org-aff|22,22 gpe|25,25 wea| art|35,35 per|33,33 gpe| org-aff|35,35 per|38,38 gpe| phys
 
 In the assessment , which they have shared with Japan , South Korea and other allies in recent weeks , officials at the Central Intelligence Agency said that U.S . satellites have identified a sophisticated new nuclear testing site in an area called Youngdoktong .
-28,28,30,30 ART|20,20,23,25 ORG-AFF|38,38,41,41 PART-WHOLE
+28,28 gpe|30,30 fac| art|20,20 per|23,25 org| org-aff|38,38 fac|41,41 loc| part-whole
 
 At the site , equipment has been set up to test conventional explosives that , when detonated , could compress a plutonium core and set onfe nuclear explosion .
 
 
 [ oMa intelligence officials believe that the existence of the testing range is evidence that the country intends to manufacture much more sophisticated weapons that would be light enough to put onto its growing arsenal of medium - and long-range missiles .
-40,40,34,34 PART-WHOLE|16,16,23,23 ART|32,32,34,34 ART|3,3,2,2 ORG-AFF
+40,40 wea|34,34 wea| part-whole|16,16 gpe|23,23 wea| art|32,32 gpe|34,34 wea| art|3,3 per|2,2 org| org-aff
 
 Previously , U.S . officials had said they were uncertain whether North Korea had received enough outside technical help to even attempt to make such a `` miniaturized '' nuclear warhead .
-11,12,30,30 ART|4,4,2,2 ORG-AFF
+11,12 gpe|30,30 wea| art|4,4 per|2,2 gpe| org-aff
 
 The new testing capability would suggest that the North Koreans are getting closer _ now , officials said , the intelligence reports say they could do in in as little as a year or less .
 
@@ -7094,7 +7094,7 @@ But officials say there is no sure way of knowing that they can until they actua
 
 
 Senior administration officials say that Washington has been trying to convince Asia gent that it requires a unified diplomatic front to force the country to give up its weapons .
-2,2,1,1 ORG-AFF|27,27,28,28 ART
+2,2 per|1,1 org| org-aff|27,27 gpe|28,28 wea| art
 
 The new intelligence is apparently being marshaled to support the administration 's argument .
 
@@ -7103,25 +7103,25 @@ According to officials who have been briefed on the U.S .
 
 
 reports , conventional explosions simulating a nuclear detonation have been set off at the testing site , which is near North Korea 's main nuclear complex .
-17,17,25,25 PHYS|20,21,25,25 ART
+17,17 fac|25,25 fac| phys|20,21 gpe|25,25 fac| art
 
 North Korea has never tested a nuclear weapon , though the CIA long ago estimated that it manufactured two crude devices in the late 1980s or early 1990s .
-0,1,7,7 ART|16,16,20,20 ART
+0,1 gpe|7,7 wea| art|16,16 gpe|20,20 wea| art
 
 North Korea , unlike Iraq , has made no secret of its plan to develop nuclear weapons .
-0,1,16,16 ART
+0,1 gpe|16,16 wea| art
 
 Now , administration officials say they fear that the country is on the verge of producing five or six new weapons , some of which might be miniaturized .
-3,3,2,2 ORG-AFF|9,9,20,20 ART
+3,3 per|2,2 org| org-aff|9,9 gpe|20,20 wea| art
 
 `` This would give them the range they never had before , and the chance to spread their threat far beyond South Korea , '' said one senior Asian official , noting that approximately 60,000 U.S . troops are based in Japan .
-29,29,28,28 GEN-AFF|37,37,35,35 ORG-AFF|37,37,41,41 PHYS
+29,29 per|28,28 gpe| gen-aff|37,37 per|35,35 gpe| org-aff|37,37 per|41,41 gpe| phys
 
 `` It changes the dynamics of the problem . ''
 
 
 The new intelligence estimates provided to Asian allies , however , left it unclear how quickly the North could produce the small warheads .
-17,17,22,22 ART|7,7,6,6 PART-WHOLE
+17,17 gpe|22,22 wea| art|7,7 gpe|6,6 gpe| part-whole
 
 The worst-case estimate , officials say , is that they could do so in less than a year .
 
@@ -7133,25 +7133,25 @@ OPTIONAL MATERIAL FOLLOWS . )
 
 
 U.S . satellites have been watching North Korean nuclear activity intently since late last year , when the North evicted international inspectors .
-0,0,2,2 ART|21,21,18,18 PHYS
+0,0 gpe|2,2 fac| art|21,21 per|18,18 gpe| phys
 
 Those inspectors had stood guard over a collection of 8,000 spent nuclear fuel rods , which can be reprocessed into weapons - grade plutonium .
 
 
 In January the country began to re-start its nuclear rexrOgessing equipment , which had been mothballed for nearly a decade under a 1994 agreement with the Clinton administration .
-26,26,27,27 ORG-AFF
+26,26 per|27,27 org| org-aff
 
 But according to U.S . officials , it now appears that North Korean engineers ran into technical problems in restarting the facilities .
-5,5,3,3 ORG-AFF|13,13,11,12 ORG-AFF
+5,5 per|3,3 gpe| org-aff|13,13 per|11,12 gpe| org-aff
 
 While intelligence officials have reached no consensus , they told allies last week that in the worst case , only a few hundred of the 8,000 rods had been converted into plutonium .
-2,2,1,1 ORG-AFF
+2,2 per|1,1 org| org-aff
 
 It would take 1,000 to 1,500 rods to make enough plutonium for a weapon , experts say.O
 
 
 `` What we are told is that it would take perhaps six months after that to produce a miniaturized warhead , and put it into one of the missiles , '' said one senior official who has recently reviewed the intelligence .
-23,23,25,25 PART-WHOLE
+23,23 wea|25,25 wea| part-whole
 
 `` But after Iraq , who knows how good those estimates are ? ''
 
@@ -7172,13 +7172,13 @@ intelligence has picked up almost no sign of the telltale krypton gas that is re
 
 
 This has led some analysts to argue that the North Koreans may be farther from producing a weapon than feared a few months ago .
-9,10,17,17 ART
+9,10 gpe|17,17 wea| art
 
 But others note that trucks were seen carrying the rods out of their normal storage area months ago , and it is unclear where they are _ or even whether the United States is sniffing for the krypton gas in the right place .
 
 
 `` We do n't believe that the main reprocessing facility has been very active , '' said one senior administration official in a recent interview .
-20,20,19,19 ORG-AFF
+20,20 per|19,19 org| org-aff
 
 `` But could there be a second reprocessor ?
 
@@ -7190,13 +7190,13 @@ Without question , though , North Korea 's capabilities greatly outstrip anythin
 
 
 President Bush and South Korea 's new president , Roh Moo-h is unclear whether they interpret the meaning of that phrase the same way .
-7,7,3,4 ORG-AFF
+7,7 per|3,4 gpe| org-aff
 
 Bush has said he wants a diplomatic solution to the problem , but would not foreclose any option , including military options .
 
 
 Roh has said any pre-emptive strike against the North 's nuclear facilities could prove disastrous .
-8,8,11,11 ART
+8,8 gpe|11,11 fac| art
 
 CNN_ENG_20030509_090025 .5
 
@@ -7208,13 +7208,13 @@ NEWS STORY
 
 
 a former fbi informant accused of being a double agent has been indicted .
-3,3,2,2 ORG-AFF
+3,3 per|2,2 org| org-aff
 
 the charges against katrina leung are the latest in an alleged case of sex , spies , and international intrigue .
 
 
 charles feldman is in los angeles with details on this one .
-0,1,4,5 PHYS
+0,1 per|4,5 gpe| phys
 
 reporter : this is a story that has made the fbi look -- well , kind of dopey .
 
@@ -7232,10 +7232,10 @@ on thursday , the other shoe dropped .
 
 
 just one day after a former fbi counterintelligence agent was indicted on charges of gross negligence , his mistress of two decades , katrina leung , was herself indicted on more serious charges of copying and possessing documents relating to the national security of the united states .
-8,8,6,6 ORG-AFF|17,17,18,18 PER-SOC
+8,8 per|6,6 org| org-aff|17,17 per|18,18 per| per-soc
 
 documents she allegedly lifted on many occasions from the briefcase of her ex - fbi handler , james smith .
-15,15,14,14 ORG-AFF|11,11,15,15 PER-SOC
+15,15 per|14,14 org| org-aff|11,11 per|15,15 per| per-soc
 
 leung 's lawyers wasted little time responding to the grand jury indictment .
 
@@ -7244,7 +7244,7 @@ katrina leung is no matt aharry , as people have suggested .
 
 
 she was recruited actively by the fbi because of what she could do and because of what she knew .
-0,0,6,6 ORG-AFF
+0,0 per|6,6 org| org-aff
 
 she d not go out to get this job .
 
@@ -7253,16 +7253,16 @@ reporter : leung , a prominent chinese - american , was practically the toast of
 
 
 she was seemingly present for just about every event involving local politicians , sometimes national ones , and various high-ranking officials of the chinese government .
-20,20,24,24 ORG-AFF
+20,20 per|24,24 gpe| org-aff
 
 that part , at least , was by design .
 
 
 leung was hired by the fbi and paid almost $ 2 million over 20 years to spy on the chinese .
-0,0,5,5 ORG-AFF
+0,0 per|5,5 org| org-aff
 
 federal prosecutors now say she pulled a fast one and actually spied on the u.s . for the chinese .
-4,4,18,18 ORG-AFF|4,4,14,14 ORG-AFF
+4,4 per|18,18 gpe| org-aff|4,4 per|14,14 gpe| org-aff
 
 this case is a major embarrassment
 

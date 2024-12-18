@@ -2,7 +2,7 @@
 from fastNLP import MetricBase
 from fastNLP.core.metrics import _compute_f_pre_rec
 import numpy as np
-
+from itertools import chain
 
 class Seq2SeqSpanMetric(MetricBase):
     def __init__(self, eos_token_id, num_labels, target_type='bpe'):
@@ -17,6 +17,7 @@ class Seq2SeqSpanMetric(MetricBase):
         self.em = 0
         self.total = 0
         self.target_type = target_type  # 如果是span的话，必须是偶数的span，否则是非法的
+        print(f"\nmetric类型: [SPAN]  !\n")
 
     def evaluate(self, target_span, pred, tgt_tokens):
         # print("target_span: ",target_span,"\n")
@@ -57,6 +58,90 @@ class Seq2SeqSpanMetric(MetricBase):
                                 # TODO 处理不连续实体，或许可以优化一下，丢弃掉不是递增的那部分id，而不是直接把这个cur_pair丢弃。
                                 # TODO 处理关系的话
                         cur_pair = []
+                    else:
+                        cur_pair.append(j) # word直接加进去
+            pred_spans.append(pairs.copy())
+
+            tp, fn, fp = _compute_tp_fn_fp(pairs, ts)
+            self.fn += fn
+            self.tp += tp
+            self.fp += fp
+
+    def get_metric(self, reset=True):
+        res = {}
+        f, pre, rec = _compute_f_pre_rec(1, self.tp, self.fn, self.fp)
+        print("正确预测个数：", self.tp," 错误预测个数：",self.fp, " 未被预测的正确实体个数：",self.fn)
+        res['f'] = round(f, 4)*100
+        res['rec'] = round(rec, 4)*100
+        res['pre'] = round(pre, 4)*100
+        res['em'] = round(self.em/self.total, 4)
+        if reset:
+            self.total = 0
+            self.fp = 0
+            self.tp = 0
+            self.fn = 0
+            self.em = 0
+        return res
+    
+class Seq2SeqREMetric(MetricBase):
+    def __init__(self, eos_token_id, num_labels,  rel_type_start, target_type='bpe'):
+        super(Seq2SeqREMetric, self).__init__()
+        self.eos_token_id = eos_token_id
+        self.num_labels = num_labels
+        self.word_start_index = num_labels+2  # +2是由于有前面有两个特殊符号，sos和eos
+
+        self.fp = 0
+        self.tp = 0
+        self.fn = 0
+        self.em = 0
+        self.total = 0
+        self.target_type = target_type  # 如果是span的话，必须是偶数的span，否则是非法的
+        self.rel_type_start = rel_type_start
+        print(f"\nmetric类型: [RE]  rel_type_start: {rel_type_start}!\n")
+
+    def evaluate(self, target_span, pred, tgt_tokens):
+        # print("target_span: ",target_span,"\n")
+        # print("pred: ",pred,"\n")
+        self.total += pred.size(0)
+        pred_eos_index = pred.flip(dims=[1]).eq(self.eos_token_id).cumsum(dim=1).long()
+        target_eos_index = tgt_tokens.flip(dims=[1]).eq(self.eos_token_id).cumsum(dim=1).long()
+
+        pred = pred[:, 1:]  # 去掉</s>
+        tgt_tokens = tgt_tokens[:, 1:]
+        pred_seq_len = pred_eos_index.flip(dims=[1]).eq(pred_eos_index[:, -1:]).sum(dim=1) # bsz
+        pred_seq_len = (pred_seq_len - 2).tolist()
+        target_seq_len = target_eos_index.flip(dims=[1]).eq(target_eos_index[:, -1:]).sum(dim=1) # bsz
+        target_seq_len = (target_seq_len-2).tolist()
+        pred_spans = []
+        for i, (ts, ps) in enumerate(zip(target_span, pred.tolist())):
+            assert len(ts) % 3 == 0
+            ts = [list(chain(*(ts[i*3:i*3+3]))) for i in range(len(ts)//3)]
+            ts2 = []
+            for ti in range(len(ts)):
+                ts2_ti = []
+                for x in ts[ti]:
+                    if x >= self.rel_type_start:
+                        ts2_ti.append(x)
+                #ts2_ti.sort()
+                ts2.append(ts2_ti)
+            ts = ts2
+            em = 0
+            ps = ps[:pred_seq_len[i]]
+            if pred_seq_len[i]==target_seq_len[i]:
+                em = int(tgt_tokens[i, :target_seq_len[i]].eq(pred[i, :target_seq_len[i]]).sum().item()==target_seq_len[i])
+            self.em += em
+            pairs = []
+            cur_pair = []
+            if len(ps):
+                for j in ps:
+                    if j < self.word_start_index and j >= self.rel_type_start:
+                        if len(cur_pair) > 0:
+                            cur_pair = cur_pair + [j]
+                            # cur_pair.sort()
+                            pairs.append(tuple(cur_pair)) 
+                        cur_pair = []
+                    elif j < self.rel_type_start:
+                        continue
                     else:
                         cur_pair.append(j) # word直接加进去
             pred_spans.append(pairs.copy())

@@ -464,7 +464,7 @@ class DecoderLayer(nn.Module):
         )  # just self_attn weights for now, following t5, layer_state = cache for decoding
 
 
-class BartDecoder_old(nn.Module):
+class BartDecoder(nn.Module):
     """
     Transformer decoder consisting of *config.decoder_layers* layers. Each layer
     is a :class:`DecoderLayer`.
@@ -622,7 +622,7 @@ class BartDecoder_old(nn.Module):
             last_hidden_state=x, past_key_values=next_cache, hidden_states=all_hidden_states, attentions=all_self_attns
         )
 
-class BartDecoder(nn.Module):
+class BartDecoder_new(nn.Module):
     """
     Transformer decoder consisting of *config.decoder_layers* layers. Each layer
     is a :class:`DecoderLayer`.

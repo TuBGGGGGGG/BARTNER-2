@@ -244,7 +244,7 @@ def concat_next_tokens(token_ids, next_ents, dones, max_lengths):
     return next_tokens, dones
 
 
-def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_length=20, max_len_a=0.0, bos_token_id=None,
+def _no_beam_search_generate_new(decoder: Seq2SeqDecoder, state, tokens=None, max_length=20, max_len_a=0.0, bos_token_id=None,
                              eos_token_id=None,
                              repetition_penalty=1.0, length_penalty=1.0, pad_token_id=0,
                              restricter=None):
@@ -274,7 +274,7 @@ def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_le
         _, next_tokens = restricter(state, tokens, scores, num_beams=1)
     else:
         # next_tokens = scores.argmax(dim=-1, keepdim=True)
-        next_ents, is_eos = get_next_ent_tokens(scores, decoder.src_start_index, eos_p=0.9, word_p = 0.6)
+        next_ents, is_eos = get_next_ent_tokens(scores, decoder.src_start_index, eos_p=0.5, word_p = 0.5)
     # token_ids = torch.cat([tokens, next_ents], dim=1)
     token_ids, dones = concat_next_tokens(tokens, next_ents, None, None)
     cur_len = 1
@@ -317,7 +317,7 @@ def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_le
             _, next_tokens = restricter(state, token_ids, scores, 1)
         else:
             # next_tokens = scores.argmax(dim=-1, keepdim=True)
-            next_ents, is_eos = get_next_ent_tokens(scores, decoder.src_start_index, eos_p=0.9, word_p = 0.6)
+            next_ents, is_eos = get_next_ent_tokens(scores, decoder.src_start_index, eos_p=0.5, word_p = 0.5)
         # next_tokens = next_tokens.squeeze(-1)
 
         # 如果已经达到对应的sequence长度了，就直接填为eos了
@@ -347,7 +347,8 @@ def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_le
    
     return token_ids
 
-def _no_beam_search_generate_old(decoder: Seq2SeqDecoder, state, tokens=None, max_length=20, max_len_a=0.0, bos_token_id=None,
+
+def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_length=20, max_len_a=0.0, bos_token_id=None,
                              eos_token_id=None,
                              repetition_penalty=1.0, length_penalty=1.0, pad_token_id=0,
                              restricter=None):

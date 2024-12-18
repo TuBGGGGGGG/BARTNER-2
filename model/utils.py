@@ -587,6 +587,24 @@ def get_span_from_pred(pred, max_type_id):
     return all_spans
 
 @torch.no_grad()
+def get_RE_from_pred(pred, max_type_id, rel_start_id):
+    assert len(pred.shape)==1,pred
+    cur_span = []
+    all_spans = []
+    pred = pred.tolist()
+    for i in pred[1:]:
+        if i == 1:
+            break
+        if i > max_type_id or i < rel_start_id:
+            cur_span.append(i)
+        else:
+            cur_span.append(i)
+            cur_span.sort()
+            all_spans.append(str(cur_span)) # str是为了可hash
+            cur_span = []
+    return all_spans
+
+@torch.no_grad()
 def get_update_pred(model, ds, max_type_id):
     sampler = SequentialSampler()
     batch = DataSetIter(batch_size=48, dataset=ds, sampler=sampler)

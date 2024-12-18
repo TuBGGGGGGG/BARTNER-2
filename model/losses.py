@@ -8,7 +8,7 @@ class Seq2SeqLoss(LossBase):
     def __init__(self, max_type_id):
         super().__init__()
         self.max_type_id = max_type_id
-    def get_loss_old(self, tgt_tokens, tgt_seq_len, pred):
+    def get_loss(self, tgt_tokens, tgt_seq_len, pred):
         """
 
         :param tgt_tokens: bsz x max_len, 包含了的[sos, token, eos]
@@ -31,7 +31,7 @@ class Seq2SeqLoss(LossBase):
         #     f.write(str(loss*10000)+"\n"+str(tgt_tokens)+"\n")
         return loss
 
-    def get_loss(self, tgt_tokens, tgt_seq_len, pred):
+    def get_loss_new(self, tgt_tokens, tgt_seq_len, pred):
         """
 
         :param tgt_tokens: bsz x max_len, 包含了的[sos, token, eos]

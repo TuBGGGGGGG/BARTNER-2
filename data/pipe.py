@@ -16,7 +16,7 @@ from tqdm import tqdm
 
 
 class BartNERPipe(Pipe):
-    def __init__(self, tokenizer='facebook/bart-large', dataset_name='conll2003', target_type='word'):
+    def __init__(self, tokenizer='facebook/bart-large', dataset_name='conll2003', target_type='word', no_ent_type=False):
         """
 
         :param tokenizer:
@@ -53,8 +53,15 @@ class BartNERPipe(Pipe):
                 'org': '<<organization>>',
                 'fac': '<<buildings>>',
             }  # 记录的是原始tag与转换后的tag的str的匹配关系
-        elif dataset_name == 're_ace05':
+        elif dataset_name == 're_ace05' or dataset_name == 're_ace05_no_ent_type':
             self.mapping = {
+                'wea': '<<wea>>',
+                'fac': '<<fac>>',
+                'org': '<<org>>',
+                'per': '<<per>>',
+                'gpe': '<<gpe>>',
+                'loc': '<<loc>>',
+                'veh': '<<veh>>',
                 'org-aff': '<<org-aff>>',
                 'per-soc': '<<per-soc>>', 
                 'gen-aff': '<<gen-aff>>', 
@@ -65,6 +72,7 @@ class BartNERPipe(Pipe):
         cur_num_tokens = self.tokenizer.vocab_size
         self.num_token_in_orig_tokenizer = cur_num_tokens
         self.target_type = target_type
+        self.no_ent_type = no_ent_type
 
     def add_tags_to_special_tokens(self, data_bundle):
         if not hasattr(self, 'mapping'):
@@ -165,6 +173,14 @@ class BartNERPipe(Pipe):
                         raise RuntimeError("Not support other tagging")
                     cur_pair.extend([p + target_shift for p in cur_pair_])
            
+                if len(cur_pair) == 0:
+                    cur_pair.append(self.mapping2targetid[tag] + 2)  # 加2是由于有shift
+                    pairs.append([p for p in cur_pair])
+                    if self.no_ent_type:
+                        print("不考虑头尾实体类型的话，不应该单独识别到RE第三个实体！")
+                        exit(0)
+                    continue # 识别到RE第三个实体
+
                 for _, (j, word_idx) in enumerate(zip(  (cur_pair[0], cur_pair[-1]), (0, -1)  )):
                     j = j - target_shift
                     if 'word' == self.target_type or word_idx != -1:
@@ -177,16 +193,17 @@ class BartNERPipe(Pipe):
                                self.tokenizer.convert_tokens_to_ids(
                                    self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[-1:])[0]
                                     # 找到尾word经过tokenize之后的最后一个token
-                assert all([cur_pair[i] < cum_lens[-1] + target_shift for i in range(len(cur_pair))]) # cum_lens[-1]
+                assert all([cur_pair[i] < cum_lens[-1] + target_shift for i in range(len(cur_pair))]) # cum_lens[-1]是结束id 0 对应的token位置
 
                 cur_pair.append(self.mapping2targetid[tag] + 2)  # 加2是由于有shift
                 pairs.append([p for p in cur_pair])
+
             target.extend(list(chain(*pairs)))
             target.append(1)  # 特殊的eos
 
             word_bpes = list(chain(*word_bpes))
             assert len(word_bpes)< 500 , len(word_bpes)
-
+            
             dict  = {'tgt_tokens': target, 'target_span': pairs, 'src_tokens': word_bpes,
                     'first': first}
             return dict
@@ -223,6 +240,11 @@ class BartNERPipe(Pipe):
             data_bundle = NestedLoader(demo=demo).load(paths)
         elif 'en_ace0' in path:
             data_bundle = NestedLoader(demo=demo).load(paths)
+        elif 're' in path:
+            if self.no_ent_type:
+                data_bundle = RELoader_no_ent_type(demo=demo).load(paths)
+            else:
+                data_bundle = RELoader(demo=demo).load(paths)
         else:
             data_bundle = DiscontinuousNERLoader(demo=demo).load(paths)
         data_bundle = self.process(data_bundle)
@@ -434,9 +456,8 @@ class DiscontinuousNERLoader(Loader):
                     span__ = []
                     for i in range(len(span_) // 2):
                         span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])   # 这边的所有2，都是因为处理的数据的时候是根据每个se片段处理的，每次处理一个span碎片的s和e。
-                    # span__.sort(key=lambda x: x[0]) # wxl: or ... 是因为头实体不一定在尾实体前面
-                    if span__[-1][1] - span__[0][0] > max_span_len or span__[0][1] - span__[-1][0] > max_span_len:
-                        # wxl: or ... 是因为头实体不一定在尾实体前面
+                    span__.sort(key=lambda x: x[0])
+                    if span__[-1][1] - span__[0][0] > max_span_len:
                         continue
                     str_span__ = []
                     for start, end in span__:
@@ -447,7 +468,6 @@ class DiscontinuousNERLoader(Loader):
                     entity_index_list.append(list(chain(*span__)))  # 内部是数字
                     all_spans.append([type_.lower(), str_span__, list(chain(*span__))]) 
                 all_spans = sorted(all_spans, key=cmp_to_key(cmp)) # 按照span的首尾大小排序，可以改 TODO
-
                 new_type_list = [span[0] for span in all_spans]
                 new_entity_list = [span[1] for span in all_spans]
                 new_entity_index_list = [span[2] for span in all_spans]
@@ -464,6 +484,141 @@ class DiscontinuousNERLoader(Loader):
 
         return dataset
 
+class RELoader_no_ent_type(Loader):
+    def __init__(self, demo=False):
+        super(RELoader_no_ent_type, self).__init__()
+        self.demo = demo
+        print("----------调用reloader_no_ent_type加载数据集--------")
+
+    def _load(self, path):
+        """
+        entities: List[List[str]], 每个元素是entity，非连续的拼到一起了
+        entity_tags: 与上面一样长，是每个tag的分数
+        raw_words: List[str]词语
+        entity_spans： List[List[int]]记录的是上面entity的start和end，这里的长度一定是偶数，是start,end的pair
+
+        :param path:
+        :return:
+        """
+        max_span_len = 1e10
+        f = open(path, 'r', encoding='utf-8')
+        lines = f.readlines()
+        dataset = DataSet()
+
+        for i in range(len(lines)):
+            if i % 3 == 0:
+                sentence = lines[i]
+                ann = lines[i + 1]
+                now_ins = Instance()
+                sentence = sentence.strip().split(' ')  # 生成的空格
+                entities = ann.strip().split('|')
+                type_list = []
+                entity_index_list = []
+                entity_list = []
+                all_spans = []
+                for entity in entities:
+                    if len(entity) == 0:
+                        continue
+                    # print(entity)
+                    span_, type_ = entity.split(' ')
+                    span_ = span_.split(',')
+                    span__ = []
+                    for i in range(len(span_) // 2):
+                        span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])   # 这边的所有2，都是因为处理的数据的时候是根据每个se片段处理的，每次处理一个span碎片的s和e。
+                    # span__.sort(key=lambda x: x[0]) # wxl: or ... 是因为头实体不一定在尾实体前面
+                    if span__[-1][1] - span__[0][0] > max_span_len or span__[0][1] - span__[-1][0] > max_span_len:
+                        # wxl: or ... 是因为头实体不一定在尾实体前面
+                        continue
+                    str_span__ = []
+                    for start, end in span__:
+                        str_span__.extend(sentence[start:end])
+                    assert len(str_span__) > 0 and len(span__) > 0
+                    type_list.append(type_.lower())  # 内部是str
+                    entity_list.append(str_span__)
+                    entity_index_list.append(list(chain(*span__)))  # 内部是数字
+                    all_spans.append([type_.lower(), str_span__, list(chain(*span__))]) 
+                all_spans = sorted(all_spans, key=cmp_to_key(cmp)) # 按照span的首尾大小排序，可以改 TODO
+                
+                new_type_list = [span[0] for span in all_spans]
+                new_entity_list = [span[1] for span in all_spans]
+                new_entity_index_list = [span[2] for span in all_spans]
+
+                now_ins.add_field('entities', new_entity_list)
+                now_ins.add_field('entity_tags', new_type_list)
+                now_ins.add_field('raw_words', sentence)  # 以空格隔开的words
+                now_ins.add_field('entity_spans', new_entity_index_list)
+                dataset.append(now_ins)
+                if self.demo and len(dataset) > 30:
+                    break
+            else:
+                continue
+
+        return dataset
+    
+class RELoader(Loader):
+    def __init__(self, demo=False):
+        super(RELoader, self).__init__()
+        self.demo = demo
+
+    def _load(self, path):
+        """
+        """
+        max_span_len = 1e10
+        print("----------调用reloader加载数据集--------")
+        f = open(path, 'r', encoding='utf-8')
+        lines = f.readlines()
+        dataset = DataSet()
+
+        for i in range(len(lines)):
+            if i % 3 == 0:
+                sentence = lines[i]
+                ann = lines[i + 1]
+                now_ins = Instance()
+                sentence = sentence.strip().split(' ')  # 生成的空格
+                entities = ann.strip().split('|')
+                type_list = []
+                entity_index_list = []
+                entity_list = []
+                all_spans = []
+                for entity in entities:
+                    if len(entity) == 0:
+                        continue
+                   
+                    span_, type_ = entity.split(' ')
+                    span_ = span_.split(',') # 如果是RE，这边就是['']，长度为1。
+                    span__ = [] 
+                    for i in range(len(span_) // 2):
+                        span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])   # 这边的所有2，都是因为处理的数据的时候是根据每个se片段处理的，每次处理一个span碎片的s和e。
+                    # span__.sort(key=lambda x: x[0]) # RELoader可以用，因为已经把头尾实体分开了，单实体内部的span需要是有序的。
+                    if span__ != []:
+                        if span__[-1][1] - span__[0][0] > max_span_len:
+                            continue
+                    str_span__ = []
+                    for start, end in span__:
+                        str_span__.extend(sentence[start:end])
+                    assert len(str_span__) > 0 and len(span__) > 0 or (span__ == [] and str_span__ == []) # NER OR RE
+                    
+                    type_list.append(type_.lower())  # 内部是str
+                    entity_list.append(str_span__)
+                    entity_index_list.append(list(chain(*span__)))  # 内部是数字
+                    all_spans.append([type_.lower(), str_span__, list(chain(*span__))]) # 如果是RE的第三个实体（只有关系类型tag）, [type, [], ['']]
+                # all_spans = sorted(all_spans, key=cmp_to_key(cmp)) # 不能按照span的首尾大小排序，因为需要保证RE的三个实体部分连续且有序 TODO
+
+                new_type_list = [span[0] for span in all_spans]
+                new_entity_list = [span[1] for span in all_spans]
+                new_entity_index_list = [span[2] for span in all_spans]
+
+                now_ins.add_field('entities', new_entity_list)
+                now_ins.add_field('entity_tags', new_type_list)
+                now_ins.add_field('raw_words', sentence)  # 以空格隔开的words
+                now_ins.add_field('entity_spans', new_entity_index_list)
+                dataset.append(now_ins)
+                if self.demo and len(dataset) > 30:
+                    break
+            else:
+                continue
+
+        return dataset
 
 class NestedLoader(Loader):
     def __init__(self, demo=False, **kwargs):
@@ -570,8 +725,6 @@ class NestedLoader(Loader):
             raise RuntimeError("No data found {}.".format(path))
         print(f"for `{path}`, {invalid_ent} invalid entities. max sentence has {max_len} tokens")
         return ds
-
-
 
 def cmp(v1, v2):
     v1 = v1[-1]
