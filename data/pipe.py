@@ -16,7 +16,7 @@ from tqdm import tqdm
 
 
 class BartNERPipe(Pipe):
-    def __init__(self, tokenizer='facebook/bart-large', dataset_name='conll2003', target_type='word', no_ent_type=False):
+    def __init__(self, tokenizer='facebook/bart-large', dataset_name='conll2003', target_type='word', no_ent_type=False, add_self_tgt=False):
         """
 
         :param tokenizer:
@@ -73,6 +73,7 @@ class BartNERPipe(Pipe):
         self.num_token_in_orig_tokenizer = cur_num_tokens
         self.target_type = target_type
         self.no_ent_type = no_ent_type
+        self.add_self_tgt = add_self_tgt
 
     def add_tags_to_special_tokens(self, data_bundle):
         if not hasattr(self, 'mapping'):
@@ -119,6 +120,13 @@ class BartNERPipe(Pipe):
 
         # 转换tag
         target_shift = len(self.mapping) + 2  # 是由于第一位是sos，紧接着是eos, 然后是
+
+        # 所有label_ids
+        keys = self.mapping2targetid.keys()
+        label_ids = [] 
+        for key in keys:
+            label_ids.append(self.mapping2targetid[key] + 2)
+        label_ids.sort()
 
         def prepare_target(ins):
             raw_words = ins['raw_words']
@@ -207,8 +215,110 @@ class BartNERPipe(Pipe):
             dict  = {'tgt_tokens': target, 'target_span': pairs, 'src_tokens': word_bpes,
                     'first': first}
             return dict
+        
+        def prepare_target_and_self_tgt(ins):
+            raw_words = ins['raw_words']
+            word_bpes = [[self.tokenizer.bos_token_id]] # 加上bos和eos, tokenizer之后的结果
+            # word_bpes：[[0], [13699, 15363], [491], [3131], [2156], [7137], [2156], [830], [1105, 620], [2156], [30], [4439], [344, 906, 1657], [28279], [2]]
+            first = []  # 用来取每个word第一个bpe
+            cur_bpe_len = 1
+            for word in raw_words:
+                bpes = self.tokenizer.tokenize(word, add_prefix_space=True)
+                bpes = self.tokenizer.convert_tokens_to_ids(bpes)
+                first.append(cur_bpe_len)
+                cur_bpe_len += len(bpes)
+                word_bpes.append(bpes)
+            assert first[-1] + len(bpes) == sum(map(len, word_bpes))
+            word_bpes.append([self.tokenizer.eos_token_id])
+            assert len(first) == len(raw_words) == len(word_bpes) - 2
 
-        data_bundle.apply_more(prepare_target, use_tqdm=True, tqdm_desc='pre. tgt.')
+            lens = list(map(len, word_bpes)) # 每个词的tokenize之后的长度
+            cum_lens = np.cumsum(lens).tolist() # 每个word的最后一个token的位置（从1开始）
+
+            entity_spans = ins['entity_spans']  # [(s1, e1, s2, e2), ()]
+            entity_tags = ins['entity_tags']  # [tag1, tag2...]
+            entities = ins['entities']  # [[ent1, ent2,], [ent1, ent2]]
+            target = [0]  # 特殊的sos
+            pairs = []
+
+            first = list(range(cum_lens[-1]))
+
+            assert len(entity_spans) == len(entity_tags)
+            _word_bpes = list(chain(*word_bpes)) # 把word_bpes第二维的括号去掉
+            # _word_bpes: [0, 13699, 15363, 491, 3131, 2156, 7137, 2156, 830, 1105, 620, 2156, 30, 4439, 344, 906, 1657, 28279, 2]
+            for idx, (entity, tag) in enumerate(zip(entity_spans, entity_tags)):
+                cur_pair = []
+                num_ent = len(entity) // 2
+                for i in range(num_ent):
+                    start = entity[2 * i]
+                    end = entity[2 * i + 1]
+                    cur_pair_ = []
+                    if self.target_type == 'word':
+                        cur_pair_.extend([cum_lens[k] for k in list(range(start, end))])
+                    elif self.target_type == 'span':
+                        cur_pair_.append(cum_lens[start])
+                        cur_pair_.append(cum_lens[end]-1)  # it is more reasonable to use ``cur_pair_.append(cum_lens[end-1])``
+                    elif self.target_type == 'span_bpe':
+                        cur_pair_.extend(
+                            list(range(cum_lens[start], cum_lens[start + 1])))  # 由于cum_lens是[1, 3...]即第0位其实就是cls之后的了
+                        cur_pair_.extend(
+                            list(range(cum_lens[end - 1], cum_lens[end])))  # 由于cum_lens是[1, 3...]即第0位其实就是cls之后的了
+                    elif self.target_type == 'bpe':
+                        cur_pair_.extend(list(range(cum_lens[start], cum_lens[end])))
+                    else:
+                        raise RuntimeError("Not support other tagging")
+                    cur_pair.extend([p + target_shift for p in cur_pair_])
+           
+                if len(cur_pair) == 0:
+                    cur_pair.append(self.mapping2targetid[tag] + 2)  # 加2是由于有shift
+                    pairs.append([p for p in cur_pair])
+                    if self.no_ent_type:
+                        print("不考虑头尾实体类型的话，不应该单独识别到RE第三个实体！")
+                        exit(0)
+                    continue # 识别到RE第三个实体
+
+                for _, (j, word_idx) in enumerate(zip(  (cur_pair[0], cur_pair[-1]), (0, -1)  )):
+                    j = j - target_shift
+                    if 'word' == self.target_type or word_idx != -1:
+                        assert _word_bpes[j] == \
+                               self.tokenizer.convert_tokens_to_ids(
+                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[:1])[0] 
+                                    # 找到头word经过tokenize之后的第一个token
+                    else:
+                        assert _word_bpes[j] == \
+                               self.tokenizer.convert_tokens_to_ids(
+                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[-1:])[0]
+                                    # 找到尾word经过tokenize之后的最后一个token
+                assert all([cur_pair[i] < cum_lens[-1] + target_shift for i in range(len(cur_pair))]) # cum_lens[-1]是结束id 0 对应的token位置
+
+                cur_pair.append(self.mapping2targetid[tag] + 2)  # 加2是由于有shift
+                pairs.append([p for p in cur_pair])
+
+            target.extend(list(chain(*pairs)))
+            target.append(1)  # 特殊的eos
+            
+            # ------self_tgt-----
+            self_tgt = []
+            cur_pair = []
+            cur_pair_ = []
+            cur_pair_.extend([cum_lens[k] for k in list(range(0, len(raw_words)))])
+            cur_pair.extend([p + target_shift for p in cur_pair_])
+            cur_pair.extend(label_ids)
+            self_tgt.extend(cur_pair)
+            self_tgt.append(1)
+            # ------self_tgt------
+
+            word_bpes = list(chain(*word_bpes))
+            assert len(word_bpes)< 500 , len(word_bpes)
+            
+            dict  = {'tgt_tokens': target, 'target_span': pairs, 'src_tokens': word_bpes,
+                    'first': first, 'self_tgt': self_tgt}
+            return dict
+
+        if self.add_self_tgt:
+            data_bundle.apply_more(prepare_target_and_self_tgt, use_tqdm=True, tqdm_desc='pre. tgt.')
+        else:
+            data_bundle.apply_more(prepare_target, use_tqdm=True, tqdm_desc='pre. tgt.')
 
         data_bundle.set_ignore_type('target_span', 'entities')
         data_bundle.set_pad_val('tgt_tokens', 1)  # 设置为eos所在的id
@@ -216,8 +326,15 @@ class BartNERPipe(Pipe):
 
         data_bundle.apply_field(lambda x: len(x), field_name='src_tokens', new_field_name='src_seq_len')
         data_bundle.apply_field(lambda x: len(x), field_name='tgt_tokens', new_field_name='tgt_seq_len')
-        data_bundle.set_input('tgt_tokens', 'src_tokens', 'src_seq_len', 'tgt_seq_len', 'first')
-        data_bundle.set_target('tgt_tokens', 'tgt_seq_len', 'target_span', 'entities')
+        if self.add_self_tgt:
+            data_bundle.apply_field(lambda x: len(x), field_name='self_tgt', new_field_name='self_tgt_seq_len')
+
+        if self.add_self_tgt:
+            data_bundle.set_input('tgt_tokens', 'src_tokens', 'src_seq_len', 'tgt_seq_len', 'first', 'self_tgt', 'self_tgt_seq_len')
+            data_bundle.set_target('tgt_tokens', 'tgt_seq_len', 'target_span', 'entities', 'self_tgt', 'self_tgt_seq_len')
+        else:
+            data_bundle.set_input('tgt_tokens', 'src_tokens', 'src_seq_len', 'tgt_seq_len', 'first')
+            data_bundle.set_target('tgt_tokens', 'tgt_seq_len', 'target_span', 'entities')
 
         return data_bundle
 
@@ -247,6 +364,7 @@ class BartNERPipe(Pipe):
                 data_bundle = RELoader(demo=demo).load(paths)
         else:
             data_bundle = DiscontinuousNERLoader(demo=demo).load(paths)
+        
         data_bundle = self.process(data_bundle)
         return data_bundle
 
@@ -484,6 +602,7 @@ class DiscontinuousNERLoader(Loader):
 
         return dataset
 
+
 class RELoader_no_ent_type(Loader):
     def __init__(self, demo=False):
         super(RELoader_no_ent_type, self).__init__()
@@ -554,7 +673,8 @@ class RELoader_no_ent_type(Loader):
                 continue
 
         return dataset
-    
+
+
 class RELoader(Loader):
     def __init__(self, demo=False):
         super(RELoader, self).__init__()
@@ -619,6 +739,7 @@ class RELoader(Loader):
                 continue
 
         return dataset
+
 
 class NestedLoader(Loader):
     def __init__(self, demo=False, **kwargs):

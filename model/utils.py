@@ -599,7 +599,7 @@ def get_RE_from_pred(pred, max_type_id, rel_start_id):
             cur_span.append(i)
         else:
             cur_span.append(i)
-            cur_span.sort()
+            #cur_span.sort()
             all_spans.append(str(cur_span)) # str是为了可hash
             cur_span = []
     return all_spans

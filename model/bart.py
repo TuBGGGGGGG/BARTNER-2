@@ -507,7 +507,7 @@ class BartSeq2SeqModel(Seq2SeqModel):
         # setattr(state, 'tgt_seq_len', tgt_seq_len)
         return state
 
-    def forward(self, src_tokens, tgt_tokens, src_seq_len, tgt_seq_len, first, update_tree=False):
+    def forward(self, src_tokens, tgt_tokens, src_seq_len, tgt_seq_len, first, self_tgt, self_tgt_seq_len, update_tree=False):
         """
 
         :param torch.LongTensor src_tokens: source的token
@@ -519,10 +519,11 @@ class BartSeq2SeqModel(Seq2SeqModel):
         """
         state = self.prepare_state(src_tokens, src_seq_len, first, tgt_seq_len)
         decoder_output = self.decoder(tgt_tokens, state, update_tree) # wxl
+        decoder_output_self_tgt = self.decoder(self_tgt, state, update_tree) # wxl
         if isinstance(decoder_output, torch.Tensor):
-            return {'pred': decoder_output}
+            return {'pred': decoder_output, 'self_tgt_pred': decoder_output_self_tgt}
         elif isinstance(decoder_output, (tuple, list)):
-            return {'pred': decoder_output[0]}
+            return {'pred': decoder_output[0], 'self_tgt_pred': decoder_output_self_tgt[0]}
         else:
             raise TypeError(f"Unsupported return type from Decoder:{type(self.decoder)}")
 

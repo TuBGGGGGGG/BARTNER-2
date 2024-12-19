@@ -50,3 +50,39 @@ class Seq2SeqLoss(LossBase):
         
         return loss
 
+class Seq2SeqLoss_with_self_tgt(LossBase):
+    def __init__(self, max_type_id):
+        super().__init__()
+        self.max_type_id = max_type_id
+        
+    def get_loss(self, tgt_tokens, tgt_seq_len, pred, self_tgt, self_tgt_seq_len, self_tgt_pred):
+
+        """
+        :param tgt_tokens: bsz x max_len, 包含了的[sos, token, eos]
+        :param pred: bsz x max_len-1 x vocab_size
+        :return:
+        """
+        tgt_seq_len = tgt_seq_len - 1
+        mask = seq_len_to_mask(tgt_seq_len, max_len=tgt_tokens.size(1) - 1).eq(0)
+        tgt_tokens = tgt_tokens[:, 1:].masked_fill(mask, -100)
+
+        weight = pred.new_ones(pred.size(-1))
+        weight[0:self.max_type_id+1] = 1.1
+        pred= pred.reshape((pred.shape[0]*pred.shape[1], -1))
+        tgt_tokens= tgt_tokens.reshape((tgt_tokens.shape[0]*tgt_tokens.shape[1]))
+        
+        loss1 = F.cross_entropy(target=tgt_tokens, input=pred, weight=weight)
+
+        self_tgt_seq_len = self_tgt_seq_len - 1
+        mask2 = seq_len_to_mask(self_tgt_seq_len, max_len=self_tgt.size(1) - 1).eq(0)
+        self_tgt = self_tgt[:, 1:].masked_fill(mask2, -100)
+
+        weight2 = self_tgt_pred.new_ones(self_tgt_pred.size(-1))
+        weight2[0:self.max_type_id+1] = 1.1
+        self_tgt_pred= self_tgt_pred.reshape((self_tgt_pred.shape[0]*self_tgt_pred.shape[1], -1))
+        self_tgt= self_tgt.reshape((self_tgt.shape[0]*self_tgt.shape[1]))
+        
+        loss2 = F.cross_entropy(target=self_tgt, input=self_tgt_pred, weight=weight2)
+
+        return loss1 + 0.01*loss2
+

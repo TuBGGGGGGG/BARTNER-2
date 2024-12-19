@@ -47,7 +47,7 @@ class SequenceGeneratorModel(nn.Module):
                                            pad_token_id=pad_token_id,
                                            restricter=restricter)
 
-    def forward(self, src_tokens, tgt_tokens, src_seq_len=None, tgt_seq_len=None, first=None, update_tree=False):
+    def forward(self, src_tokens, tgt_tokens, self_tgt, self_tgt_seq_len=None, src_seq_len=None, tgt_seq_len=None, first=None, update_tree=False):
         """
         透传调用seq2seq_model的forward
 
@@ -57,7 +57,7 @@ class SequenceGeneratorModel(nn.Module):
         :param torch.LongTensor tgt_seq_len: bsz
         :return:
         """
-        return self.seq2seq_model(src_tokens, tgt_tokens, src_seq_len, tgt_seq_len, first, update_tree)
+        return self.seq2seq_model(src_tokens, tgt_tokens, src_seq_len, tgt_seq_len, first, self_tgt, self_tgt_seq_len, update_tree)
 
     def predict_old(self, src_tokens, src_seq_len=None, first=None):
         """
