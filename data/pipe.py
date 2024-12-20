@@ -369,6 +369,311 @@ class BartNERPipe(Pipe):
         return data_bundle
 
 
+class Bart_RE_NER_Pipe(Pipe):
+    def __init__(self, tokenizer='facebook/bart-large', dataset_name='conll2003', target_type='word', no_ent_type=False):
+        """
+
+        :param tokenizer:
+        :param dataset_name:
+        :param target_type:
+            支持word: 生成word的start;
+            bpe: 生成所有的bpe
+            span: 每一段按照start end生成
+            span_bpe: 每一段都是start的所有bpe，end的所有bpe
+        """
+        super().__init__()
+        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer)
+
+        assert target_type in ('word', 'bpe', 'span')
+
+        if 're' in dataset_name and 'ace05' in dataset_name:
+            self.mapping = {
+                'wea': '<<wea>>',
+                'fac': '<<fac>>',
+                'org': '<<org>>',
+                'per': '<<per>>',
+                'gpe': '<<gpe>>',
+                'loc': '<<loc>>',
+                'veh': '<<veh>>',
+                'org-aff': '<<org-aff>>',
+                'per-soc': '<<per-soc>>', 
+                'gen-aff': '<<gen-aff>>', 
+                'art': '<<art>>', 
+                'phys': '<<phys>>', 
+                'part-whole': '<<part-whole>>'
+            }
+        cur_num_tokens = self.tokenizer.vocab_size
+        self.num_token_in_orig_tokenizer = cur_num_tokens
+        self.target_type = target_type
+        self.no_ent_type = no_ent_type
+
+    def add_tags_to_special_tokens(self, data_bundle):
+        if not hasattr(self, 'mapping'):
+            from collections import Counter
+            counter = Counter()
+            data_bundle.apply_field(counter.update, field_name='entity_tags', new_field_name=None)
+            mapping = {}
+            for key, value in counter.items():
+                mapping[key] = '<<' + key + '>>'
+            self.mapping = mapping
+        else:
+            mapping = self.mapping
+
+        tokens_to_add = sorted(list(mapping.values()), key=lambda x: len(x), reverse=True)
+        unique_no_split_tokens = self.tokenizer.unique_no_split_tokens
+        sorted_add_tokens = sorted(list(tokens_to_add), key=lambda x: len(x), reverse=True)
+        for tok in sorted_add_tokens:
+            assert self.tokenizer.convert_tokens_to_ids([tok])[0] == self.tokenizer.unk_token_id
+        self.tokenizer.unique_no_split_tokens = unique_no_split_tokens + sorted_add_tokens
+        self.tokenizer.add_tokens(sorted_add_tokens)
+        self.mapping2id = {}  # 给定转换后的tag，输出的是在tokenizer中的id，用来初始化表示
+        self.mapping2targetid = {}  # 给定原始tag，输出对应的数字
+
+        for key, value in self.mapping.items():
+            key_id = self.tokenizer.convert_tokens_to_ids(self.tokenizer.tokenize(value))
+            assert len(key_id) == 1, value
+            assert key_id[0] >= self.num_token_in_orig_tokenizer
+            self.mapping2id[value] = key_id[0]  #
+            self.mapping2targetid[key] = len(self.mapping2targetid)
+
+    def process(self, data_bundle):
+        """
+        支持的DataSet的field为
+
+            entities: List[List[str]], 每个元素是entity，非连续的拼到一起了
+            entity_tags: 与上面一样长，是每个entity的tag
+            raw_words: List[str]词语
+            entity_spans： List[List[int]]记录的是上面entity的start和end，这里的长度一定是偶数，是start,end的pair, end是开区间
+
+        :param data_bundle:
+        :return:
+        """
+        self.add_tags_to_special_tokens(data_bundle)
+
+        # 转换tag
+        target_shift = len(self.mapping) + 3  # 是由于第一位是entity，紧接着是relation, 然后是eos
+
+        # 所有label_ids
+        keys = self.mapping2targetid.keys()
+        label_ids = [] 
+        for key in keys:
+            label_ids.append(self.mapping2targetid[key] + 3)
+        label_ids.sort()
+
+        def prepare_target_ner(ins):
+            raw_words = ins['raw_words']
+            word_bpes = [[self.tokenizer.bos_token_id]] 
+            first = []  
+            cur_bpe_len = 1
+            for word in raw_words:
+                bpes = self.tokenizer.tokenize(word, add_prefix_space=True)
+                bpes = self.tokenizer.convert_tokens_to_ids(bpes)
+                first.append(cur_bpe_len)
+                cur_bpe_len += len(bpes)
+                word_bpes.append(bpes)
+            assert first[-1] + len(bpes) == sum(map(len, word_bpes))
+            word_bpes.append([self.tokenizer.eos_token_id]) # tokenize src_word, 加上bos(0,和解码的bos不是一个东西)和eos(1)
+            assert len(first) == len(raw_words) == len(word_bpes) - 2 # -2 是因为加了bos(entity/relation)和eos
+
+            lens = list(map(len, word_bpes)) 
+            cum_lens = np.cumsum(lens).tolist() 
+
+            entity_spans = ins['entity_spans']  
+            entity_tags = ins['entity_tags']  
+            entities = ins['entities'] 
+            target = [0] # 46317是entity, mapping中对应的id为0  
+            pairs = []
+
+            first = list(range(cum_lens[-1]))
+
+            assert len(entity_spans) == len(entity_tags)
+            _word_bpes = list(chain(*word_bpes)) 
+            for idx, (entity, tag) in enumerate(zip(entity_spans, entity_tags)):
+                cur_pair = []
+                num_ent = len(entity) // 2
+                for i in range(num_ent):
+                    start = entity[2 * i]
+                    end = entity[2 * i + 1]
+                    cur_pair_ = []
+                    if self.target_type == 'word':
+                        cur_pair_.extend([cum_lens[k] for k in list(range(start, end))])
+                    elif self.target_type == 'span':
+                        cur_pair_.append(cum_lens[start])
+                        cur_pair_.append(cum_lens[end]-1)  
+                    elif self.target_type == 'span_bpe':
+                        cur_pair_.extend(
+                            list(range(cum_lens[start], cum_lens[start + 1])))  
+                        cur_pair_.extend(
+                            list(range(cum_lens[end - 1], cum_lens[end])))  
+                    elif self.target_type == 'bpe':
+                        cur_pair_.extend(list(range(cum_lens[start], cum_lens[end])))
+                    else:
+                        raise RuntimeError("Not support other tagging")
+                    cur_pair.extend([p + target_shift for p in cur_pair_])
+           
+                if len(cur_pair) == 0:
+                    print("NER数据，不应该单独识别到RE第三个实体！")
+                    exit(0)
+
+                for _, (j, word_idx) in enumerate(zip(  (cur_pair[0], cur_pair[-1]), (0, -1)  )):
+                    j = j - target_shift
+                    if 'word' == self.target_type or word_idx != -1:
+                        assert _word_bpes[j] == \
+                               self.tokenizer.convert_tokens_to_ids(
+                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[:1])[0] 
+                    else:
+                        assert _word_bpes[j] == \
+                               self.tokenizer.convert_tokens_to_ids(
+                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[-1:])[0]
+
+                assert all([cur_pair[i] < cum_lens[-1] + target_shift for i in range(len(cur_pair))]) 
+
+                cur_pair.append(self.mapping2targetid[tag] + 3)  # 特殊token的偏移
+                pairs.append([p for p in cur_pair])
+
+            target.extend(list(chain(*pairs)))
+            target.append(1)  # 结束符对应的id
+
+            word_bpes = list(chain(*word_bpes))
+            assert len(word_bpes)< 500 , len(word_bpes)
+            
+            dict  = {'tgt_tokens': target, 'target_span': pairs, 'src_tokens': word_bpes,
+                    'first': first}
+            return dict
+
+        def prepare_target_re(ins):
+            raw_words = ins['raw_words']
+            word_bpes = [[self.tokenizer.bos_token_id]] 
+            first = []  
+            cur_bpe_len = 1
+            for word in raw_words:
+                bpes = self.tokenizer.tokenize(word, add_prefix_space=True)
+                bpes = self.tokenizer.convert_tokens_to_ids(bpes)
+                first.append(cur_bpe_len)
+                cur_bpe_len += len(bpes)
+                word_bpes.append(bpes)
+            assert first[-1] + len(bpes) == sum(map(len, word_bpes))
+            word_bpes.append([self.tokenizer.eos_token_id])
+            assert len(first) == len(raw_words) == len(word_bpes) - 2 # -2 是因为加了bos(entity/relation)和eos
+
+            lens = list(map(len, word_bpes)) 
+            cum_lens = np.cumsum(lens).tolist() 
+
+            entity_spans = ins['re_entity_spans']  
+            entity_tags = ins['re_entity_tags']  
+            entities = ins['re_entities'] 
+            target = [3]  # 47114是relation，mapping对应的id为3
+            pairs = []
+
+            first = list(range(cum_lens[-1]))
+
+            assert len(entity_spans) == len(entity_tags)
+            _word_bpes = list(chain(*word_bpes)) 
+            for idx, (entity, tag) in enumerate(zip(entity_spans, entity_tags)):
+                cur_pair = []
+                num_ent = len(entity) // 2
+                for i in range(num_ent):
+                    start = entity[2 * i]
+                    end = entity[2 * i + 1]
+                    cur_pair_ = []
+                    if self.target_type == 'word':
+                        cur_pair_.extend([cum_lens[k] for k in list(range(start, end))])
+                    elif self.target_type == 'span':
+                        cur_pair_.append(cum_lens[start])
+                        cur_pair_.append(cum_lens[end]-1)  
+                    elif self.target_type == 'span_bpe':
+                        cur_pair_.extend(
+                            list(range(cum_lens[start], cum_lens[start + 1])))  
+                        cur_pair_.extend(
+                            list(range(cum_lens[end - 1], cum_lens[end])))  
+                    elif self.target_type == 'bpe':
+                        cur_pair_.extend(list(range(cum_lens[start], cum_lens[end])))
+                    else:
+                        raise RuntimeError("Not support other tagging")
+                    cur_pair.extend([p + target_shift for p in cur_pair_])
+           
+                if len(cur_pair) == 0:
+                    cur_pair.append(self.mapping2targetid[tag] + 3)  
+                    pairs.append([p for p in cur_pair])
+                    continue # 识别到RE第三个实体
+
+                for _, (j, word_idx) in enumerate(zip(  (cur_pair[0], cur_pair[-1]), (0, -1)  )):
+                    j = j - target_shift
+                    if 'word' == self.target_type or word_idx != -1:
+                        assert _word_bpes[j] == \
+                               self.tokenizer.convert_tokens_to_ids(
+                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[:1])[0] 
+                    else:
+                        assert _word_bpes[j] == \
+                               self.tokenizer.convert_tokens_to_ids(
+                                   self.tokenizer.tokenize(entities[idx][word_idx], add_prefix_space=True)[-1:])[0]
+
+                assert all([cur_pair[i] < cum_lens[-1] + target_shift for i in range(len(cur_pair))]) 
+
+                cur_pair.append(self.mapping2targetid[tag] + 3)  
+                pairs.append([p for p in cur_pair])
+
+            target.extend(list(chain(*pairs)))
+            target.append(1) # 结束符对应的id 
+
+            word_bpes = list(chain(*word_bpes))
+            assert len(word_bpes)< 500 , len(word_bpes)
+            
+            dict  = {'re_tgt_tokens': target, 're_target_span': pairs}
+            return dict
+        
+        def prepare_target(ins):
+            dict_ner = prepare_target_ner(ins)
+            dict_re = prepare_target_re(ins)
+            dict_re.update(dict_ner)
+            return dict_re
+        
+        data_bundle.apply_more(prepare_target, use_tqdm=True, tqdm_desc='pre. tgt.')
+
+        data_bundle.set_ignore_type('target_span', 'entities')
+        data_bundle.set_pad_val('tgt_tokens', 1)  # 设置为eos所在的id
+        data_bundle.set_pad_val('src_tokens', self.tokenizer.pad_token_id)
+
+        data_bundle.set_ignore_type('re_target_span', 're_entities')
+        data_bundle.set_pad_val('re_tgt_tokens', 1)  # 设置为eos所在的id
+
+        data_bundle.apply_field(lambda x: len(x), field_name='src_tokens', new_field_name='src_seq_len')
+        data_bundle.apply_field(lambda x: len(x), field_name='tgt_tokens', new_field_name='tgt_seq_len')
+        data_bundle.apply_field(lambda x: len(x), field_name='re_tgt_tokens', new_field_name='re_tgt_seq_len')
+
+        data_bundle.set_input('tgt_tokens', 'src_tokens', 'src_seq_len', 'tgt_seq_len', 'first', 're_tgt_tokens', 're_tgt_seq_len',)
+        data_bundle.set_target('tgt_tokens', 'tgt_seq_len', 'target_span', 'entities', 're_tgt_tokens', 're_tgt_seq_len', 're_target_span', 're_entities')
+
+        return data_bundle
+
+    def process_from_file(self, paths, demo=False) -> DataBundle:
+        """
+
+        :param paths: 支持路径类型参见 :class:`fastNLP.io.loader.ConllLoader` 的load函数。
+        :return: DataBundle
+        """
+        # 读取数据
+        if isinstance(paths, str):
+            path = paths
+        else:
+            path = paths['train']
+        if 'conll2003' in path or 'ontonotes' in path:
+            data_bundle = Conll2003NERLoader(demo=demo).load(paths)
+        # elif 'ontonotes' in path:
+        #     data_bundle = OntoNotesNERLoader(demo=demo).load(paths)
+        elif 'genia' in path:
+            data_bundle = NestedLoader(demo=demo).load(paths)
+        elif 'en_ace0' in path:
+            data_bundle = NestedLoader(demo=demo).load(paths)
+        elif 're' in path:
+            data_bundle = RE_NER_Loader(demo=demo).load(paths)
+        else:
+            data_bundle = DiscontinuousNERLoader(demo=demo).load(paths)
+        
+        data_bundle = self.process(data_bundle)
+        return data_bundle
+
+
 class Conll2003NERLoader(ConllLoader):
     r"""
     用于读取conll2003任务的NER数据。每一行有4列内容，空行意味着隔开两个句子
@@ -741,6 +1046,114 @@ class RELoader(Loader):
         return dataset
 
 
+class RE_NER_Loader(Loader):
+    def __init__(self, demo=False):
+        super(RE_NER_Loader, self).__init__()
+        self.demo = demo
+
+    def _load(self, path):
+        """
+        """
+        max_span_len = 1e10
+        print("【----------调用RE_NER_loader加载数据集----------】")
+        f = open(path, 'r', encoding='utf-8')
+        lines = f.readlines()
+        dataset = DataSet()
+
+        for i in range(len(lines)):
+            if i % 4 == 0:
+                sentence = lines[i]
+                ner_ann = lines[i + 1] # NER标注
+                re_ann = lines[i + 2] # RE标注
+
+                now_ins = Instance()
+                sentence = sentence.strip().split(' ')  # 生成的空格
+
+                ner_entities = ner_ann.strip().split('|')
+                re_entities = re_ann.strip().split('|') # 一个re对象被分化成三个ner对象
+                
+                ner_type_list = []
+                ner_entity_index_list = []
+                ner_entity_list = []
+                ner_all_spans = []
+                re_type_list = []
+                re_entity_index_list = []
+                re_entity_list = []
+                re_all_spans = []
+
+                # ner数据处理
+                for ner_entity in ner_entities:
+                    if len(ner_entity) == 0:
+                        continue
+                    # print(entity)
+                    span_, type_ = ner_entity.split(' ')
+                    span_ = span_.split(',')
+                    span__ = []
+                    for i in range(len(span_) // 2):
+                        span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])   # 这边的所有2，都是因为处理的数据的时候是根据每个se片段处理的，每次处理一个span碎片的s和e。
+                    span__.sort(key=lambda x: x[0])
+                    if span__[-1][1] - span__[0][0] > max_span_len:
+                        continue
+                    str_span__ = []
+                    for start, end in span__:
+                        str_span__.extend(sentence[start:end])
+                    assert len(str_span__) > 0 and len(span__) > 0
+                    ner_type_list.append(type_.lower())  # 内部是str
+                    ner_entity_list.append(str_span__)
+                    ner_entity_index_list.append(list(chain(*span__)))  # 内部是数字
+                    ner_all_spans.append([type_.lower(), str_span__, list(chain(*span__))]) 
+                
+                ner_all_spans = sorted(ner_all_spans, key=cmp_to_key(cmp)) # 按照span的首尾大小排序，可以改 TODO
+                ner_new_type_list = [span[0] for span in ner_all_spans]
+                ner_new_entity_list = [span[1] for span in ner_all_spans]
+                ner_new_entity_index_list = [span[2] for span in ner_all_spans]
+
+                # re数据处理
+                for re_entity in re_entities:
+                    if len(re_entity) == 0:
+                        continue
+                   
+                    span_, type_ = re_entity.split(' ')
+                    span_ = span_.split(',') # 如果是RE，这边就是['']，长度为1。
+                    span__ = [] 
+                    for i in range(len(span_) // 2):
+                        span__.append([int(span_[2 * i]), int(span_[2 * i + 1]) + 1])   # 这边的所有2，都是因为处理的数据的时候是根据每个se片段处理的，每次处理一个span碎片的s和e。
+                    # span__.sort(key=lambda x: x[0]) # RELoader可以用，因为已经把头尾实体分开了，单实体内部的span需要是有序的。
+                    if span__ != []:
+                        if span__[-1][1] - span__[0][0] > max_span_len:
+                            continue
+                    str_span__ = []
+                    for start, end in span__:
+                        str_span__.extend(sentence[start:end])
+                    assert len(str_span__) > 0 and len(span__) > 0 or (span__ == [] and str_span__ == []) # NER OR RE
+                    
+                    re_type_list.append(type_.lower())  # 内部是str
+                    re_entity_list.append(str_span__)
+                    re_entity_index_list.append(list(chain(*span__)))  # 内部是数字
+                    re_all_spans.append([type_.lower(), str_span__, list(chain(*span__))]) # 如果是RE的第三个实体（只有关系类型tag）, [type, [], ['']]
+                # all_spans = sorted(all_spans, key=cmp_to_key(cmp)) # 不能按照span的首尾大小排序，因为需要保证RE的三个实体部分连续且有序 TODO
+
+                re_new_type_list = [span[0] for span in re_all_spans]
+                re_new_entity_list = [span[1] for span in re_all_spans]
+                re_new_entity_index_list = [span[2] for span in re_all_spans]
+
+                now_ins.add_field('entities', ner_new_entity_list)
+                now_ins.add_field('entity_tags', ner_new_type_list)
+                now_ins.add_field('raw_words', sentence)  # 以空格隔开的words
+                now_ins.add_field('entity_spans', ner_new_entity_index_list)
+                now_ins.add_field('re_entities', re_new_entity_list)
+                now_ins.add_field('re_entity_tags', re_new_type_list)
+                now_ins.add_field('re_entity_spans', re_new_entity_index_list)
+                dataset.append(now_ins)
+
+                if self.demo and len(dataset) > 30:
+                    break
+            else:
+                continue
+
+        return dataset
+
+
 class NestedLoader(Loader):
     def __init__(self, demo=False, **kwargs):
         super().__init__()
@@ -846,6 +1259,7 @@ class NestedLoader(Loader):
             raise RuntimeError("No data found {}.".format(path))
         print(f"for `{path}`, {invalid_ent} invalid entities. max sentence has {max_len} tokens")
         return ds
+
 
 def cmp(v1, v2):
     v1 = v1[-1]

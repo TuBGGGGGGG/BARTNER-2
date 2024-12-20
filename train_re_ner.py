@@ -3,11 +3,10 @@ sys.path.append('../')
 import os
 if 'p' in os.environ:
     os.environ['CUDA_VISIBLE_DEVICES'] = os.environ['p']
-# os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 
 import warnings
 warnings.filterwarnings('ignore')
-from data.pipe import BartNERPipe
+from data.pipe import Bart_RE_NER_Pipe
 from model.bart import BartSeq2SeqModel
 import fitlog
 import random
@@ -17,14 +16,14 @@ import torch
 from model.utils import update_tree, current_tree_init, get_final_dataset, get_double_ds
 from fastNLP import Trainer,DataSet
 from copy import deepcopy 
-from model.metrics import Seq2SeqREMetric, Seq2SeqSpanMetric
-from model.losses import Seq2SeqLoss, Seq2SeqLoss_with_self_tgt
+from model.metrics import Seq2Seq_RE_NER_Metric
+from model.losses import Seq2Seq_RE_NER_Loss
 from torch import optim
 from fastNLP import BucketSampler, GradientClipCallback, cache_results
 
 from model.callbacks import WarmupCallback
 from fastNLP.core.sampler import SortedSampler
-from model.generater import SequenceGeneratorModel
+from model.generater import SequenceGeneratorModel_RE_NER
 from fastNLP.core.sampler import  ConstTokenNumSampler
 from model.callbacks import FitlogCallback
 
@@ -75,13 +74,21 @@ elif dataset_name == 'CADEC':
     args.lr = 2e-5
     args.n_epochs = 30
     eval_start_epoch=10
+elif 're' in dataset_name:
+    max_len, max_len_a = 10, 1.6
+    args.num_beams = 4
+    args.lr = 2e-5
+    args.batch_size = 10
+    args.n_epochs = 100
+    seed = 1688
+    eval_start_epoch=1
+    rel_type_start = 9
 elif dataset_name == 're_ace05' or dataset_name == 're_ace05_no_ent_type':
     max_len, max_len_a = 10, 1.6
     args.num_beams = 4
     args.lr = 2e-5
     args.batch_size = 50
     args.n_epochs = 100
-    add_self_tgt = True
     seed = 1688
     eval_start_epoch=1
     rel_type_start = 9
@@ -152,10 +159,9 @@ else:
 
 @cache_results(cache_fn, _refresh=False)
 def get_data():
-    if 'no_ent_type' in dataset_name:
-        pipe = BartNERPipe(tokenizer=bart_name, dataset_name=dataset_name, target_type=target_type, no_ent_type=True, add_self_tgt=add_self_tgt)
-    else:
-        pipe = BartNERPipe(tokenizer=bart_name, dataset_name=dataset_name, target_type=target_type, no_ent_type=False,add_self_tgt=add_self_tgt)
+    if 're' in dataset_name:
+        pipe = Bart_RE_NER_Pipe(tokenizer=bart_name, dataset_name=dataset_name, target_type=target_type, no_ent_type=False)
+
     if dataset_name == 'conll2003':
         paths = {'test': "./data/conll2003/test.txt",
                  'train': "./data/conll2003/train.txt",
@@ -176,20 +182,21 @@ print(f'max_len_a:{max_len_a}, max_len:{max_len}')
 print(data_bundle)
 print("The number of tokens in tokenizer ", len(tokenizer.decoder))
 
-bos_token_id = 0
+bos_token_id_ner = 0
 eos_token_id = 1
+bos_token_id_re = 3
 label_ids = list(mapping2id.values())
 model = BartSeq2SeqModel.build_model(bart_name, tokenizer, label_ids=label_ids, decoder_type=decoder_type,
                                      use_encoder_mlp=use_encoder_mlp)
 
 vocab_size = len(tokenizer)
 print(vocab_size, model.decoder.decoder.embed_tokens.weight.data.size(0))
-model = SequenceGeneratorModel(model, bos_token_id=bos_token_id,
+model = SequenceGeneratorModel_RE_NER(model, bos_token_id_ner=bos_token_id_ner,
+                               bos_token_id_re=bos_token_id_re,
                                eos_token_id=eos_token_id,
                                max_length=max_len, max_len_a=max_len_a,num_beams=num_beams, do_sample=False,
                                repetition_penalty=1, length_penalty=length_penalty, pad_token_id=eos_token_id,
                                restricter=None)
-# model = torch.load("/disk1/wxl/Desktop/DeepKE/example/baseline/BARTNER/save_models/re_ace05_1688_1734576024.9018843/best_SequenceGeneratorModel_f_2024-12-19-10-40-29-474678")
 if torch.cuda.is_available():
     device = 'cuda'
 else:
@@ -254,10 +261,8 @@ elif ('large' in bart_name and dataset_name in ('en-ontonotes', 'genia')):
 else:
     sampler = BucketSampler(seq_len_field_name='src_seq_len')
 
-if 're' in dataset_name and 'no_ent_type' not in dataset_name:
-    metric = Seq2SeqREMetric(eos_token_id, num_labels=len(label_ids), rel_type_start=rel_type_start, target_type=target_type)
-else:
-    metric = Seq2SeqSpanMetric(eos_token_id, num_labels=len(label_ids), target_type=target_type)
+if 're' in dataset_name:
+    metric = Seq2Seq_RE_NER_Metric(eos_token_id, num_labels=len(label_ids), rel_type_start=rel_type_start, target_type=target_type)
 ds = data_bundle.get_dataset('train')
 if dataset_name == 'conll2003':
     ds.concat(data_bundle.get_dataset('dev'))
@@ -269,36 +274,14 @@ else:
     save_path = None
 validate_every = 100000
 
-# ds_, current_tree, is_ordered_key = current_tree_init(ds,pipe) # wxl
-
 orderlearing_num = 0
 max_type_id = len(pipe.mapping2targetid) + 2
 print(max_type_id)
 
-# while len(is_ordered_key) < len(current_tree):
-#     orderlearing_num += 1
-#     trainer = Trainer(train_data=ds_, model=model, optimizer=optimizer,
-#                   loss=Seq2SeqLoss(max_type_id=max_type_id),
-#                   batch_size=batch_size, sampler=sampler, drop_last=False, update_every=1,
-#                   num_workers=4, n_epochs=1, print_every=1 if 'SEARCH_OUTPUT_FP' not in os.environ else 100,
-#                   dev_data=eval_dataset, metrics=metric, metric_key='f',
-#                   validate_every=validate_every, save_path=None, use_tqdm='SEARCH_OUTPUT_FP' not in os.environ, device=device,
-#                   callbacks=callbacks, check_code_level=0, test_use_tqdm='SEARCH_OUTPUT_FP' not in os.environ,
-#                   test_sampler=SortedSampler('src_seq_len'), dev_batch_size=batch_size)
-#     trainer.train(load_best_model=False)
-
-#     x = len(is_ordered_key)
-
-#     model.eval()
-#     current_tree, is_ordered_key, ds_ = update_tree(ds_, model, current_tree, is_ordered_key, pipe, "loss", max_type_id)
-#     model.train()
-#     print(f"第{orderlearing_num}轮order训练，{x} -> {len(is_ordered_key)} max: {len(current_tree)}")
 ds_final = get_double_ds(ds, pipe)
-# ds_final.save("/disk1/wxl/Desktop/DeepKE/example/baseline/BARTNER/caches/ds_final2.pt")
-if add_self_tgt:
-    losser = Seq2SeqLoss_with_self_tgt(max_type_id=max_type_id)
-else:
-    losser = Seq2SeqLoss(max_type_id=max_type_id)
+
+losser = Seq2Seq_RE_NER_Loss(max_type_id=max_type_id)
+
 print("=======================开始正式训练=======================\n")
 trainer = Trainer(train_data=ds_final, model=model, optimizer=optimizer,
                   loss=losser,
