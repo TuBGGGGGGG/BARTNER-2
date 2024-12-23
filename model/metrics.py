@@ -173,7 +173,7 @@ class Seq2Seq_RE_NER_Metric(MetricBase):
         super(Seq2Seq_RE_NER_Metric, self).__init__()
         self.eos_token_id = eos_token_id
         self.num_labels = num_labels
-        self.word_start_index = num_labels+2  # +2是由于有前面有两个特殊符号，sos和eos
+        self.word_start_index = num_labels+3  # +3是由于有前面有3个特殊符号，entity、eos，relaiton
 
         self.fp = 0
         self.tp = 0
@@ -192,7 +192,6 @@ class Seq2Seq_RE_NER_Metric(MetricBase):
         print(f"\nmetric类型: [NER & RE]  rel_type_start: {rel_type_start}!\n")
 
     def evaluate(self, target_span, pred, tgt_tokens, re_target_span, re_pred, re_tgt_tokens):
-
         self.evaluate_ner(target_span, pred, tgt_tokens)
         self.evaluate_re(re_target_span, re_pred, re_tgt_tokens)
 
@@ -238,20 +237,19 @@ class Seq2Seq_RE_NER_Metric(MetricBase):
             self.tp += tp
             self.fp += fp
 
-    def evaluate_re(self, target_span_re, pred_re, tgt_tokens_re):
-        
-        self.total_re += pred_re.size(0)
-        pred_eos_index = pred_re.flip(dims=[1]).eq(self.eos_token_id).cumsum(dim=1).long()
-        target_eos_index = tgt_tokens_re.flip(dims=[1]).eq(self.eos_token_id).cumsum(dim=1).long()
+    def evaluate_re(self, re_target_span, re_pred, re_tgt_tokens):
+        self.total_re += re_pred.size(0)
+        pred_eos_index = re_pred.flip(dims=[1]).eq(self.eos_token_id).cumsum(dim=1).long()
+        target_eos_index = re_tgt_tokens.flip(dims=[1]).eq(self.eos_token_id).cumsum(dim=1).long()
 
-        pred_re = pred_re[:, 1:]  # 去掉</s>
-        tgt_tokens_re = tgt_tokens_re[:, 1:]
+        re_pred = re_pred[:, 1:]  # 去掉</s>
+        re_tgt_tokens = re_tgt_tokens[:, 1:]
         pred_seq_len = pred_eos_index.flip(dims=[1]).eq(pred_eos_index[:, -1:]).sum(dim=1) # bsz
         pred_seq_len = (pred_seq_len - 2).tolist()
         target_seq_len = target_eos_index.flip(dims=[1]).eq(target_eos_index[:, -1:]).sum(dim=1) # bsz
         target_seq_len = (target_seq_len-2).tolist()
         pred_spans = []
-        for i, (ts, ps) in enumerate(zip(target_span_re, pred_re.tolist())):
+        for i, (ts, ps) in enumerate(zip(re_target_span, re_pred.tolist())):
             assert len(ts) % 3 == 0
             ts = [list(chain(*(ts[i*3:i*3+3]))) for i in range(len(ts)//3)]
             ts2 = []
@@ -265,7 +263,7 @@ class Seq2Seq_RE_NER_Metric(MetricBase):
             em = 0
             ps = ps[:pred_seq_len[i]]
             if pred_seq_len[i]==target_seq_len[i]:
-                em = int(tgt_tokens_re[i, :target_seq_len[i]].eq(pred_re[i, :target_seq_len[i]]).sum().item()==target_seq_len[i])
+                em = int(re_tgt_tokens[i, :target_seq_len[i]].eq(re_pred[i, :target_seq_len[i]]).sum().item()==target_seq_len[i])
             self.em_re += em
             pairs = []
             cur_pair = []

@@ -562,7 +562,7 @@ class Bart_RE_NER_Pipe(Pipe):
             entity_spans = ins['re_entity_spans']  
             entity_tags = ins['re_entity_tags']  
             entities = ins['re_entities'] 
-            target = [3]  # 47114是relation，mapping对应的id为3
+            target = [2]  # 47114是relation，mapping对应的id为2
             pairs = []
 
             first = list(range(cum_lens[-1]))

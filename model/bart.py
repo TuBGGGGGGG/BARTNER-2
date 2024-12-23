@@ -170,7 +170,7 @@ class FBartDecoder(Seq2SeqDecoder):
 
         tokens = torch.where(mapping_token_mask, tag_mapped_tokens, word_mapped_tokens)
         tokens = tokens.masked_fill(tgt_pad_mask, self.pad_token_id)
-
+        
         if self.training:
             tokens = tokens[:, :-1]
             decoder_pad_mask = tokens.eq(self.pad_token_id)  # decoder需要让pad位置为1
@@ -375,6 +375,7 @@ class CaGFBartDecoder(FBartDecoder):
                                 decoder_causal_mask=self.causal_masks[:tokens.size(1), :tokens.size(1)],
                                 return_dict=True)
         elif update_tree:
+            
             # wxl, eval但是返回所有token的score
             tokens = tokens[:, :-1] # 去掉最后一个eos的输入
             decoder_pad_mask = tokens.eq(self.pad_token_id)  # decoder需要让pad位置为1

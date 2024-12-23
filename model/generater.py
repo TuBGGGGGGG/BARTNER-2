@@ -411,6 +411,7 @@ def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_le
                              eos_token_id=None,
                              repetition_penalty=1.0, length_penalty=1.0, pad_token_id=0,
                              restricter=None):
+
     device = _get_model_device(decoder)
     if tokens is None:
         if bos_token_id is None:
@@ -428,6 +429,7 @@ def _no_beam_search_generate(decoder: Seq2SeqDecoder, state, tokens=None, max_le
     else:
         _eos_token_id = eos_token_id
 
+    
     scores = decoder.decode(tokens=tokens, state=state)  # 主要是为了update state
     # 这里需要考虑如果在第一个位置就结束的情况
     # if _eos_token_id!=-1:
@@ -523,7 +525,6 @@ def _beam_search_generate(decoder: Seq2SeqDecoder, tokens=None, state=None, max_
         _eos_token_id = -1
     else:
         _eos_token_id = eos_token_id
-
     scores = decoder.decode(tokens=tokens, state=state)  # 这里要传入的是整个句子的长度
     # 这里需要考虑如果在第一个位置就结束的情况
     # if _eos_token_id!=-1:

@@ -78,11 +78,11 @@ elif 're' in dataset_name:
     max_len, max_len_a = 10, 1.6
     args.num_beams = 4
     args.lr = 2e-5
-    args.batch_size = 10
+    args.batch_size = 25
     args.n_epochs = 100
     seed = 1688
     eval_start_epoch=1
-    rel_type_start = 9
+    rel_type_start = 10
 elif dataset_name == 're_ace05' or dataset_name == 're_ace05_no_ent_type':
     max_len, max_len_a = 10, 1.6
     args.num_beams = 4
@@ -184,7 +184,7 @@ print("The number of tokens in tokenizer ", len(tokenizer.decoder))
 
 bos_token_id_ner = 0
 eos_token_id = 1
-bos_token_id_re = 3
+bos_token_id_re = 2
 label_ids = list(mapping2id.values())
 model = BartSeq2SeqModel.build_model(bart_name, tokenizer, label_ids=label_ids, decoder_type=decoder_type,
                                      use_encoder_mlp=use_encoder_mlp)
@@ -227,8 +227,8 @@ callbacks.append(GradientClipCallback(clip_value=5, clip_type='value'))
 callbacks.append(WarmupCallback(warmup=args.warmup_ratio, schedule=schedule))
 
 if dataset_name not in ('conll2003', 'genia'):
-    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=0.04,
-                                        eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
+    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=-1,
+                                        eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
     print(eval_start_epoch)
     eval_dataset = data_bundle.get_dataset('dev')
 elif dataset_name == 'genia':
@@ -242,10 +242,10 @@ elif dataset_name == 'genia':
     eval_dataset = data_bundle.get_dataset('train')[dev_indices]
     data_bundle.set_dataset(data_bundle.get_dataset('train')[tr_indices], name='train')
     print(data_bundle)
-    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=0.04, eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
+    callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=-1, eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
     fitlog.add_other(name='demo', value='split dev')
 else:
-    callbacks.append(FitlogCallback(raise_threshold=0.04, eval_begin_epoch=eval_start_epoch))  # 如果低于0.04大概率是讯飞了
+    callbacks.append(FitlogCallback(raise_threshold=-1, eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
     eval_dataset = data_bundle.get_dataset('test')
 
 sampler = None

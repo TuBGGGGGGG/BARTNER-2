@@ -59,8 +59,7 @@ class Seq2Seq_RE_NER_Loss(LossBase):
 
         ner_loss = self.get_loss_step(tgt_tokens, tgt_seq_len, pred)
         re_loss = self.get_loss_step(re_tgt_tokens, re_tgt_seq_len, re_pred)
-
-        return 0.5 * (ner_loss + re_loss)
+        return  0.5 * ner_loss + 0.5 * re_loss
     
     def get_loss_step(self, tgt_tokens, tgt_seq_len, pred):
         """
