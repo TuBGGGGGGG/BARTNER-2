@@ -192,6 +192,7 @@ class Seq2Seq_RE_NER_Metric(MetricBase):
         print(f"\nmetric类型: [NER & RE]  rel_type_start: {rel_type_start}!\n")
 
     def evaluate(self, target_span, pred, tgt_tokens, re_target_span, re_pred, re_tgt_tokens):
+        assert pred.shape[0] == re_pred.shape[0]
         self.evaluate_ner(target_span, pred, tgt_tokens)
         self.evaluate_re(re_target_span, re_pred, re_tgt_tokens)
 

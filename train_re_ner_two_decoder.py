@@ -7,7 +7,7 @@ if 'p' in os.environ:
 import warnings
 warnings.filterwarnings('ignore')
 from data.pipe import Bart_RE_NER_Pipe
-from model.bart import BartSeq2SeqModel
+from model.bart import BartSeq2SeqModel, BartSeq2SeqModel_RE_NER
 import fitlog
 import random
 import numpy as np
@@ -78,7 +78,7 @@ elif 're' in dataset_name:
     max_len, max_len_a = 10, 1.6
     args.num_beams = 4
     args.lr = 2e-5
-    args.batch_size = 25
+    args.batch_size = 40
     args.n_epochs = 100
     seed = 1688
     eval_start_epoch=1
@@ -186,11 +186,11 @@ bos_token_id_ner = 0
 eos_token_id = 1
 bos_token_id_re = 2
 label_ids = list(mapping2id.values())
-model = BartSeq2SeqModel.build_model(bart_name, tokenizer, label_ids=label_ids, decoder_type=decoder_type,
+model = BartSeq2SeqModel_RE_NER.build_model(bart_name, tokenizer, label_ids=label_ids, decoder_type=decoder_type,
                                      use_encoder_mlp=use_encoder_mlp)
 
 vocab_size = len(tokenizer)
-print(vocab_size, model.decoder.decoder.embed_tokens.weight.data.size(0))
+print(vocab_size, model.decoder.decoder.embed_tokens.weight.data.size(0), model.decoder_re.decoder.embed_tokens.weight.data.size(0))
 model = SequenceGeneratorModel_RE_NER(model, bos_token_id_ner=bos_token_id_ner,
                                bos_token_id_re=bos_token_id_re,
                                eos_token_id=eos_token_id,
@@ -206,7 +206,6 @@ parameters = []
 params = {'lr':lr, 'weight_decay':1e-2}
 params['params'] = [param for name, param in model.named_parameters() if not ('bart_encoder' in name or 'bart_decoder' in name)]
 parameters.append(params)
-
 params = {'lr':lr, 'weight_decay':1e-2}
 params['params'] = []
 for name, param in model.named_parameters():
@@ -229,7 +228,7 @@ callbacks.append(WarmupCallback(warmup=args.warmup_ratio, schedule=schedule))
 if dataset_name not in ('conll2003', 'genia'):
     callbacks.append(FitlogCallback(data_bundle.get_dataset('test'), raise_threshold=-1,
                                         eval_begin_epoch=eval_start_epoch))  # 如果低于-1大概率是讯飞了
-    print(eval_start_epoch)
+    print("【eval_start_epoch】: ", eval_start_epoch)
     eval_dataset = data_bundle.get_dataset('dev')
 elif dataset_name == 'genia':
     dev_indices = []
@@ -275,7 +274,7 @@ else:
 validate_every = 100000
 
 orderlearing_num = 0
-max_type_id = len(pipe.mapping2targetid) + 2
+max_type_id = len(pipe.mapping2targetid) + 3
 print(max_type_id)
 
 ds_final = get_double_ds(ds, pipe)

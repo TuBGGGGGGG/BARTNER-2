@@ -56,10 +56,10 @@ class Seq2Seq_RE_NER_Loss(LossBase):
         self.max_type_id = max_type_id
     
     def get_loss(self, tgt_tokens, tgt_seq_len, pred, re_tgt_tokens, re_tgt_seq_len, re_pred):
-
+        assert pred.shape[0] == re_pred.shape[0]
         ner_loss = self.get_loss_step(tgt_tokens, tgt_seq_len, pred)
         re_loss = self.get_loss_step(re_tgt_tokens, re_tgt_seq_len, re_pred)
-        return  0.5 * ner_loss + 0.5 * re_loss
+        return  0.5 * re_loss + 0.5 * ner_loss
     
     def get_loss_step(self, tgt_tokens, tgt_seq_len, pred):
         """

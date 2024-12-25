@@ -9,6 +9,7 @@ from torch import nn
 import math
 from .utils import get_span_from_pred, get_ent_boundary
 from .multi_head_biaffine3 import MultiHeadBiaffine
+from copy import deepcopy
 
 class FBartEncoder(Seq2SeqEncoder):
     def __init__(self, encoder):
@@ -218,7 +219,7 @@ class FBartDecoder(Seq2SeqDecoder):
         word_scores = word_scores.masked_fill(mask, -1e32)
 
         logits[:, :, 1:2] = eos_scores
-        logits[:, :, 2:self.src_start_index] = tag_scores
+        logits[:, :, 3:self.src_start_index] = tag_scores # 这也要改成3
         logits[:, :, self.src_start_index:] = word_scores
 
         return logits
@@ -429,6 +430,7 @@ class CaGFBartDecoder(FBartDecoder):
         if not self.avg_feature:
             gen_scores = torch.einsum('blh,bnh->bln', hidden_state, input_embed)  # bsz x max_len x max_word_len
             word_scores = (gen_scores + word_scores)/2
+
         mask = mask.__or__(src_tokens.eq(2).cumsum(dim=1).ge(1).unsqueeze(1))
         word_scores = word_scores.masked_fill(mask, -1e32)
 
@@ -677,7 +679,6 @@ class BartSeq2SeqModel(Seq2SeqModel):
         model.resize_token_embeddings(len(tokenizer.unique_no_split_tokens)+num_tokens)
         encoder = model.encoder
         decoder = model.decoder
-
         _tokenizer = BartTokenizer.from_pretrained(bart_model)
         for token in tokenizer.unique_no_split_tokens:
             if token[:2] == '<<':  # 特殊字符
@@ -746,16 +747,108 @@ class BartSeq2SeqModel(Seq2SeqModel):
         :param torch.LongTensor tgt_seq_len: target的长度，默认用不上
         :return: {'pred': torch.Tensor}, 其中pred的shape为bsz x max_len x vocab_size
         """
+        src_tokens_clone,  src_seq_len_clone, first_clone = src_tokens.clone(), src_seq_len.clone(), first.clone()
         state = self.prepare_state(src_tokens, src_seq_len, first) 
+        state_re = self.prepare_state(src_tokens_clone, src_seq_len_clone, first_clone)
         decoder_output_ner = self.decoder(tgt_tokens, state, update_tree) 
-        decoder_output_re = self.decoder(re_tgt_tokens, state, update_tree)
+        decoder_output_re = self.decoder(re_tgt_tokens, state_re, update_tree)
+        
         if isinstance(decoder_output_ner, torch.Tensor):
             return {'pred': decoder_output_ner, 're_pred': decoder_output_re}
         elif isinstance(decoder_output_ner, (tuple, list)):
             return {'pred': decoder_output_ner[0], 're_pred': decoder_output_re[0]}
         else:
             raise TypeError(f"Unsupported return type from Decoder:{type(self.decoder)}")
+        
+class BartSeq2SeqModel_RE_NER(nn.Module):
+    def __init__(self, encoder, decoder, decoder_re, **kwargs):
+        # 调用父类的构造方法
+        super().__init__()
+        self.encoder = encoder
+        self.decoder = decoder
+        self.decoder_re = decoder_re  # 初始化 decoder_re
 
+    @staticmethod  # 将 build_model 改成静态方法，不再需要 cls
+    def build_model(bart_model, tokenizer, label_ids, decoder_type=None,
+                    use_encoder_mlp=False):
+        # 加载BART预训练模型
+        model = BartModel.from_pretrained(bart_model)
+        num_tokens, _ = model.encoder.embed_tokens.weight.shape
+        model.resize_token_embeddings(len(tokenizer.unique_no_split_tokens) + num_tokens)
+        encoder = model.encoder
+        decoder = model.decoder
+        model_re = BartModel.from_pretrained(bart_model)
+        model_re.resize_token_embeddings(len(tokenizer.unique_no_split_tokens) + num_tokens)
+        decoder_re = model_re.decoder
+
+        # 处理特殊字符
+        _tokenizer = BartTokenizer.from_pretrained(bart_model)
+        for token in tokenizer.unique_no_split_tokens:
+            if token[:2] == '<<':  # 特殊字符处理
+                index = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(token))
+                if len(index) > 1:
+                    raise RuntimeError(f"{token} wrong split")
+                else:
+                    index = index[0]
+                assert index >= num_tokens, (index, num_tokens, token)
+                indexes = _tokenizer.convert_tokens_to_ids(_tokenizer.tokenize(token[2:-2]))
+                embed = model.encoder.embed_tokens.weight.data[indexes[0]]
+                for i in indexes[1:]:
+                    embed += model.decoder.embed_tokens.weight.data[i]
+                embed /= len(indexes)
+                model.decoder.embed_tokens.weight.data[index] = embed
+
+        # 转换为 FBartEncoder 和 FBartDecoder（自定义的解码器）
+        encoder = FBartEncoder(encoder)
+        if decoder_type is None:
+            decoder = FBartDecoder(decoder, pad_token_id=tokenizer.pad_token_id, label_ids=label_ids)
+            decoder_re = FBartDecoder(decoder_re, pad_token_id=tokenizer.pad_token_id, label_ids=label_ids)
+        elif decoder_type == 'avg_score':
+            decoder = CaGFBartDecoder(decoder, pad_token_id=tokenizer.pad_token_id, label_ids=label_ids,
+                                      avg_feature=False, use_encoder_mlp=use_encoder_mlp)
+            decoder_re = CaGFBartDecoder(decoder_re, pad_token_id=tokenizer.pad_token_id, label_ids=label_ids,
+                                      avg_feature=False, use_encoder_mlp=use_encoder_mlp)
+        elif decoder_type == 'avg_feature':
+            decoder = CaGFBartDecoder(decoder, pad_token_id=tokenizer.pad_token_id, label_ids=label_ids,
+                                      avg_feature=True, use_encoder_mlp=use_encoder_mlp)
+            decoder_re = CaGFBartDecoder(decoder_re, pad_token_id=tokenizer.pad_token_id, label_ids=label_ids,
+                                      avg_feature=True, use_encoder_mlp=use_encoder_mlp)
+        else:
+            raise RuntimeError("Unsupported feature.")
+
+        # 直接返回模型实例，而不再使用 cls
+        return BartSeq2SeqModel_RE_NER(encoder=encoder, decoder=decoder, decoder_re=decoder_re)
+    
+    def prepare_state(self, src_tokens, src_seq_len=None, first=None):
+        encoder_outputs, encoder_mask, hidden_states = self.encoder(src_tokens, src_seq_len)
+        src_embed_outputs = hidden_states[0]
+        state = BartState(encoder_outputs, encoder_mask, src_tokens, first, src_embed_outputs)
+        return state
+    
+    def forward(self, src_tokens, tgt_tokens, re_tgt_tokens, src_seq_len, re_tgt_seq_len, tgt_seq_len, first, update_tree=False):
+        """
+
+        :param torch.LongTensor src_tokens: source的token
+        :param torch.LongTensor tgt_tokens: target的token
+        :param torch.LongTensor first: 显示每个, bsz x max_word_len
+        :param torch.LongTensor src_seq_len: src的长度
+        :param torch.LongTensor tgt_seq_len: target的长度，默认用不上
+        :return: {'pred': torch.Tensor}, 其中pred的shape为bsz x max_len x vocab_size
+        """
+        src_tokens_clone,  src_seq_len_clone, first_clone = src_tokens.clone(), src_seq_len.clone(), first.clone()
+        state = self.prepare_state(src_tokens, src_seq_len, first) 
+        state_re = self.prepare_state(src_tokens_clone, src_seq_len_clone, first_clone)
+        decoder_output_ner = self.decoder(tgt_tokens, state, update_tree) 
+        decoder_output_re = self.decoder_re(re_tgt_tokens, state_re, update_tree)
+        assert decoder_output_ner.shape[0] == decoder_output_re.shape[0]
+        
+        if isinstance(decoder_output_ner, torch.Tensor):
+            return {'pred': decoder_output_ner, 're_pred': decoder_output_re}
+        elif isinstance(decoder_output_ner, (tuple, list)):
+            return {'pred': decoder_output_ner[0], 're_pred': decoder_output_re[0]}
+        else:
+            raise TypeError(f"Unsupported return type from Decoder:{type(self.decoder)}")
+        
 class BartState(State):
     def __init__(self, encoder_output, encoder_mask, src_tokens, first, src_embed_outputs):
         super().__init__(encoder_output, encoder_mask)
